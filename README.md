@@ -18,7 +18,7 @@ the Talim Sahl visual identity (Arabic-first, bilingual).
 
 ```bash
 cd /path/to/your/frappe-bench
-bench get-app talimsahl /path/to/talimsahl   # or git URL
+bench get-app https://github.com/Cre8tivMaxx/talimsahl
 bench --site your-site install-app talimsahl
 bench build --app talimsahl
 bench --site your-site clear-cache
