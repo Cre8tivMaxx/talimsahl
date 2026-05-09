@@ -1,33 +1,67 @@
-### Taliemsahl Theme
+# تعليم سهل — Taliem Sahl Theme
 
-Our Custom Theme for school erp
+A Frappe / ERPNext custom branding app that rebrands the Desk and portal to
+the Taliem Sahl visual identity (Arabic-first, bilingual).
 
-### Installation
+## What it changes
 
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
+- Navbar: navy (`#1B3A6B`)
+- Primary buttons: CTA blue (`#2831AD`)
+- Accents, links, focus rings: teal (`#0D9B8A`)
+- Sidebar: light navy tint with teal active accent
+- Cards / module tiles: rounded with subtle shadow + teal hover lift
+- Typography: Inter (Latin) + Noto Sans Arabic (RTL)
+- Login page: bilingual split-screen (navy brand panel + white form)
+- Hides `Powered by Frappe` footer
+
+## Install
 
 ```bash
-cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch version-16
-bench install-app taliemsahl_theme
+cd /path/to/your/frappe-bench
+bench get-app talimsahl /path/to/talimsahl   # or git URL
+bench --site your-site install-app talimsahl
+bench build --app talimsahl
+bench --site your-site clear-cache
+bench restart   # or `bench start` in dev
 ```
 
-### Contributing
+Hard-refresh the browser (Ctrl+Shift+R) to bust cached CSS.
 
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
+## Swapping the logo
+
+Drop your replacement files into:
+
+```
+talimsahl/public/images/logo.png         # main brand logo
+talimsahl/public/images/logo-white.png   # for navy login panel
+talimsahl/public/images/favicon.png      # browser tab icon
+```
+
+Then `bench build --app talimsahl && bench restart`.
+
+## Color palette
+
+| Role        | Hex       |
+|-------------|-----------|
+| Primary     | `#0D9B8A` |
+| Secondary   | `#1B3A6B` |
+| CTA         | `#2831AD` |
+| Mid blue    | `#3973B7` |
+| Light blue  | `#8AC9E8` |
+| Text        | `#1D1E20` |
+| Text muted  | `#525252` |
+
+## Compatibility
+
+Built and tested on Frappe **v16**. Should work on v15 with the same hooks.
+
+## Contributing
 
 ```bash
-cd apps/taliemsahl_theme
+cd apps/talimsahl
 pre-commit install
 ```
 
-Pre-commit is configured to use the following tools for checking and formatting your code:
+## License
 
-- ruff
-- eslint
-- prettier
-- pyupgrade
-
-### License
-
-mit
+MIT

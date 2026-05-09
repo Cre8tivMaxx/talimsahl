@@ -1,0 +1,369 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ _("Login") }} — تعليم سهل{% endblock %}
+
+{% block navbar %}
+{% if show_language_picker %}
+{{ super() }}
+{% endif %}
+{% endblock %}
+
+{% block head_include %}
+{{ include_style('login.bundle.css') }}
+<link rel="icon" href="/assets/talimsahl/images/favicon.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ts-primary: #0D9B8A;
+    --ts-secondary: #1B3A6B;
+    --ts-cta: #2831AD;
+    --ts-cta-dark: #1E2589;
+    --ts-light-blue: #8AC9E8;
+    --ts-text: #1D1E20;
+    --ts-muted: #525252;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: #ffffff;
+    font-family: "Inter", "Noto Sans Arabic", -apple-system, sans-serif;
+    color: var(--ts-text);
+  }
+  .website-content { padding: 0 !important; margin: 0 !important; }
+  .container, .page_content, main { padding: 0 !important; max-width: none !important; }
+
+  .ts-login {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+  }
+  .ts-brand-panel {
+    background: linear-gradient(135deg, #1B3A6B 0%, #122A50 100%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .ts-brand-panel::before {
+    content: ""; position: absolute;
+    width: 320px; height: 320px; border-radius: 50%;
+    background: rgba(13, 155, 138, 0.18);
+    top: -80px; inset-inline-end: -80px;
+  }
+  .ts-brand-panel::after {
+    content: ""; position: absolute;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: rgba(138, 201, 232, 0.12);
+    bottom: -60px; inset-inline-start: -60px;
+  }
+  html[dir="rtl"] .ts-login { direction: rtl; }
+  .ts-brand-content { position: relative; z-index: 1; text-align: center; max-width: 420px; }
+  .ts-brand-logo {
+    max-width: 180px; height: auto; margin-bottom: 2rem;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+  }
+  .ts-tagline-ar {
+    font-family: "Noto Sans Arabic", sans-serif;
+    font-size: 1.6rem; font-weight: 700; line-height: 1.5;
+    margin: 0 0 1rem; direction: rtl;
+  }
+  .ts-tagline-en {
+    font-size: 1rem; font-weight: 400; line-height: 1.5;
+    color: var(--ts-light-blue); margin: 0; letter-spacing: 0.3px;
+  }
+
+  .ts-form-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+    background: #ffffff;
+  }
+  .ts-form-inner { width: 100%; max-width: 380px; margin: 0 auto; }
+  .ts-form-title {
+    color: var(--ts-secondary);
+    font-size: 1.6rem; font-weight: 700; margin: 0 0 0.4rem;
+  }
+  .ts-form-sub { color: var(--ts-muted); font-size: 0.95rem; margin: 0 0 2rem; }
+
+  /* Reset Frappe's centered card chrome inside our panel */
+  .ts-form-inner .for-login,
+  .ts-form-inner .for-signup,
+  .ts-form-inner .for-forgot,
+  .ts-form-inner .for-email-login,
+  .ts-form-inner .for-login-with-email-link {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .ts-form-inner .login-content,
+  .ts-form-inner .page-card {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .ts-form-inner .page-card-head { display: none !important; }
+  .ts-form-inner .page-card-body { padding: 0 !important; }
+
+  .ts-form-inner .form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ts-text);
+    margin-bottom: 0.35rem;
+  }
+  .ts-form-inner .password-field { position: relative; }
+  .ts-form-inner .toggle-password {
+    position: absolute;
+    inset-inline-end: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ts-primary) !important;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+  }
+  .ts-form-inner .form-control {
+    border-radius: 6px;
+    border: 1px solid #d8dde3;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.95rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .ts-form-inner .password-field .form-control { padding-inline-end: 3.2rem; }
+  .ts-form-inner .form-control:focus {
+    border-color: var(--ts-primary);
+    box-shadow: 0 0 0 3px rgba(13, 155, 138, 0.15);
+    outline: none;
+  }
+  .ts-form-inner .btn-login,
+  .ts-form-inner .btn-primary,
+  .ts-form-inner button[type="submit"] {
+    background: var(--ts-cta) !important;
+    border-color: var(--ts-cta) !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    width: 100%;
+    padding: 0.7rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .ts-form-inner .btn-login:hover,
+  .ts-form-inner .btn-primary:hover,
+  .ts-form-inner button[type="submit"]:hover {
+    background: var(--ts-cta-dark) !important;
+    border-color: var(--ts-cta-dark) !important;
+  }
+  .ts-form-inner .btn-default { border-radius: 6px !important; }
+  .ts-form-inner a { color: var(--ts-primary); }
+  .ts-form-inner a:hover { color: #087C6F; }
+  .ts-form-inner .forgot-password-message { margin: 0.5rem 0 1rem; font-size: 0.85rem; }
+  .ts-form-inner .sign-up-message { margin-top: 1.25rem; font-size: 0.9rem; color: var(--ts-muted); }
+  .ts-form-inner .login-divider { margin: 1rem 0; font-size: 0.85rem; color: var(--ts-muted); }
+
+  .ts-footer {
+    margin-top: 2.5rem;
+    color: var(--ts-muted);
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  @media (max-width: 860px) {
+    .ts-login { grid-template-columns: 1fr; }
+    .ts-brand-panel { padding: 2.5rem 1.5rem; min-height: 240px; }
+    .ts-brand-logo { max-width: 120px; margin-bottom: 1rem; }
+    .ts-tagline-ar { font-size: 1.2rem; }
+    .ts-form-panel { padding: 2rem 1.5rem; }
+  }
+</style>
+{% endblock %}
+
+{% macro email_login_body() -%}
+{% if not disable_user_pass_login or (ldap_settings and ldap_settings.enabled) %}
+<div class="page-card-body">
+  <div class="form-group">
+    <label class="form-label" for="login_email">{{ login_label or _("Email") }}</label>
+    <div class="email-field">
+      <input type="text" id="login_email" class="form-control"
+        placeholder="{% if login_name_placeholder %}{{ login_name_placeholder }}{% else %}{{ _('jane@example.com') }}{% endif %}"
+        required autofocus autocomplete="username">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label" for="login_password">{{ _("Password") }}</label>
+    <div class="password-field">
+      <input type="password" id="login_password" class="form-control" placeholder="•••••"
+        autocomplete="current-password" required>
+      <span toggle="#login_password" class="toggle-password text-muted">{{ _('Show') }}</span>
+    </div>
+  </div>
+  {% if not disable_user_pass_login %}
+  <p class="forgot-password-message">
+    <a href="#forgot">{{ _("Forgot Password?") }}</a>
+  </p>
+  {% endif %}
+</div>
+{% endif %}
+<div class="page-card-actions">
+  {% if not disable_user_pass_login %}
+  <button class="btn btn-sm btn-primary btn-block btn-login" type="submit">
+    {{ _("Login") }}</button>
+  {% endif %}
+  {% if ldap_settings and ldap_settings.enabled %}
+  <button class="btn btn-sm {{ "btn-primary" if disable_user_pass_login else "btn-default" }} btn-block btn-login btn-ldap-login">
+    {{ _("Login with LDAP") }}</button>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{% block page_content %}
+<div class="ts-login">
+  <aside class="ts-brand-panel">
+    <div class="ts-brand-content">
+      <img src="/assets/talimsahl/images/logo-white.png" alt="Taliem Sahl" class="ts-brand-logo">
+      <p class="ts-tagline-ar">نظام متكامل لإدارة المؤسسات التعليمية</p>
+      <p class="ts-tagline-en">Integrated Educational Management System</p>
+    </div>
+  </aside>
+
+  <main class="ts-form-panel">
+    <div class="ts-form-inner">
+      <h1 class="ts-form-title">تسجيل الدخول</h1>
+      <p class="ts-form-sub">{{ _("Sign in to your account") }}</p>
+
+      <noscript>
+        <div class="text-center my-3">
+          <h4>{{ _("Javascript is disabled on your browser") }}</h4>
+          <p class="text-muted">{{ _("You need to enable JavaScript for your app to work.") }}</p>
+        </div>
+      </noscript>
+
+      <section class='for-login'>
+        <div class="login-content page-card">
+          <form class="form-signin form-login" role="form">
+            {%- if social_login or login_with_email_link -%}
+            <div class="page-card-body">
+              {{ email_login_body() }}
+              <div class="social-logins text-center">
+                {% if not disable_user_pass_login or (ldap_settings and ldap_settings.enabled) %}
+                <p class="text-muted login-divider">{{ _("or") }}</p>
+                {% endif %}
+                <div class="social-login-buttons">
+                  {% for provider in provider_logins %}
+                  <div class="login-button-wrapper">
+                    <a href="{{ provider.auth_url }}"
+                      class="btn btn-block btn-default btn-sm btn-login-option btn-{{ provider.name }}">
+                      {% if provider.icon %}{{ provider.icon }}{% endif %}
+                      {{ _("Login with {0}").format(provider.provider_name) }}</a>
+                  </div>
+                  {% endfor %}
+                </div>
+                {% if login_with_email_link %}
+                <div class="login-with-email-link social-login-buttons">
+                  <div class="login-button-wrapper">
+                    <a href="#login-with-email-link"
+                      class="btn btn-block btn-default btn-sm btn-login-option btn-login-with-email-link">
+                      {{ _("Login with Email Link") }}</a>
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            {% else %}
+              {{ email_login_body() }}
+            {%- endif -%}
+          </form>
+        </div>
+        {%- if not disable_signup and not disable_user_pass_login -%}
+        <div class="text-center sign-up-message">
+          {{ _("Don't have an account?") }}
+          <a href="#signup">{{ _("Sign up") }}</a>
+        </div>
+        {%- endif -%}
+      </section>
+
+      {%- if social_login -%}
+      <section class='for-email-login'>
+        <div class="login-content page-card">
+          <form class="form-signin form-login" role="form">
+            {{ email_login_body() }}
+          </form>
+        </div>
+      </section>
+      {%- endif -%}
+
+      <section class='for-signup {{ "signup-disabled" if disable_signup else "" }}'>
+        <div class="login-content page-card">
+          {%- if not disable_signup -%}
+          {{ signup_form_template }}
+          {%- else -%}
+          <div class='text-center'>
+            <span class='indicator gray'>{{ _("Signup Disabled") }}</span>
+            <p class="text-muted text-normal sign-up-message mt-1 mb-4">{{ _("Signups have been disabled for this website.") }}</p>
+            <div><a href='/' class='btn btn-primary btn-md'>{{ _("Home") }}</a></div>
+          </div>
+          {%- endif -%}
+        </div>
+      </section>
+
+      <section class='for-forgot'>
+        <div class="login-content page-card">
+          <form class="form-signin form-forgot hide" role="form">
+            <div class="page-card-body">
+              <div class="email-field">
+                <input type="email" id="forgot_email" class="form-control"
+                  placeholder="{{ _('Email Address') }}" required autofocus autocomplete="username">
+              </div>
+            </div>
+            <div class="page-card-actions">
+              <button class="btn btn-sm btn-primary btn-block btn-forgot" type="submit">{{ _("Reset Password") }}</button>
+              <p class="text-center sign-up-message">
+                <a href="#login">{{ _("Back to Login") }}</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class='for-login-with-email-link'>
+        <div class="login-content page-card">
+          <form class="form-signin form-login-with-email-link hide" role="form">
+            <div class="page-card-body">
+              <div class="email-field">
+                <input type="email" id="login_with_email_link_email" class="form-control"
+                  placeholder="{{ _('Email Address') }}" required autofocus autocomplete="username">
+              </div>
+            </div>
+            <div class="page-card-actions">
+              <button class="btn btn-sm btn-primary btn-block btn-login-with-email-link" type="submit">{{ _("Send login link") }}</button>
+              <p class="text-center sign-up-message">
+                <a href="#login">{{ _("Back to Login") }}</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <p class="ts-footer">© 2026 تعليم سهل — Taliem Sahl</p>
+    </div>
+  </main>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>{% include "templates/includes/login/login.js" %}</script>
+{% endblock %}
+
+{% block sidebar %}{% endblock %}

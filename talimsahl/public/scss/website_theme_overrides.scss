@@ -1,0 +1,30 @@
+// Taliem Sahl — Website theme overrides
+// Injected into Frappe's website SCSS build pipeline
+
+$primary: #0D9B8A;
+$primary-color: #0D9B8A;
+$brand-color: #0D9B8A;
+$navbar-bg: #1B3A6B;
+$body-color: #1D1E20;
+$link-color: #0D9B8A;
+$btn-primary-bg: #2831AD;
+$btn-primary-color: #ffffff;
+
+.navbar {
+  background-color: #1B3A6B !important;
+  .nav-link, .navbar-brand { color: #ffffff !important; }
+  .nav-link:hover { color: #8AC9E8 !important; }
+}
+
+.btn-primary {
+  background-color: #2831AD !important;
+  border-color: #2831AD !important;
+  border-radius: 6px;
+  &:hover {
+    background-color: #1E2589 !important;
+    border-color: #1E2589 !important;
+  }
+}
+
+a { color: #0D9B8A; }
+a:hover { color: #087C6F; }

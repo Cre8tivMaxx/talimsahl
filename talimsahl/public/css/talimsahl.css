@@ -1,0 +1,291 @@
+/* ============================================================
+   Taliem Sahl — Brand Theme
+   Rebrands ERPNext / Frappe Desk + portal
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap");
+
+:root {
+  /* Brand palette */
+  --ts-primary: #0D9B8A;       /* Teal */
+  --ts-primary-dark: #087C6F;
+  --ts-secondary: #1B3A6B;     /* Navy */
+  --ts-secondary-dark: #122A50;
+  --ts-cta: #2831AD;           /* CTA Blue */
+  --ts-cta-dark: #1E2589;
+  --ts-mid-blue: #3973B7;
+  --ts-light-blue: #8AC9E8;
+  --ts-white: #FFFFFF;
+  --ts-text: #1D1E20;
+  --ts-text-muted: #525252;
+  --ts-sidebar-bg: #f0f4f8;
+  --ts-card-shadow: 0 2px 8px rgba(27, 58, 107, 0.08);
+  --ts-card-shadow-hover: 0 6px 20px rgba(27, 58, 107, 0.15);
+
+  /* Override Frappe's CSS variables */
+  --primary: var(--ts-primary);
+  --primary-color: var(--ts-primary);
+  --brand-color: var(--ts-primary);
+  --text-color: var(--ts-text);
+  --text-muted: var(--ts-text-muted);
+  --btn-primary-bg: var(--ts-cta);
+  --btn-primary-color: var(--ts-white);
+  --navbar-bg: var(--ts-secondary);
+  --sidebar-select-color: var(--ts-primary);
+}
+
+/* ----- Typography ----- */
+body,
+.layout-main-section,
+.frappe-control,
+.btn,
+input,
+select,
+textarea {
+  font-family: "Inter", "Noto Sans Arabic", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+/* ----- Navbar ----- */
+header.navbar,
+.navbar {
+  background-color: var(--ts-secondary) !important;
+  border-bottom: 0 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.navbar .navbar-brand,
+.navbar a,
+.navbar .nav-link,
+.navbar .btn-reset,
+.navbar input,
+.navbar svg {
+  color: var(--ts-white) !important;
+  fill: var(--ts-white) !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .navbar-brand:hover,
+.navbar a:hover {
+  color: var(--ts-light-blue) !important;
+}
+
+.navbar .input-with-feedback,
+.navbar .awesomplete input {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: var(--ts-white) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+.navbar .awesomplete input::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* ----- Sidebar ----- */
+.layout-side-section,
+.standard-sidebar,
+.desk-sidebar {
+  background-color: var(--ts-sidebar-bg) !important;
+}
+
+.standard-sidebar .standard-sidebar-item,
+.desk-sidebar-item {
+  border-radius: 6px;
+  margin-block: 2px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.standard-sidebar .standard-sidebar-item:hover,
+.desk-sidebar-item:hover {
+  background-color: rgba(13, 155, 138, 0.08) !important;
+  color: var(--ts-primary) !important;
+}
+
+.standard-sidebar .standard-sidebar-item.selected,
+.desk-sidebar-item.selected,
+.standard-sidebar .standard-sidebar-item.active {
+  background-color: rgba(13, 155, 138, 0.12) !important;
+  color: var(--ts-primary) !important;
+  border-inline-start: 3px solid var(--ts-primary) !important;
+  font-weight: 600;
+}
+
+/* ----- Buttons ----- */
+.btn-primary,
+.btn.btn-primary,
+.btn-modal-primary {
+  background-color: var(--ts-cta) !important;
+  border-color: var(--ts-cta) !important;
+  color: var(--ts-white) !important;
+  border-radius: 6px !important;
+  font-weight: 500;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.btn-primary:hover,
+.btn.btn-primary:hover,
+.btn-modal-primary:hover {
+  background-color: var(--ts-cta-dark) !important;
+  border-color: var(--ts-cta-dark) !important;
+}
+
+.btn-secondary,
+.btn.btn-secondary {
+  background-color: var(--ts-mid-blue) !important;
+  border-color: var(--ts-mid-blue) !important;
+  color: var(--ts-white) !important;
+  border-radius: 6px !important;
+}
+
+.btn-secondary:hover,
+.btn.btn-secondary:hover {
+  background-color: #2c5e9a !important;
+  border-color: #2c5e9a !important;
+}
+
+.btn-default,
+.btn.btn-default {
+  border: 1px solid var(--ts-secondary) !important;
+  color: var(--ts-secondary) !important;
+  border-radius: 6px !important;
+  background-color: var(--ts-white) !important;
+}
+
+.btn-default:hover,
+.btn.btn-default:hover {
+  background-color: var(--ts-secondary) !important;
+  color: var(--ts-white) !important;
+}
+
+.btn {
+  border-radius: 6px !important;
+}
+
+/* ----- Module / workspace cards ----- */
+.module-card,
+.widget,
+.widget-group .widget,
+.workspace-page .widget,
+.shortcut-widget-box {
+  border-radius: 10px !important;
+  box-shadow: var(--ts-card-shadow) !important;
+  border: 1px solid rgba(27, 58, 107, 0.06) !important;
+  transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+}
+
+.module-card:hover,
+.widget:hover,
+.shortcut-widget-box:hover {
+  box-shadow: var(--ts-card-shadow-hover) !important;
+  border-top: 3px solid var(--ts-primary) !important;
+  transform: translateY(-1px);
+}
+
+/* ----- Form controls ----- */
+.form-control:focus,
+.input-with-feedback:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--ts-primary) !important;
+  box-shadow: 0 0 0 3px rgba(13, 155, 138, 0.15) !important;
+  outline: none !important;
+}
+
+a,
+.indicator-pill,
+.text-primary {
+  color: var(--ts-primary);
+}
+
+a:hover {
+  color: var(--ts-primary-dark);
+}
+
+/* ----- Badges / indicators ----- */
+.indicator-pill.brand,
+.badge-primary,
+.badge.badge-primary {
+  background-color: var(--ts-primary) !important;
+  color: var(--ts-white) !important;
+}
+
+/* ----- Hide Frappe / ERPNext branding ----- */
+.standard-footer,
+.powered-by-frappe,
+.footer-powered,
+.web-footer .powered,
+[data-app-name="frappe"] .app-icon,
+.frappe-credits,
+.about-product-tagline {
+  display: none !important;
+}
+
+/* ----- RTL polish (Arabic) ----- */
+html[dir="rtl"] body,
+html[lang^="ar"] body {
+  font-family: "Noto Sans Arabic", "Inter", sans-serif !important;
+}
+
+html[dir="rtl"] .standard-sidebar .standard-sidebar-item.selected,
+html[dir="rtl"] .standard-sidebar .standard-sidebar-item.active {
+  border-inline-start: 3px solid var(--ts-primary) !important;
+  border-right: none !important;
+}
+
+/* ----- Top progress bar ----- */
+.progress-bar,
+.bar-progress,
+#progress-bar,
+.progress > .progress-bar {
+  background-color: var(--ts-primary) !important;
+}
+
+/* ----- Dark mode ----- */
+[data-theme="dark"] {
+  --ts-sidebar-bg: #11243f;
+  --primary: var(--ts-primary);
+  --primary-color: var(--ts-primary);
+  --brand-color: var(--ts-primary);
+  --btn-primary-bg: var(--ts-cta);
+  --btn-primary-color: var(--ts-white);
+  --navbar-bg: #0F2547;
+}
+
+[data-theme="dark"] header.navbar,
+[data-theme="dark"] .navbar {
+  background-color: #0F2547 !important;
+}
+
+[data-theme="dark"] .layout-side-section,
+[data-theme="dark"] .standard-sidebar,
+[data-theme="dark"] .desk-sidebar {
+  background-color: #11243f !important;
+}
+
+[data-theme="dark"] .standard-sidebar .standard-sidebar-item:hover,
+[data-theme="dark"] .desk-sidebar-item:hover {
+  background-color: rgba(13, 155, 138, 0.18) !important;
+  color: var(--ts-light-blue) !important;
+}
+
+[data-theme="dark"] .standard-sidebar .standard-sidebar-item.selected,
+[data-theme="dark"] .desk-sidebar-item.selected,
+[data-theme="dark"] .standard-sidebar .standard-sidebar-item.active {
+  background-color: rgba(13, 155, 138, 0.22) !important;
+  color: var(--ts-light-blue) !important;
+}
+
+[data-theme="dark"] .module-card,
+[data-theme="dark"] .widget,
+[data-theme="dark"] .shortcut-widget-box {
+  border: 1px solid rgba(138, 201, 232, 0.10) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+}
+
+[data-theme="dark"] .module-card:hover,
+[data-theme="dark"] .widget:hover,
+[data-theme="dark"] .shortcut-widget-box:hover {
+  border-top: 3px solid var(--ts-primary) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45) !important;
+}
+
