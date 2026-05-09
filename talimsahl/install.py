@@ -1,19 +1,19 @@
 import frappe
 
 BRAND_NAME = "تعليم سهل"
-BRAND_NAME_EN = "Taliem Sahl"
+BRAND_NAME_EN = "Talim Sahl"
 LOGO_URL = "/assets/talimsahl/images/logo.png"
 FAVICON_URL = "/assets/talimsahl/images/favicon.png"
 
 
 def apply_brand_settings():
-    """Write Taliem Sahl branding into Website Settings + Navbar Settings.
+	"""Write Talim Sahl branding into Website Settings + Navbar Settings.
 
-    Idempotent — safe to call from after_install and after_migrate.
-    """
-    _apply_website_settings()
-    _apply_navbar_settings()
-    frappe.clear_cache()
+	Idempotent — safe to call from after_install and after_migrate.
+	"""
+	_apply_website_settings()
+	_apply_navbar_settings()
+	frappe.clear_cache()
 
 
 def _apply_website_settings():

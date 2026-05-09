@@ -1,7 +1,7 @@
-# تعليم سهل — Taliem Sahl Theme
+# تعليم سهل — Talim Sahl Theme
 
 A Frappe / ERPNext custom branding app that rebrands the Desk and portal to
-the Taliem Sahl visual identity (Arabic-first, bilingual).
+the Talim Sahl visual identity (Arabic-first, bilingual).
 
 ## What it changes
 

@@ -1,7 +1,7 @@
 app_name = "talimsahl"
 app_title = "تعليم سهل"
-app_publisher = "Taliem Sahl"
-app_description = "Brand theme for Taliem Sahl — bilingual (Arabic/English) ERP rebrand."
+app_publisher = "Talim Sahl"
+app_description = "Brand theme for Talim Sahl — bilingual (Arabic/English) ERP rebrand."
 app_email = "notabdelrahmanelsayed@gmail.com"
 app_license = "mit"
 
@@ -19,9 +19,9 @@ website_theme_scss = "talimsahl/public/scss/website_theme_overrides"
 
 # Favicon + splash for the public web side
 website_context = {
-    "favicon": "/assets/talimsahl/images/favicon.png",
-    "splash_image": "/assets/talimsahl/images/logo.png",
-    "brand_html": '<img src="/assets/talimsahl/images/logo.png" alt="Taliem Sahl" style="height:32px;">',
+	"favicon": "/assets/talimsahl/images/favicon.png",
+	"splash_image": "/assets/talimsahl/images/logo.png",
+	"brand_html": '<img src="/assets/talimsahl/images/logo.png" alt="Talim Sahl" style="height:32px;">',
 }
 
 # Apply Website Settings + Navbar Settings on install and after every migration
