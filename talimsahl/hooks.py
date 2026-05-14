@@ -7,12 +7,17 @@ app_license = "mit"
 
 app_logo_url = "/assets/talimsahl/images/logo.png"
 
-# Desk assets
-app_include_css = "/assets/talimsahl/css/talimsahl.css"
-app_include_js = "/assets/talimsahl/js/talimsahl.js"
+# Desk (/app) reskin — loaded into Frappe Desk only.
+app_include_css = [
+	"/assets/talimsahl/css/brand-tokens.css",
+	"/assets/talimsahl/css/desk-overrides.css",
+]
 
-# Web/portal assets (login, www pages, portal)
-web_include_css = "/assets/talimsahl/css/talimsahl.css"
+# Web/portal assets (login page, www pages, public portal).
+web_include_css = [
+	"/assets/talimsahl/css/brand-tokens.css",
+	"/assets/talimsahl/css/talimsahl.css",
+]
 
 # Inject brand variables into the website theme SCSS pipeline
 website_theme_scss = "talimsahl/public/scss/website_theme_overrides"
@@ -27,3 +32,8 @@ website_context = {
 # Apply Website Settings + Navbar Settings on install and after every migration
 after_install = "talimsahl.install.apply_brand_settings"
 after_migrate = "talimsahl.install.apply_brand_settings"
+
+# Workspace customization is applied programmatically from install.py
+# (see _apply_workspace_if_education_present). Not exported as a fixture
+# because Frappe's fixture loader enforces stricter validation than doc.save().
+

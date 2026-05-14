@@ -1,0 +1,25 @@
+/* ============================================================
+   Talim Sahl — Brand Tokens (single source of truth)
+   Consumed by:
+     - talimsahl.css (portal + /login)
+     - website_theme_overrides.scss (public website via SCSS pipeline)
+     - frontend/tailwind.config.js (Vue SPA, mirrors these hex values)
+   ============================================================ */
+
+:root {
+  /* Brand palette */
+  --ts-primary: #0D9B8A;       /* Teal */
+  --ts-primary-dark: #087C6F;
+  --ts-secondary: #1B3A6B;     /* Navy */
+  --ts-secondary-dark: #122A50;
+  --ts-cta: #2831AD;           /* CTA Blue */
+  --ts-cta-dark: #1E2589;
+  --ts-mid-blue: #3973B7;
+  --ts-light-blue: #8AC9E8;
+  --ts-white: #FFFFFF;
+  --ts-text: #1D1E20;
+  --ts-text-muted: #525252;
+  --ts-bg-soft: #E8F4F1;
+  --ts-card-shadow: 0 2px 8px rgba(27, 58, 107, 0.08);
+  --ts-card-shadow-hover: 0 6px 20px rgba(27, 58, 107, 0.15);
+}

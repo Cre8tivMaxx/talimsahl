@@ -1,0 +1,261 @@
+/* ============================================================
+   Talim Sahl — Desk Reskin
+   Loaded into Frappe Desk (/app) via app_include_css.
+   Strategy: redefine Frappe's CSS variables at :root:root specificity
+   (beats any later :root declarations without needing !important).
+   ============================================================ */
+
+@import url("./brand-tokens.css");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap");
+
+/* ----- 1. Override Frappe's CSS variables ----- */
+html:root, :root:root {
+  --primary: var(--ts-cta);
+  --primary-color: var(--ts-cta);
+  --btn-primary: var(--ts-cta);
+  --btn-primary-hover: var(--ts-cta-dark);
+
+  --navbar-bg: var(--ts-secondary);
+  --navbar-height: 56px;
+
+  --sidebar-active-color: var(--ts-primary);
+  --sidebar-hover-color: var(--ts-bg-soft);
+  --sidebar-width: 240px;
+
+  --bg-color: #F7FAFB;
+  --fg-color: #FFFFFF;
+  --text-color: var(--ts-text);
+  --heading-color: var(--ts-secondary);
+  --border-color: #E1E8EB;
+  --dark-border-color: #D0DADE;
+
+  --highlight-color: var(--ts-bg-soft);
+  --control-bg: #F1F5F7;
+  --page-max-width: 1100px;
+
+  --font-stack: "Inter", "Noto Sans Arabic", system-ui, -apple-system, sans-serif;
+}
+
+/* ----- 2. Typography ----- */
+body, .frappe-control, .btn, .form-control, .page-title h1, .navbar {
+  font-family: var(--font-stack);
+}
+h1, h2, h3, h4, .page-title h1, .section-head {
+  color: var(--ts-secondary);
+  font-weight: 600;
+}
+
+/* ----- 3. Navbar ----- */
+.navbar {
+  background: var(--ts-secondary) !important;
+  border-bottom: none;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+.navbar .navbar-brand, .navbar .navbar-home,
+.navbar a, .navbar .nav-link, .navbar button,
+.navbar .input-group input { color: #FFFFFF !important; }
+.navbar .nav-link:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+.navbar .navbar-brand img { height: 32px; }
+.navbar .input-group input {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.navbar .input-group input::placeholder { color: rgba(255,255,255,0.7); }
+
+/* Hide Frappe / ERPNext branding remnants */
+.navbar-brand img[src*="frappe-framework-logo"],
+.navbar .dropdown-help,
+.navbar .updates-dropdown,
+.navbar [data-original-title*="Updates"],
+.footer-powered,
+.powered-by-frappe { display: none !important; }
+
+/* ----- 4. Sidebar ----- */
+.body-sidebar, .layout-side-section {
+  background: #FFFFFF;
+  border-right: 1px solid var(--border-color);
+}
+.standard-sidebar-item, .sidebar-item {
+  border-radius: 8px;
+  margin: 2px 6px;
+  transition: background 0.15s ease;
+}
+.standard-sidebar-item:hover, .sidebar-item:hover { background: var(--ts-bg-soft); }
+.standard-sidebar-item.active, .standard-sidebar-item.selected,
+.sidebar-item.selected {
+  background: var(--ts-primary) !important;
+  color: #FFFFFF !important;
+}
+.standard-sidebar-item.active .sidebar-item-label,
+.standard-sidebar-item.active a,
+.standard-sidebar-item.selected a { color: #FFFFFF !important; }
+
+/* ----- 5. Page head + titles ----- */
+.page-head {
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(27,58,107,0.04);
+}
+.page-title h1, .title-text {
+  color: var(--ts-secondary);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ----- 6. Forms ----- */
+.form-layout, .form-page {
+  background: var(--bg-color);
+}
+.form-section, .section-body {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--ts-card-shadow);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.section-head, .form-section .section-head {
+  color: var(--ts-secondary);
+  font-weight: 600;
+  border-left: 3px solid var(--ts-primary);
+  padding-left: 10px;
+  margin-bottom: 0.75rem;
+}
+html[dir="rtl"] .section-head {
+  border-left: none;
+  border-right: 3px solid var(--ts-primary);
+  padding-left: 0;
+  padding-right: 10px;
+}
+
+.frappe-control input.form-control,
+.frappe-control select.form-control,
+.frappe-control textarea.form-control,
+.like-disabled-input {
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--control-bg);
+  padding: 8px 12px;
+  transition: border 0.15s ease, box-shadow 0.15s ease;
+}
+.frappe-control input.form-control:focus,
+.frappe-control select.form-control:focus,
+.frappe-control textarea.form-control:focus {
+  border-color: var(--ts-primary);
+  box-shadow: 0 0 0 3px rgba(13,155,138,0.15);
+  background: #FFFFFF;
+}
+.control-label, .label-area label { color: var(--ts-text-muted); font-weight: 500; }
+
+/* ----- 7. Buttons ----- */
+.btn { border-radius: 8px; font-weight: 500; transition: all 0.15s ease; }
+.btn-primary, .btn.btn-primary {
+  background: var(--ts-cta) !important;
+  border-color: var(--ts-cta) !important;
+  color: #FFFFFF !important;
+}
+.btn-primary:hover, .btn.btn-primary:hover {
+  background: var(--ts-cta-dark) !important;
+  border-color: var(--ts-cta-dark) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(40,49,173,0.25);
+}
+.btn-default, .btn.btn-default {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  color: var(--ts-secondary);
+}
+.btn-default:hover { background: var(--ts-bg-soft); border-color: var(--ts-primary); }
+.btn-secondary { background: var(--ts-bg-soft); border-color: transparent; color: var(--ts-secondary); }
+
+/* ----- 8. Lists ----- */
+.list-row-head {
+  background: var(--ts-secondary) !important;
+  color: #FFFFFF;
+  border-radius: 8px 8px 0 0;
+}
+.list-row-head .list-subject,
+.list-row-head .level-item,
+.list-row-head a { color: #FFFFFF !important; font-weight: 500; }
+.list-row {
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.12s ease;
+}
+.list-row:hover { background: var(--ts-bg-soft); }
+.list-subject a, .list-row .ellipsis a {
+  color: var(--ts-secondary);
+  font-weight: 500;
+}
+.list-row-container .level-left .list-subject .file-select { accent-color: var(--ts-primary); }
+
+/* ----- 9. Indicator pills ----- */
+.indicator-pill, .indicator-pill-round {
+  border-radius: 999px;
+  font-weight: 500;
+}
+.indicator-pill.green, .indicator-pill-right.green { background: rgba(13,155,138,0.12); color: var(--ts-primary-dark); }
+.indicator-pill.blue, .indicator-pill-right.blue { background: rgba(40,49,173,0.12); color: var(--ts-cta-dark); }
+.indicator-pill.red { background: rgba(220,53,69,0.12); color: #B23B47; }
+.indicator-pill.orange, .indicator-pill.yellow { background: rgba(245,158,11,0.12); color: #B45309; }
+.indicator-pill.gray, .indicator-pill.grey { background: rgba(82,82,82,0.10); color: var(--ts-text-muted); }
+.indicator-pill.purple { background: rgba(139,92,246,0.12); color: #6D28D9; }
+
+/* ----- 10. Workspace polish ----- */
+.widget-group-title, .widget-title { color: var(--ts-secondary); font-weight: 600; }
+.widget-box, .shortcut-widget-box, .number-widget-box,
+.new-number-card-widget, .new-chart-widget, .new-shortcut-widget {
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: #FFFFFF;
+  box-shadow: var(--ts-card-shadow);
+  transition: all 0.18s ease;
+}
+.shortcut-widget-box:hover, .new-shortcut-widget:hover,
+.new-number-card-widget:hover {
+  box-shadow: var(--ts-card-shadow-hover);
+  transform: translateY(-2px);
+  border-color: var(--ts-primary);
+}
+.new-number-card-widget { border-left: 4px solid var(--ts-primary); }
+html[dir="rtl"] .new-number-card-widget {
+  border-left: 1px solid var(--border-color);
+  border-right: 4px solid var(--ts-primary);
+}
+.widget .widget-head .widget-title { color: var(--ts-secondary); }
+.stat-label, .number-card-label { color: var(--ts-text-muted); }
+.stat-value, .number-card-value { color: var(--ts-secondary); font-weight: 700; }
+
+/* ----- 11. Modal / Dialog ----- */
+.modal-content { border-radius: 12px; border: none; box-shadow: 0 20px 60px rgba(27,58,107,0.25); }
+.modal-header { border-bottom: 1px solid var(--border-color); }
+.modal-title { color: var(--ts-secondary); font-weight: 600; }
+
+/* ----- 12. Awesomplete + dropdowns ----- */
+.awesomplete > ul, .dropdown-menu {
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 24px rgba(27,58,107,0.10);
+}
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item.selected { background: var(--ts-bg-soft); color: var(--ts-secondary); }
+
+/* ----- 13. Tables ----- */
+.table > thead > tr > th {
+  background: var(--ts-bg-soft);
+  color: var(--ts-secondary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+}
+.table > tbody > tr:hover { background: var(--ts-bg-soft); }
+
+/* ----- 14. Tags / chips ----- */
+.tag, .filter-button { border-radius: 6px; }
+
+/* ----- 15. Scrollbars (webkit) ----- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(27,58,107,0.18); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(27,58,107,0.30); }
+
+/* ----- 16. RTL navbar fixes ----- */
+html[dir="rtl"] .navbar { text-align: right; }
+html[dir="rtl"] .body-sidebar { border-right: none; border-left: 1px solid var(--border-color); }
