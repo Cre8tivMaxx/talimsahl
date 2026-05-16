@@ -1,3 +1,10 @@
+# OpenWolf
+
+@.wolf/OPENWOLF.md
+
+This project uses OpenWolf for context management. Read and follow .wolf/OPENWOLF.md every session. Check .wolf/cerebrum.md before generating code. Check .wolf/anatomy.md before reading files.
+
+
 # CLAUDE.md
 
 Guidance for Claude Code when working in this repository.
@@ -8,14 +15,31 @@ Guidance for Claude Code when working in this repository.
 
 Shape of the app:
 - **`talimsahl/public/css/brand-tokens.css`** — single source of brand colors (teal `#0D9B8A`, navy `#1B3A6B`, CTA blue `#2831AD`, soft bg `#E8F4F1`).
-- **`talimsahl/public/css/desk-overrides.css`** — the workhorse. Loaded into Desk via `app_include_css`. Redefines Frappe CSS variables at `:root:root` specificity (beats `:root` declarations from `erpnext.bundle.css` without `!important`). Restyles navbar, sidebar, forms, lists, buttons, workspace widgets, indicators, modals.
+- **`talimsahl/public/css/desk-overrides.css`** — the workhorse. Loaded into Desk via `app_include_css`. Redefines Frappe CSS variables at `:root:root` specificity (beats `:root` declarations from `erpnext.bundle.css` without `!important`). Restyles navbar, sidebar, forms, lists, buttons, workspace widgets, indicators, modals. Also defines the Tier-4 shells (`.ts-navbar`, `.ts-quick-actions`, `.ts-card-grid`, `.ts-form-hero`) consumed by the JS bundle.
 - **`talimsahl/public/css/talimsahl.css`** — portal + `/login` only. Loaded via `web_include_css`. Does **not** affect Desk.
 - **`talimsahl/public/scss/website_theme_overrides.scss`** — brand SCSS vars piped into Frappe's website theme pipeline.
+- **`talimsahl/public/js/desk_reskin.bundle.js`** — Tier-4 JS bundle. Loaded into Desk via `app_include_js`. esbuild auto-picks up `*.bundle.js`. Imports the modules under `public/js/reskin/`.
+- **`talimsahl/public/js/reskin/navbar.js`** — mounts the `.ts-navbar` gradient shell and **moves** Frappe's `.search-bar`, `.dropdown-notifications`, and `.dropdown-navbar-user` DOM nodes into it. Frappe's `toolbar.js` bindings stay live because nodes are moved, not cloned. Original `header.navbar` is hidden via `body.ts-shell-active > header.navbar { display: none }`.
+- **`talimsahl/public/js/reskin/sidebar.js`** — injects a Quick Actions block at the top of `.body-sidebar` (Students / Programs / Attendance / Fees).
+- **`talimsahl/public/js/reskin/home_redirect.js`** — redirects `/app` with no route to the Home workspace via `frappe.router`.
+- **`talimsahl/public/js/reskin/form_hero.js`** — prepends a hero header (icon + doctype eyebrow) above the form title via `form-load` / `form-refresh` events.
+- **`talimsahl/public/js/reskin/card_list_view.js`** — listens for `list_view_render`, adds `.ts-card-grid` to the result list so rows render as a grid of cards. Denylist for dense ledger-like doctypes (GL Entry, Stock Ledger Entry, Bank Transaction, Journal/Payment Entry); user opt-out via `localStorage.ts_card_view = "off"`.
 - **`talimsahl/www/login.html`** — branded `/login` page. Extends `templates/web.html`. Keeps Frappe's auth selectors (`.form-login`, `#login_email`, `.btn-login`, `.for-login`, `.for-email-login`, `.for-signup`, `.for-forgot`, `.for-login-with-email-link`) so Frappe's `login.js` still binds.
-- **`talimsahl/install.py`** — idempotent brand settings (`after_install` + `after_migrate`). Writes Website Settings + Navbar Settings, customizes the Education workspace via `scripts/customize_workspace.py`.
+- **`talimsahl/install.py`** — idempotent brand settings (`after_install` + `after_migrate`). Writes Website Settings + Navbar Settings, customizes the Education workspace, and creates the Home workspace as default landing.
 - **`talimsahl/scripts/customize_workspace.py`** — rebrands the Education workspace's shortcuts + icon. Idempotent.
+- **`talimsahl/scripts/create_home_workspace.py`** — creates the "Home" workspace with `is_default = 1, sequence_id = 0` and a curated shortcut list. Idempotent.
 
 No DocTypes, no Python business logic, no fixtures.
+
+## Upgrade risk (Tier-4 JS layer)
+
+The JS modules under `public/js/reskin/` are coupled to Frappe v16's DOM contract. Selectors that must remain stable for the reskin to keep working:
+- `header.navbar`, `.search-bar` / `.navbar-search`, `.dropdown-notifications` / `.notifications-icon`, `.dropdown-navbar-user`, `.body-sidebar` — used by `navbar.js` + `sidebar.js`.
+- `.list-row`, `.list-row-head`, `.result-list`, the `list_view_render` jQuery event — used by `card_list_view.js`.
+- `frm.page.$title_area`, the `form-load` / `form-refresh` events — used by `form_hero.js`.
+- `frappe.router.on("change")`, `frappe.boot.allowed_workspaces` — used by `home_redirect.js`.
+
+Pin to Frappe v16.17.x and re-verify after every minor upgrade. If a class is renamed, the navbar shell will visibly break (empty search slot) — easy to detect.
 
 ## Commands
 

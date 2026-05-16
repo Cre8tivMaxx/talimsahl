@@ -34,15 +34,60 @@ html:root, :root:root {
   --page-max-width: 1100px;
 
   --font-stack: "Inter", "Noto Sans Arabic", system-ui, -apple-system, sans-serif;
+
+  /* Control sizing — unified height/font prevents clipped select text */
+  --ts-control-h: 38px;
+  --ts-control-font: 13.5px;
+
+  /* Border-radius scale (cards → lg, controls/buttons → sm, pills → 999px) */
+  --ts-radius-sm: 6px;
+  --ts-radius-md: 10px;
+  --ts-radius-lg: 14px;
+
+  /* Typography scale overrides (Frappe's cramped defaults replaced) */
+  --text-xs: 11px;
+  --text-sm: 12.5px;
+  --text-base: 14px;
+  --text-md: 15.5px;
+  --text-lg: 18px;
+  --text-line-height: 1.6;
 }
 
 /* ----- 2. Typography ----- */
 body, .frappe-control, .btn, .form-control, .page-title h1, .navbar {
   font-family: var(--font-stack);
+  font-size: var(--text-base);
+  line-height: var(--text-line-height);
 }
-h1, h2, h3, h4, .page-title h1, .section-head {
+h1, .page-title h1 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
   color: var(--ts-secondary);
+}
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ts-secondary);
+}
+h3 {
+  font-size: 15.5px;
   font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ts-secondary);
+}
+h4 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ts-secondary);
+}
+.section-head, .form-section .section-head {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 /* ----- 3. Navbar ----- */
@@ -76,7 +121,7 @@ h1, h2, h3, h4, .page-title h1, .section-head {
   border-right: 1px solid var(--border-color);
 }
 .standard-sidebar-item, .sidebar-item {
-  border-radius: 8px;
+  border-radius: var(--ts-radius-md);
   margin: 2px 6px;
   transition: background 0.15s ease;
 }
@@ -109,14 +154,13 @@ h1, h2, h3, h4, .page-title h1, .section-head {
 .form-section, .section-body {
   background: #FFFFFF;
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: var(--ts-radius-lg);
   box-shadow: var(--ts-card-shadow);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
 }
 .section-head, .form-section .section-head {
   color: var(--ts-secondary);
-  font-weight: 600;
   border-left: 3px solid var(--ts-primary);
   padding-left: 10px;
   margin-bottom: 0.75rem;
@@ -129,26 +173,58 @@ html[dir="rtl"] .section-head {
 }
 
 .frappe-control input.form-control,
-.frappe-control select.form-control,
 .frappe-control textarea.form-control,
 .like-disabled-input {
-  border-radius: 8px;
+  border-radius: var(--ts-radius-sm);
   border: 1px solid var(--border-color);
   background: var(--control-bg);
+  font-size: var(--ts-control-font);
   padding: 8px 12px;
   transition: border 0.15s ease, box-shadow 0.15s ease;
 }
+.frappe-control input.form-control,
+.like-disabled-input {
+  height: var(--ts-control-h);
+}
 .frappe-control input.form-control:focus,
-.frappe-control select.form-control:focus,
 .frappe-control textarea.form-control:focus {
   border-color: var(--ts-primary);
   box-shadow: 0 0 0 3px rgba(13,155,138,0.15);
   background: #FFFFFF;
 }
+
+/* Native <select>: Frappe strips appearance. font-size must be explicit and
+   line-height: normal lets the browser vertically center the selected value —
+   a fixed height + line-height: 1.4 was what caused clipping. */
+.frappe-control select.form-control {
+  border-radius: var(--ts-radius-sm);
+  border: 1px solid var(--border-color);
+  background-color: var(--control-bg);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%231B3A6B' d='M2 4l4 4 4-4'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-block: 0;
+  padding-inline: 12px 32px;
+  height: var(--ts-control-h);
+  font-size: var(--ts-control-font);
+  line-height: normal;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border 0.15s ease, box-shadow 0.15s ease;
+}
+html[dir="rtl"] .frappe-control select.form-control {
+  background-position: left 12px center;
+  padding-inline: 32px 12px;
+}
+.frappe-control select.form-control:focus {
+  border-color: var(--ts-primary);
+  box-shadow: 0 0 0 3px rgba(13,155,138,0.15);
+  background-color: #FFFFFF;
+}
 .control-label, .label-area label { color: var(--ts-text-muted); font-weight: 500; }
 
 /* ----- 7. Buttons ----- */
-.btn { border-radius: 8px; font-weight: 500; transition: all 0.15s ease; }
+.btn { border-radius: var(--ts-radius-sm); font-weight: 500; transition: all 0.15s ease; }
 .btn-primary, .btn.btn-primary {
   background: var(--ts-cta) !important;
   border-color: var(--ts-cta) !important;
@@ -170,13 +246,14 @@ html[dir="rtl"] .section-head {
 
 /* ----- 8. Lists ----- */
 .list-row-head {
-  background: var(--ts-secondary) !important;
-  color: #FFFFFF;
-  border-radius: 8px 8px 0 0;
+  background: var(--control-bg) !important;
+  color: var(--ts-secondary);
+  border-radius: var(--ts-radius-md) var(--ts-radius-md) 0 0;
+  border-bottom: 2px solid var(--ts-primary);
 }
 .list-row-head .list-subject,
 .list-row-head .level-item,
-.list-row-head a { color: #FFFFFF !important; font-weight: 500; }
+.list-row-head a { color: var(--ts-secondary) !important; font-weight: 600; }
 .list-row {
   border-bottom: 1px solid var(--border-color);
   transition: background 0.12s ease;
@@ -204,7 +281,7 @@ html[dir="rtl"] .section-head {
 .widget-group-title, .widget-title { color: var(--ts-secondary); font-weight: 600; }
 .widget-box, .shortcut-widget-box, .number-widget-box,
 .new-number-card-widget, .new-chart-widget, .new-shortcut-widget {
-  border-radius: 12px;
+  border-radius: var(--ts-radius-lg);
   border: 1px solid var(--border-color);
   background: #FFFFFF;
   box-shadow: var(--ts-card-shadow);
@@ -226,13 +303,13 @@ html[dir="rtl"] .new-number-card-widget {
 .stat-value, .number-card-value { color: var(--ts-secondary); font-weight: 700; }
 
 /* ----- 11. Modal / Dialog ----- */
-.modal-content { border-radius: 12px; border: none; box-shadow: 0 20px 60px rgba(27,58,107,0.25); }
+.modal-content { border-radius: var(--ts-radius-lg); border: none; box-shadow: 0 20px 60px rgba(27,58,107,0.25); }
 .modal-header { border-bottom: 1px solid var(--border-color); }
 .modal-title { color: var(--ts-secondary); font-weight: 600; }
 
 /* ----- 12. Awesomplete + dropdowns ----- */
 .awesomplete > ul, .dropdown-menu {
-  border-radius: 10px;
+  border-radius: var(--ts-radius-md);
   border: 1px solid var(--border-color);
   box-shadow: 0 8px 24px rgba(27,58,107,0.10);
 }
@@ -259,3 +336,607 @@ html[dir="rtl"] .new-number-card-widget {
 /* ----- 16. RTL navbar fixes ----- */
 html[dir="rtl"] .navbar { text-align: right; }
 html[dir="rtl"] .body-sidebar { border-right: none; border-left: 1px solid var(--border-color); }
+
+/* ============================================================
+   Tier-4 Reskin layer (JS-mounted shells)
+   ============================================================ */
+
+/* ----- 17. Custom navbar shell ----- */
+body.ts-shell-active > header.navbar { display: none !important; }
+body.ts-shell-active { padding-top: 0; }
+.ts-navbar {
+  position: sticky; top: 0; z-index: 1030;
+  height: 60px;
+  background: var(--ts-secondary);
+  display: grid;
+  grid-template-columns: 240px 1fr auto;
+  align-items: center;
+  padding: 0 20px;
+  gap: 16px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 2px 8px rgba(27,58,107,0.20);
+  color: #fff;
+}
+.ts-navbar .ts-brand {
+  display: flex; align-items: center; gap: 10px;
+  color: #fff; font-weight: 600; font-size: 17px;
+  text-decoration: none;
+}
+.ts-navbar .ts-brand img { height: 32px; }
+.ts-navbar [data-slot=search] { max-width: 520px; width: 100%; }
+.ts-navbar [data-slot=search] .search-bar,
+.ts-navbar [data-slot=search] .navbar-search { width: 100%; }
+.ts-navbar [data-slot=search] input,
+.ts-navbar [data-slot=search] .form-control {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.20);
+  border-radius: 8px;
+  height: 40px;
+  padding-inline: 14px;
+}
+.ts-navbar [data-slot=search] input::placeholder { color: rgba(255,255,255,0.75); }
+.ts-navbar [data-slot=search] input:focus {
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.40);
+  box-shadow: none;
+}
+.ts-navbar .ts-right { display: flex; gap: 8px; align-items: center; color: #fff; }
+.ts-navbar .ts-right a,
+.ts-navbar .ts-right button,
+.ts-navbar .ts-right .nav-link { color: #fff !important; }
+.ts-navbar .ts-right .dropdown-toggle::after { color: #fff; }
+.ts-navbar .ts-right .badge { background: var(--ts-primary); color: #fff; }
+body.ts-shell-active .layout-main,
+body.ts-shell-active #page-Workspaces { padding-top: 8px; }
+html[dir="rtl"] .ts-navbar { grid-template-columns: auto 1fr 240px; }
+
+/* ----- 18. Sidebar Quick Actions ----- */
+.ts-quick-actions {
+  display: grid; gap: 6px;
+  padding: 12px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 8px;
+}
+.ts-quick-actions a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--ts-bg-soft);
+  color: var(--ts-secondary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.ts-quick-actions a:hover {
+  background: var(--ts-primary);
+  color: #fff;
+  transform: translateX(2px);
+}
+html[dir="rtl"] .ts-quick-actions a:hover { transform: translateX(-2px); }
+
+/* ----- 19. Card-grid list view ----- */
+.ts-card-grid .result-list,
+.ts-card-grid > .result {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  background: transparent;
+}
+.ts-card-grid .list-row-head { display: none !important; }
+.ts-card-grid .list-row-container { background: transparent; }
+.ts-card-grid .list-row {
+  display: flex !important;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--ts-radius-lg);
+  padding: 18px;
+  box-shadow: var(--ts-card-shadow);
+  transition: all 0.18s ease;
+  min-height: 120px;
+}
+.ts-card-grid .list-row:hover {
+  box-shadow: var(--ts-card-shadow-hover);
+  transform: translateY(-2px);
+  border-color: var(--ts-primary);
+  background: #fff;
+}
+.ts-card-grid .list-row .level-left {
+  width: 100%;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.ts-card-grid .list-row .level-right {
+  width: 100%;
+  justify-content: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ts-card-grid .list-subject a {
+  font-size: 16px;
+  color: var(--ts-secondary);
+  font-weight: 600;
+}
+
+/* ----- 20. Form hero header ----- */
+.ts-form-hero {
+  display: flex; gap: 12px; align-items: center;
+  padding: 12px 0 4px;
+}
+.ts-hero-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--ts-bg-soft);
+  display: grid; place-items: center;
+  color: var(--ts-primary);
+  font-size: 20px;
+}
+.ts-hero-eyebrow {
+  font-size: 11px;
+  color: var(--ts-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+/* ============================================================
+   Tier-5 — Structural reskin
+   §21 Sidebar v2 / §22 Workspace dashboard / §23 Form v2
+   §24 List v2 / §25 Page chrome
+   ============================================================ */
+
+/* ----- 25. Page chrome (canvas + page-body card + breadcrumb) ----- */
+body.ts-canvas {
+  background:
+    radial-gradient(circle at 1px 1px, rgba(27, 58, 107, 0.06) 1px, transparent 0) 0 0 / 22px 22px,
+    linear-gradient(180deg, var(--ts-bg-soft) 0%, #F7FAFB 320px);
+  background-attachment: fixed;
+}
+body.ts-canvas #page-Workspaces,
+body.ts-canvas .page-container,
+body.ts-canvas .layout-main {
+  background: transparent;
+}
+body.ts-canvas .page-body {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: var(--ts-card-shadow);
+  margin: 16px 16px 24px;
+  padding: 20px 24px;
+  min-height: calc(100vh - 140px);
+}
+body.ts-canvas .page-head {
+  background: transparent;
+  border-bottom: none;
+  margin: 0 16px;
+}
+body.ts-canvas .layout-side-section { background: transparent; }
+
+/* Breadcrumb restyle */
+.breadcrumb { font-size: 12px; letter-spacing: 0.01em; }
+.breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  content: "/";
+  color: var(--ts-text-muted);
+  opacity: 0.5;
+  padding: 0 6px;
+}
+.breadcrumb a {
+  color: var(--ts-text-muted);
+  transition: color 0.15s ease;
+}
+.breadcrumb a:hover { color: var(--ts-primary); }
+.breadcrumb .active { color: var(--ts-secondary); font-weight: 600; }
+
+/* ----- 21. Sidebar v2 (custom nav tree) ----- */
+body.ts-sidebar-v2 .body-sidebar > .standard-sidebar,
+body.ts-sidebar-v2 .body-sidebar > .workspace-list,
+body.ts-sidebar-v2 .body-sidebar .standard-sidebar-section,
+body.ts-sidebar-v2 .body-sidebar .sidebar-item-container,
+body.ts-sidebar-v2 .body-sidebar > .sidebar-options { display: none !important; }
+
+.ts-sidebar {
+  display: flex; flex-direction: column;
+  padding: 12px 8px;
+  gap: 8px;
+  font-family: var(--font-stack);
+}
+.ts-sidebar-section {
+  display: flex; flex-direction: column;
+  gap: 2px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-color);
+}
+.ts-sidebar-section:last-child { border-bottom: none; }
+.ts-sidebar-header {
+  background: transparent;
+  border: 0;
+  text-align: inherit;
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ts-text-muted);
+  cursor: pointer;
+  border-radius: 6px;
+}
+.ts-sidebar-header:hover { background: var(--ts-bg-soft); color: var(--ts-secondary); }
+.ts-sidebar-header .ts-chev { transition: transform 0.15s ease; }
+.ts-sidebar-section.ts-collapsed .ts-chev { transform: rotate(-90deg); }
+.ts-sidebar-section.ts-collapsed .ts-sidebar-items { display: none; }
+.ts-sidebar-items {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.ts-sidebar-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--ts-radius-md);
+  font-size: 13px;
+  color: var(--ts-text);
+  text-decoration: none;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.ts-sidebar-item:hover {
+  background: var(--ts-bg-soft);
+  color: var(--ts-secondary);
+  text-decoration: none;
+}
+.ts-sidebar-item.ts-active {
+  background: linear-gradient(90deg, var(--ts-primary) 0%, var(--ts-primary-dark) 100%);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(13, 155, 138, 0.25);
+}
+.ts-sidebar-item.ts-active .ts-sidebar-icon { filter: brightness(1.2); }
+.ts-sidebar-icon {
+  width: 22px; height: 22px;
+  display: grid; place-items: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.ts-sidebar-label { flex: 1; }
+
+/* RTL */
+html[dir="rtl"] .ts-sidebar-item.ts-active {
+  background: linear-gradient(270deg, var(--ts-primary) 0%, var(--ts-primary-dark) 100%);
+}
+
+/* ----- 22. Workspace dashboard (Home) ----- */
+.ts-dashboard {
+  display: flex; flex-direction: column;
+  gap: 20px;
+  padding: 4px 0 24px;
+}
+.ts-dashboard-greeting h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  color: var(--ts-secondary);
+  font-weight: 700;
+}
+.ts-dashboard-greeting p {
+  margin: 0;
+  color: var(--ts-text-muted);
+  font-size: 13px;
+}
+.ts-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.ts-stat-card {
+  display: flex; align-items: center; gap: 14px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--ts-radius-lg);
+  box-shadow: var(--ts-card-shadow);
+  text-decoration: none;
+  color: var(--ts-text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.ts-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ts-card-shadow-hover);
+  border-color: var(--ts-primary);
+  text-decoration: none;
+}
+.ts-stat-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--ts-bg-soft);
+  display: grid; place-items: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.ts-stat-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ts-stat-label {
+  font-size: 12px;
+  color: var(--ts-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+.ts-stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ts-secondary);
+  line-height: 1.1;
+}
+.ts-stat-sub {
+  font-size: 11px;
+  color: var(--ts-text-muted);
+}
+
+.ts-activity-panel {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--ts-radius-lg);
+  padding: 20px 22px;
+  box-shadow: var(--ts-card-shadow);
+}
+.ts-activity-panel h3 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  color: var(--ts-secondary);
+  font-weight: 700;
+}
+.ts-activity-feed { list-style: none; padding: 0; margin: 0; }
+.ts-activity-feed li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 13px;
+}
+.ts-activity-feed li:last-child { border-bottom: none; }
+.ts-activity-meta {
+  display: flex; gap: 10px;
+  font-size: 11px;
+  color: var(--ts-text-muted);
+  margin-bottom: 2px;
+}
+.ts-activity-ref a { color: var(--ts-primary); text-decoration: none; font-weight: 600; }
+.ts-activity-ref a:hover { text-decoration: underline; }
+.ts-activity-text {
+  color: var(--ts-text);
+  line-height: 1.45;
+}
+.ts-activity-empty { color: var(--ts-text-muted); font-style: italic; }
+
+/* ----- 24. List v2 (card template + view switcher + chips + empty) ----- */
+.ts-list-toolbar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 12px;
+  padding: 8px 4px 12px;
+  border-bottom: 1px dashed var(--border-color);
+  margin-bottom: 12px;
+}
+.ts-view-switcher {
+  display: inline-flex;
+  background: var(--ts-bg-soft);
+  border-radius: 999px;
+  padding: 3px;
+}
+.ts-view-switcher button {
+  background: transparent;
+  border: 0;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ts-text-muted);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.ts-view-switcher button:hover { color: var(--ts-secondary); }
+.ts-view-switcher button.active {
+  background: #fff;
+  color: var(--ts-secondary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.ts-filter-chips {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.ts-filter-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  background: #fff;
+  border: 1px solid var(--ts-primary);
+  color: var(--ts-primary);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.ts-filter-chip:hover { background: var(--ts-primary); color: #fff; }
+
+/* Card rendering inside .ts-card-grid (overrides §19 inner) */
+.ts-card-grid .list-row.ts-card-row {
+  padding: 0;
+  overflow: hidden;
+}
+.ts-list-card {
+  display: flex; flex-direction: column;
+  gap: 10px;
+  padding: 16px 18px;
+  width: 100%;
+}
+.ts-list-card-head {
+  display: flex; align-items: center; gap: 12px;
+}
+.ts-card-checkbox-slot { display: flex; align-items: center; }
+.ts-card-avatar {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--ts-bg-soft);
+  display: grid; place-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ts-primary);
+  flex-shrink: 0;
+}
+.ts-card-titleblock { flex: 1; min-width: 0; }
+.ts-card-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ts-secondary);
+  text-decoration: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ts-card-title:hover { color: var(--ts-primary); text-decoration: none; }
+.ts-card-meta1 {
+  font-size: 12px;
+  color: var(--ts-text-muted);
+  margin-top: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ts-card-meta2 {
+  font-size: 11px;
+  color: var(--ts-text-muted);
+  padding-top: 6px;
+  border-top: 1px dashed var(--border-color);
+}
+.ts-card-status {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ts-status-ok    { background: rgba(13, 155, 138, 0.12); color: var(--ts-primary-dark); }
+.ts-status-warn  { background: rgba(245, 158, 11, 0.15); color: #B45309; }
+.ts-status-danger{ background: rgba(220, 38, 38, 0.12); color: #B91C1C; }
+.ts-status-info  { background: rgba(40, 49, 173, 0.10); color: var(--ts-cta); }
+.ts-status-muted { background: rgba(0, 0, 0, 0.04); color: var(--ts-text-muted); }
+
+/* Empty state */
+.ts-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 24px;
+  background: #fff;
+  border: 2px dashed var(--border-color);
+  border-radius: var(--ts-radius-lg);
+  color: var(--ts-text-muted);
+}
+.ts-empty-state .ts-empty-icon {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+.ts-empty-state h3 {
+  font-size: 16px;
+  color: var(--ts-secondary);
+  margin: 0 0 4px;
+}
+.ts-empty-state p { margin: 0 0 14px; font-size: 13px; }
+.ts-empty-cta { margin: 0 auto; }
+
+/* ----- 23. Form v2 (summary strip + tabs + action bar + right rail) ----- */
+.ts-form-v2 .form-layout > .form-page { padding-top: 0; }
+
+/* Summary strip */
+.ts-summary-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--border-color);
+  border-radius: var(--ts-radius-lg);
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+}
+.ts-summary-cell {
+  background: #fff;
+  padding: 12px 14px;
+  display: flex; flex-direction: column;
+  gap: 2px;
+}
+.ts-summary-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ts-text-muted);
+}
+.ts-summary-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ts-secondary);
+  word-break: break-word;
+}
+
+/* Tabs */
+.ts-form-tabs {
+  display: flex;
+  gap: 4px;
+  margin: 0 0 18px;
+  border-bottom: 2px solid var(--border-color);
+  overflow-x: auto;
+}
+.ts-form-tab {
+  background: transparent;
+  border: 0;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ts-text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  transition: color 0.12s ease, border-color 0.12s ease;
+}
+.ts-form-tab:hover { color: var(--ts-secondary); }
+.ts-form-tab.active {
+  color: var(--ts-primary);
+  border-bottom-color: var(--ts-primary);
+}
+
+/* Hide collapsed section heads inside tabbed form (we use tabs instead) */
+.ts-form-v2 .form-layout .section-head { display: none; }
+.ts-form-v2 .form-layout .form-section > .section-body { padding-top: 0; }
+
+/* Action bar */
+.ts-form-action-bar {
+  display: flex; align-items: center; gap: 12px;
+  margin: 8px 0 16px;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--ts-radius-lg);
+  box-shadow: var(--ts-card-shadow);
+  position: sticky;
+  top: 64px;
+  z-index: 12;
+}
+.ts-action-spacer { flex: 1; }
+.ts-action-primary .btn { margin: 0; }
+.ts-action-menu .btn { margin: 0; }
+.ts-action-status .indicator-pill { margin: 0; }
+
+/* Hide Frappe's original action area since we lifted it */
+.ts-form-v2 .standard-actions { display: none; }
+
+/* Right rail */
+.ts-form-right-rail {
+  position: sticky;
+  top: 130px;
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--ts-radius-lg);
+  padding: 14px;
+  box-shadow: var(--ts-card-shadow);
+}
+.ts-form-right-rail .sidebar-section + .sidebar-section { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color); }
+
+/* RTL */
+html[dir="rtl"] .ts-form-tab.active { border-bottom-color: var(--ts-primary); }

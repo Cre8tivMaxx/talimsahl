@@ -14,7 +14,16 @@ def apply_brand_settings():
 	_apply_website_settings()
 	_apply_navbar_settings()
 	_apply_workspace_if_education_present()
+	_apply_home_workspace()
 	frappe.clear_cache()
+
+
+def _apply_home_workspace():
+	try:
+		from talimsahl.scripts.create_home_workspace import run as _create_home
+		_create_home()
+	except Exception as e:  # noqa: BLE001
+		frappe.logger().warning(f"talimsahl: Home workspace setup failed: {e}")
 
 
 def _apply_workspace_if_education_present():
