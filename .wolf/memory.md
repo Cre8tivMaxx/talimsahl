@@ -57,3 +57,78 @@
 | 13:55 | Edited talimsahl/public/css/desk-overrides.css | 6→6 lines | ~31 |
 | 13:55 | Edited talimsahl/public/css/desk-overrides.css | 9→9 lines | ~62 |
 | 13:58 | Session end: 21 writes across 1 files (desk-overrides.css) | 3 reads | ~10215 tok |
+| 14:00 | Session end: 21 writes across 1 files (desk-overrides.css) | 3 reads | ~10215 tok |
+| 14:15 | Session end: 21 writes across 1 files (desk-overrides.css) | 3 reads | ~10215 tok |
+| 14:16 | Session end: 21 writes across 1 files (desk-overrides.css) | 3 reads | ~10215 tok |
+| 14:16 | Session end: 21 writes across 1 files (desk-overrides.css) | 3 reads | ~10215 tok |
+
+## Session: 2026-05-16 14:31
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:00 | Created ../../../.claude/plans/tidy-popping-wreath.md | — | ~1860 |
+
+## Session: 2026-05-16 15:03
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:04 | Edited talimsahl/hooks.py | 3→3 lines | ~14 |
+| 15:04 | Edited talimsahl/public/js/desk_reskin.bundle.js | 3→2 lines | ~14 |
+| 15:04 | Edited talimsahl/public/css/desk-overrides.css | removed 50 lines | ~13 |
+
+## Session: 2026-05-16 15:23
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:24 | Created ../../../../../tmp/ts_verify.js | — | ~664 |
+
+## Session: 2026-05-16 15:27
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:28 | Edited ../../../../../tmp/ts_verify.js | "/home/frappe/.cache/ms-pl" → "/home/frappe/.cache/ms-pl" | ~38 |
+| 15:32 | Edited ../../../../../tmp/ts_verify.js | "http://erp.local:8002" → "http://127.0.0.1:8002" | ~11 |
+| 15:36 | Created ../../../../../tmp/ts_diag.js | — | ~878 |
+| 15:40 | Edited talimsahl/public/js/reskin/home_redirect.js | added 1 condition(s) | ~110 |
+| 15:40 | Edited talimsahl/public/js/reskin/sidebar_v2.js | added 1 condition(s) | ~105 |
+| 15:41 | Edited talimsahl/public/js/reskin/list_v2.js | added error handling | ~317 |
+| 15:42 | Edited talimsahl/public/js/reskin/form_v2.js | removed 45 lines | ~74 |
+
+## Session: 2026-05-17 10:20
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 10:23 | Created ../../../../../tmp/ts_verify.js | — | ~670 |
+| 10:24 | Edited talimsahl/public/js/reskin/form_v2.js | 3→2 lines | ~15 |
+| 10:26 | Edited talimsahl/public/js/reskin/workspace_dashboard.js | 9→10 lines | ~112 |
+| 10:27 | Edited talimsahl/public/js/reskin/workspace_dashboard.js | 4→5 lines | ~91 |
+| 10:30 | Edited talimsahl/public/js/reskin/list_v2.js | format() → format_currency() | ~38 |
+| 10:30 | Edited talimsahl/public/js/reskin/list_v2.js | 1→3 lines | ~67 |
+| 10:30 | Edited talimsahl/public/js/reskin/workspace_dashboard.js | modified catch() | ~91 |
+| 10:31 | Edited talimsahl/public/js/reskin/form_v2.js | format() → format_currency() | ~38 |
+| 10:34 | Edited talimsahl/public/js/desk_reskin.bundle.js | modified Superseded() | ~134 |
+| 10:34 | Edited talimsahl/public/css/desk-overrides.css | removed 77 lines | ~45 |
+| 10:35 | Edited talimsahl/public/js/reskin/form_v2.js | modified injectRightRail() | ~93 |
+| 10:35 | Edited talimsahl/public/js/reskin/form_v2.js | modified if() | ~29 |
+| 10:35 | Edited talimsahl/public/css/desk-overrides.css | reduced (-18 lines) | ~48 |
+| 10:37 | Created ../../../../../tmp/ts_verify.js | — | ~1006 |
+
+## Session 2026-05-17 — Activate dead JS reskin layer + revert overrides
+| 08:00 | Fixed app_include_js bundle ref (name not abs path) | hooks.py | bundle now executes | ~400 |
+| 08:05 | Dropped navbar.js (v16 has no header.navbar) | bundle.js, navbar.js, css | navbar removed | ~600 |
+| 08:10 | Guarded get_route_str null crash | home_redirect.js, sidebar_v2.js | no boot PAGEERROR | ~300 |
+| 08:12 | Hooked ListView.after_render (no list_view_render event in v16) | list_v2.js | card grid renders | ~400 |
+| 08:15 | Removed injectTabs (v16 native tabs) | form_v2.js | native tabs kept | ~300 |
+| 08:18 | Fixed v16 SQL field/group_by syntax | workspace_dashboard.js | Fees stat works | ~250 |
+| 08:20 | Fixed HTML-in-text bugs (format_currency, prettyDate) | list_v2/form_v2/workspace_dashboard.js | clean render | ~400 |
+| 08:25 | Reverted custom sidebar — native sidebar kept + CSS-styled | bundle.js, sidebar_v2.js(del), css | per user | ~500 |
+| 08:28 | Reverted injectActionBar — native standard-actions kept | form_v2.js, css | Save + Ctrl+S work (verified live) | ~400 |
+| 10:43 | Created ../../../.claude/projects/-home-frappe-frappe-bench-16-apps-talimsahl/memory/verify-ui-with-playwright.md | — | ~248 |
+| 10:43 | Created ../../../.claude/projects/-home-frappe-frappe-bench-16-apps-talimsahl/memory/style-dont-override-frappe.md | — | ~259 |
+| 10:43 | Created ../../../.claude/projects/-home-frappe-frappe-bench-16-apps-talimsahl/memory/MEMORY.md | — | ~74 |
+| 10:44 | Session end: 17 writes across 9 files (ts_verify.js, form_v2.js, workspace_dashboard.js, list_v2.js, desk_reskin.bundle.js) | 6 reads | ~11556 tok |
+
+## Session: 2026-05-17 11:02
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

@@ -64,6 +64,238 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-16T10:54:19.544Z"
+    },
+    {
+      "id": "bug-005",
+      "timestamp": "2026-05-16T12:04:27.830Z",
+      "error_message": "Incorrect value in code",
+      "file": "talimsahl/hooks.py",
+      "root_cause": "Had \"/assets/talimsahl/js/desk_reskin.bundle.js\"",
+      "fix": "Changed to \"desk_reskin.bundle.js\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "py"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-16T12:04:27.830Z"
+    },
+    {
+      "id": "bug-006",
+      "timestamp": "2026-05-16T12:04:29.015Z",
+      "error_message": "Incorrect value in code",
+      "file": "talimsahl/public/js/desk_reskin.bundle.js",
+      "root_cause": "Had \"./reskin/navbar\"",
+      "fix": "Changed to \"./reskin/home_redirect\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-16T12:04:29.015Z"
+    },
+    {
+      "id": "bug-007",
+      "timestamp": "2026-05-16T12:28:05.356Z",
+      "error_message": "Incorrect value in code",
+      "file": "../../../../../tmp/ts_verify.js",
+      "root_cause": "Had '/home/frappe/.cache/ms-playwright/chromium-1217/c",
+      "fix": "Changed to '/home/frappe/.cache/ms-playwright/chromium_headle",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-16T12:32:21.534Z"
+    },
+    {
+      "id": "bug-008",
+      "timestamp": "2026-05-16T12:41:24.916Z",
+      "error_message": "Missing error handling in patchListView",
+      "file": "talimsahl/public/js/reskin/list_v2.js",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-16T12:41:24.917Z"
+    },
+    {
+      "id": "bug-009",
+      "timestamp": "2026-05-16T12:42:16.128Z",
+      "error_message": "Significant refactor of ",
+      "file": "talimsahl/public/js/reskin/form_v2.js",
+      "root_cause": "40 lines replaced/restructured",
+      "fix": "Rewrote 45→5 lines (40 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-16T12:42:16.128Z"
+    },
+    {
+      "id": "bug-010",
+      "timestamp": "2026-05-17T07:24:59.177Z",
+      "error_message": "Wrong reference: injectTabs should be injectActionBar",
+      "file": "talimsahl/public/js/reskin/form_v2.js",
+      "root_cause": "Used \"injectTabs\" instead of \"injectActionBar\"",
+      "fix": "Changed injectTabs → injectActionBar",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T07:24:59.177Z"
+    },
+    {
+      "id": "bug-011",
+      "timestamp": "2026-05-17T07:30:41.563Z",
+      "error_message": "Incorrect value in code",
+      "file": "talimsahl/public/js/reskin/list_v2.js",
+      "root_cause": "Had `Updated ${frappe.datetime.comment_when(d.modified",
+      "fix": "Changed to \"1 week ago\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T07:30:41.563Z"
+    },
+    {
+      "id": "bug-012",
+      "timestamp": "2026-05-17T07:34:04.695Z",
+      "error_message": "Significant refactor of ",
+      "file": "talimsahl/public/js/desk_reskin.bundle.js",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 10→11 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T07:34:04.695Z"
+    },
+    {
+      "id": "bug-013",
+      "timestamp": "2026-05-17T07:35:11.071Z",
+      "error_message": "Significant refactor of ",
+      "file": "talimsahl/public/js/reskin/form_v2.js",
+      "root_cause": "33 lines replaced/restructured",
+      "fix": "Rewrote 41→6 lines (33 removed) | Also: injectActionBar(frm);; refreshActionBarStatus(frm);",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-05-17T07:35:24.025Z"
+    },
+    {
+      "id": "bug-014",
+      "timestamp": "2026-05-17T07:35:53.234Z",
+      "error_message": "Significant refactor of ",
+      "file": "talimsahl/public/css/desk-overrides.css",
+      "root_cause": "19 lines replaced/restructured",
+      "fix": "Rewrote 22→4 lines (19 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "css"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T07:35:53.234Z"
+    },
+    {
+      "id": "bug-015",
+      "timestamp": "2026-05-17T08:00:00.000Z",
+      "error_message": "Entire desk_reskin JS bundle never executed; Desk showed only CSS recolor",
+      "file": "talimsahl/hooks.py",
+      "root_cause": "app_include_js referenced the bundle by absolute path (/assets/talimsahl/js/desk_reskin.bundle.js), so Frappe served the raw ES-module source; a plain <script> tag cannot run `import` statements -> SyntaxError aborts the whole bundle.",
+      "fix": "Changed app_include_js to the bare name 'desk_reskin.bundle.js' so Frappe resolves it through assets.json to the hashed esbuild output.",
+      "tags": ["bundle", "hooks", "esbuild", "js"],
+      "related_bugs": ["bug-005"],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T08:00:00.000Z"
+    },
+    {
+      "id": "bug-016",
+      "timestamp": "2026-05-17T08:05:00.000Z",
+      "error_message": "TypeError: Cannot read properties of null (reading 'join') in frappe.get_route_str",
+      "file": "talimsahl/public/js/reskin/home_redirect.js",
+      "root_cause": "v16 frappe.get_route_str() is `frappe.router.current_route.join('/')`; current_route is null until the first route resolves, so calling it at boot throws.",
+      "fix": "Guard with `if (!frappe.router.current_route) return;` before calling get_route_str(); same guard added to sidebar_v2.js currentRoutePath().",
+      "tags": ["v16", "router", "boot", "js"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T08:05:00.000Z"
+    },
+    {
+      "id": "bug-017",
+      "timestamp": "2026-05-17T08:10:00.000Z",
+      "error_message": "list_v2 card grid never rendered on list views",
+      "file": "talimsahl/public/js/reskin/list_v2.js",
+      "root_cause": "Code listened for a `list_view_render` jQuery event that Frappe v16 does not fire (the plan's selector pre-check wrongly assumed it existed).",
+      "fix": "Replaced the event listener with a monkey-patch of frappe.views.ListView.prototype.after_render, which base_list.js calls right after render() populates rows and `this.data`.",
+      "tags": ["v16", "list-view", "events", "js"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T08:10:00.000Z"
+    },
+    {
+      "id": "bug-018",
+      "timestamp": "2026-05-17T08:15:00.000Z",
+      "error_message": "417 EXPECTATION FAILED: SQL functions are not allowed as strings in SELECT; Invalid field format in Group By: 1=1",
+      "file": "talimsahl/public/js/reskin/workspace_dashboard.js",
+      "root_cause": "v16 frappe.db.get_list rejects string SQL functions in `fields` ('sum(outstanding_amount) as total') and rejects the `group_by: '1=1'` collapse trick.",
+      "fix": "Use dict aggregate syntax `fields: [{ SUM: 'outstanding_amount', as: 'total' }]` and drop group_by (a bare SUM already returns one total row).",
+      "tags": ["v16", "database", "get_list", "js"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T08:15:00.000Z"
+    },
+    {
+      "id": "bug-019",
+      "timestamp": "2026-05-17T08:20:00.000Z",
+      "error_message": "Literal HTML tags rendered as text in stat card and list cards (<div style=...>, <span class=\"frappe-timestamp\">)",
+      "file": "talimsahl/public/js/reskin/workspace_dashboard.js",
+      "root_cause": "frappe.format(v,{fieldtype:'Currency'}) and frappe.datetime.comment_when() return HTML; fed into textContent / escapeHtml() they render as literal tags.",
+      "fix": "Use plain-text helpers: format_currency() and frappe.datetime.prettyDate(). Applied across workspace_dashboard.js, list_v2.js, form_v2.js.",
+      "tags": ["html-escaping", "frappe-helpers", "js"],
+      "related_bugs": ["bug-011"],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T08:20:00.000Z"
+    },
+    {
+      "id": "bug-020",
+      "timestamp": "2026-05-17T08:25:00.000Z",
+      "error_message": "Save button and Ctrl+S not working on forms; custom Actions bar overrode Save",
+      "file": "talimsahl/public/js/reskin/form_v2.js",
+      "root_cause": "injectActionBar moved Frappe's primary/menu/indicator nodes out of .standard-actions, and `.ts-form-v2 .standard-actions { display:none }` hid the original area entirely.",
+      "fix": "Removed injectActionBar + refreshActionBarStatus and the .ts-form-action-bar CSS (incl. the standard-actions hide rule). Frappe's native action area is kept where Frappe manages it. Verified Ctrl+S saves a ToDo live.",
+      "tags": ["v16", "form", "save", "user-reported", "js"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-17T08:25:00.000Z"
     }
   ]
 }

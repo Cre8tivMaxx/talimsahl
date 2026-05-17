@@ -25,7 +25,7 @@ const SUMMARY_STRIPS = {
       label: "Outstanding",
       value: (f) =>
         f.doc.outstanding_amount != null
-          ? frappe.format(f.doc.outstanding_amount, { fieldtype: "Currency" })
+          ? format_currency(f.doc.outstanding_amount)
           : "—",
     },
     { label: "Status", value: (f) => f.doc.status || "—" },
@@ -76,89 +76,14 @@ function refreshSummaryStrip(frm) {
   });
 }
 
-function injectTabs(frm) {
-  const $layout = frm.$wrapper.find(".form-layout").first();
-  if (!$layout.length || $layout.find(".ts-form-tabs").length) return;
-  const $sections = $layout.find("> .form-page > .form-section, > .form-section").filter(
-    (i, el) => $(el).find(".section-head").length > 0
-  );
-  if ($sections.length < 2) return;
+// Note: no custom tab injection. Frappe v16 forms render native tabs
+// (.form-tabs); a parallel tab system would fight Frappe's own switching.
+// Native tabs are left stock — brand colors reach them via desk-overrides.css.
 
-  const tabs = [];
-  $sections.each((idx, el) => {
-    const $sec = $(el);
-    const label = $sec.find(".section-head").first().text().trim() || `Section ${idx + 1}`;
-    $sec.attr("data-ts-section-idx", idx);
-    if (idx > 0) $sec.css("display", "none");
-    tabs.push({ idx, label });
-  });
-
-  const $tabs = $(
-    `<div class="ts-form-tabs" role="tablist">
-      ${tabs
-        .map(
-          (t) =>
-            `<button type="button" class="ts-form-tab${t.idx === 0 ? " active" : ""}" data-ts-tab="${t.idx}" role="tab">${frappe.utils.escape_html(t.label)}</button>`
-        )
-        .join("")}
-    </div>`
-  );
-  $tabs.on("click", "button.ts-form-tab", function () {
-    const target = $(this).data("ts-tab");
-    $tabs.find("button").removeClass("active");
-    $(this).addClass("active");
-    $layout
-      .find("[data-ts-section-idx]")
-      .each((_, sec) =>
-        $(sec).css("display", String($(sec).data("ts-section-idx")) === String(target) ? "" : "none")
-      );
-  });
-
-  // Prepend after summary strip if present, else first
-  const $strip = $layout.find(".ts-summary-strip");
-  if ($strip.length) $strip.after($tabs);
-  else $layout.prepend($tabs);
-}
-
-function injectActionBar(frm) {
-  if (!frm.page || !frm.page.wrapper) return;
-  const $wrapper = frm.$wrapper;
-  if ($wrapper.find(".ts-form-action-bar").length) return;
-  const $titleArea = frm.page.$title_area;
-  if (!$titleArea || !$titleArea.length) return;
-
-  const $bar = $(`
-    <div class="ts-form-action-bar">
-      <div class="ts-action-status" data-status></div>
-      <div class="ts-action-spacer"></div>
-      <div class="ts-action-primary" data-primary></div>
-      <div class="ts-action-menu" data-menu></div>
-    </div>
-  `);
-
-  // Move primary action button(s)
-  const $primary = frm.page.wrapper.find(".standard-actions .primary-action, .standard-actions .btn-primary").first();
-  if ($primary.length) $bar.find("[data-primary]").append($primary);
-
-  // Move menu (kebab)
-  const $menu = frm.page.wrapper.find(".standard-actions .menu-btn-group, .standard-actions .actions-btn-group").first();
-  if ($menu.length) $bar.find("[data-menu]").append($menu);
-
-  // Status indicator (Frappe renders .indicator-pill near the title)
-  const $indicator = frm.page.wrapper.find(".indicator-pill").first();
-  if ($indicator.length) $bar.find("[data-status]").append($indicator);
-
-  $titleArea.after($bar);
-}
-
-function refreshActionBarStatus(frm) {
-  const $bar = frm.$wrapper.find(".ts-form-action-bar [data-status]");
-  if (!$bar.length) return;
-  const $indicator = frm.page.wrapper.find(".indicator-pill").first();
-  if ($indicator.length && !$bar.is($indicator.parent())) {
-    $bar.empty().append($indicator);
-  }
-}
+// Note: no custom action bar. Frappe's Save / Actions / menu buttons and the
+// Ctrl+S binding are left in .standard-actions where Frappe manages them —
+// moving those nodes broke Save and the keyboard shortcut. Brand styling for
+// the standard action buttons lives in desk-overrides.css.
 
 function injectRightRail(frm) {
   const $sidebar = frm.$wrapper.find(".form-sidebar").first();
@@ -175,13 +100,10 @@ function applyFormV2(frm) {
   frm.$wrapper.addClass("ts-form-v2");
 
   injectSummaryStrip(frm);
-  injectTabs(frm);
-  injectActionBar(frm);
   injectRightRail(frm);
 
   if (!first) {
     refreshSummaryStrip(frm);
-    refreshActionBarStatus(frm);
   }
 }
 

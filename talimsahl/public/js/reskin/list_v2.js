@@ -31,7 +31,7 @@ const DOCTYPE_META = {
     meta2: (d) => (d.due_date ? `Due ${d.due_date}` : ""),
     status: (d) =>
       d.outstanding_amount > 0
-        ? `Outstanding ${frappe.format(d.outstanding_amount, { fieldtype: "Currency" })}`
+        ? `Outstanding ${format_currency(d.outstanding_amount)}`
         : "Paid",
     statusKind: (d) => (d.outstanding_amount > 0 ? "warn" : "ok"),
   },
@@ -52,7 +52,9 @@ const DOCTYPE_META = {
 const GENERIC_META = {
   icon: "📄",
   meta1: (d) => d.modified_by || d.owner || "",
-  meta2: (d) => (d.modified ? `Updated ${frappe.datetime.comment_when(d.modified)}` : ""),
+  // prettyDate returns plain text ("1 week ago"); comment_when wraps it in
+  // a <span>, which escapeHtml() would then render as literal tags.
+  meta2: (d) => (d.modified ? `Updated ${frappe.datetime.prettyDate(d.modified)}` : ""),
   status: () => "",
   statusKind: () => "muted",
 };
@@ -251,6 +253,37 @@ function decorate(listview) {
   renderEmptyState(listview);
 }
 
-if (window.$) {
-  $(document).on("list_view_render", (e, listview) => decorate(listview));
+// v16 fires no `list_view_render` jQuery event. Hook the ListView class
+// instead: base_list.js runs `render(); after_render();` in sequence, so by
+// after_render() the .list-row nodes and `this.data` are fully populated and
+// `this` is the listview instance decorate() expects.
+function patchListView() {
+  const LV = window.frappe && frappe.views && frappe.views.ListView;
+  if (!LV) return false;
+  if (LV.prototype.__ts_list_v2_patched) return true;
+  const orig = LV.prototype.after_render;
+  LV.prototype.after_render = function () {
+    if (orig) orig.apply(this, arguments);
+    try {
+      decorate(this);
+    } catch (err) {
+      console.error("[talimsahl] list_v2 decorate failed", err);
+    }
+  };
+  LV.prototype.__ts_list_v2_patched = true;
+  return true;
+}
+
+function initListV2() {
+  if (patchListView()) return;
+  let tries = 0;
+  const timer = setInterval(() => {
+    if (patchListView() || ++tries > 20) clearInterval(timer);
+  }, 250);
+}
+
+if (window.frappe && frappe.after_ajax) {
+  frappe.after_ajax(initListV2);
+} else {
+  document.addEventListener("DOMContentLoaded", initListV2);
 }

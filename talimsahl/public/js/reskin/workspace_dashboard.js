@@ -54,16 +54,20 @@ const STAT_CARDS = [
       frappe.db
         .get_list("Fees", {
           filters: [["outstanding_amount", ">", 0]],
-          fields: ["sum(outstanding_amount) as total"],
-          group_by: "1=1",
+          // v16: string SQL funcs in `fields` are rejected — use the dict form.
+          // A bare SUM with no group_by already collapses to one total row;
+          // v16's group_by validator rejects the old `1=1` collapse trick.
+          fields: [{ SUM: "outstanding_amount", as: "total" }],
           limit: 1,
         })
         .then((rows) => (rows && rows[0] && rows[0].total) || 0)
         .catch(() => 0),
     format: (v) => {
       if (v == null) return "—";
+      // format_currency returns a plain string; frappe.format(Currency) wraps
+      // its output in a <div>, which the stat cell's textContent shows raw.
       try {
-        return frappe.format(v, { fieldtype: "Currency" });
+        return format_currency(v);
       } catch (e) {
         return String(v);
       }

@@ -341,55 +341,6 @@ html[dir="rtl"] .body-sidebar { border-right: none; border-left: 1px solid var(-
    Tier-4 Reskin layer (JS-mounted shells)
    ============================================================ */
 
-/* ----- 17. Custom navbar shell ----- */
-body.ts-shell-active > header.navbar { display: none !important; }
-body.ts-shell-active { padding-top: 0; }
-.ts-navbar {
-  position: sticky; top: 0; z-index: 1030;
-  height: 60px;
-  background: var(--ts-secondary);
-  display: grid;
-  grid-template-columns: 240px 1fr auto;
-  align-items: center;
-  padding: 0 20px;
-  gap: 16px;
-  box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 2px 8px rgba(27,58,107,0.20);
-  color: #fff;
-}
-.ts-navbar .ts-brand {
-  display: flex; align-items: center; gap: 10px;
-  color: #fff; font-weight: 600; font-size: 17px;
-  text-decoration: none;
-}
-.ts-navbar .ts-brand img { height: 32px; }
-.ts-navbar [data-slot=search] { max-width: 520px; width: 100%; }
-.ts-navbar [data-slot=search] .search-bar,
-.ts-navbar [data-slot=search] .navbar-search { width: 100%; }
-.ts-navbar [data-slot=search] input,
-.ts-navbar [data-slot=search] .form-control {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.20);
-  border-radius: 8px;
-  height: 40px;
-  padding-inline: 14px;
-}
-.ts-navbar [data-slot=search] input::placeholder { color: rgba(255,255,255,0.75); }
-.ts-navbar [data-slot=search] input:focus {
-  background: rgba(255,255,255,0.22);
-  border-color: rgba(255,255,255,0.40);
-  box-shadow: none;
-}
-.ts-navbar .ts-right { display: flex; gap: 8px; align-items: center; color: #fff; }
-.ts-navbar .ts-right a,
-.ts-navbar .ts-right button,
-.ts-navbar .ts-right .nav-link { color: #fff !important; }
-.ts-navbar .ts-right .dropdown-toggle::after { color: #fff; }
-.ts-navbar .ts-right .badge { background: var(--ts-primary); color: #fff; }
-body.ts-shell-active .layout-main,
-body.ts-shell-active #page-Workspaces { padding-top: 8px; }
-html[dir="rtl"] .ts-navbar { grid-template-columns: auto 1fr 240px; }
-
 /* ----- 18. Sidebar Quick Actions ----- */
 .ts-quick-actions {
   display: grid; gap: 6px;
@@ -528,83 +479,8 @@ body.ts-canvas .layout-side-section { background: transparent; }
 .breadcrumb a:hover { color: var(--ts-primary); }
 .breadcrumb .active { color: var(--ts-secondary); font-weight: 600; }
 
-/* ----- 21. Sidebar v2 (custom nav tree) ----- */
-body.ts-sidebar-v2 .body-sidebar > .standard-sidebar,
-body.ts-sidebar-v2 .body-sidebar > .workspace-list,
-body.ts-sidebar-v2 .body-sidebar .standard-sidebar-section,
-body.ts-sidebar-v2 .body-sidebar .sidebar-item-container,
-body.ts-sidebar-v2 .body-sidebar > .sidebar-options { display: none !important; }
-
-.ts-sidebar {
-  display: flex; flex-direction: column;
-  padding: 12px 8px;
-  gap: 8px;
-  font-family: var(--font-stack);
-}
-.ts-sidebar-section {
-  display: flex; flex-direction: column;
-  gap: 2px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--border-color);
-}
-.ts-sidebar-section:last-child { border-bottom: none; }
-.ts-sidebar-header {
-  background: transparent;
-  border: 0;
-  text-align: inherit;
-  display: flex; align-items: center; justify-content: space-between;
-  width: 100%;
-  padding: 8px 10px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ts-text-muted);
-  cursor: pointer;
-  border-radius: 6px;
-}
-.ts-sidebar-header:hover { background: var(--ts-bg-soft); color: var(--ts-secondary); }
-.ts-sidebar-header .ts-chev { transition: transform 0.15s ease; }
-.ts-sidebar-section.ts-collapsed .ts-chev { transform: rotate(-90deg); }
-.ts-sidebar-section.ts-collapsed .ts-sidebar-items { display: none; }
-.ts-sidebar-items {
-  list-style: none;
-  margin: 0; padding: 0;
-  display: flex; flex-direction: column; gap: 2px;
-}
-.ts-sidebar-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 9px 10px;
-  border-radius: var(--ts-radius-md);
-  font-size: 13px;
-  color: var(--ts-text);
-  text-decoration: none;
-  transition: background 0.12s ease, color 0.12s ease;
-}
-.ts-sidebar-item:hover {
-  background: var(--ts-bg-soft);
-  color: var(--ts-secondary);
-  text-decoration: none;
-}
-.ts-sidebar-item.ts-active {
-  background: linear-gradient(90deg, var(--ts-primary) 0%, var(--ts-primary-dark) 100%);
-  color: #fff;
-  font-weight: 600;
-  box-shadow: 0 2px 6px rgba(13, 155, 138, 0.25);
-}
-.ts-sidebar-item.ts-active .ts-sidebar-icon { filter: brightness(1.2); }
-.ts-sidebar-icon {
-  width: 22px; height: 22px;
-  display: grid; place-items: center;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-.ts-sidebar-label { flex: 1; }
-
-/* RTL */
-html[dir="rtl"] .ts-sidebar-item.ts-active {
-  background: linear-gradient(270deg, var(--ts-primary) 0%, var(--ts-primary-dark) 100%);
-}
+/* ----- 21. Sidebar — Frappe's native sidebar is kept as-is; brand styling
+   lives in §4 (.body-sidebar / .standard-sidebar-item). No custom nav tree. */
 
 /* ----- 22. Workspace dashboard (Home) ----- */
 .ts-dashboard {
@@ -904,26 +780,8 @@ html[dir="rtl"] .ts-sidebar-item.ts-active {
 .ts-form-v2 .form-layout .section-head { display: none; }
 .ts-form-v2 .form-layout .form-section > .section-body { padding-top: 0; }
 
-/* Action bar */
-.ts-form-action-bar {
-  display: flex; align-items: center; gap: 12px;
-  margin: 8px 0 16px;
-  padding: 10px 14px;
-  background: #fff;
-  border: 1px solid var(--border-color);
-  border-radius: var(--ts-radius-lg);
-  box-shadow: var(--ts-card-shadow);
-  position: sticky;
-  top: 64px;
-  z-index: 12;
-}
-.ts-action-spacer { flex: 1; }
-.ts-action-primary .btn { margin: 0; }
-.ts-action-menu .btn { margin: 0; }
-.ts-action-status .indicator-pill { margin: 0; }
-
-/* Hide Frappe's original action area since we lifted it */
-.ts-form-v2 .standard-actions { display: none; }
+/* Action bar — none. Frappe's native .standard-actions (Save / Actions /
+   menu) is kept and managed by Frappe; styled, never moved or hidden. */
 
 /* Right rail */
 .ts-form-right-rail {

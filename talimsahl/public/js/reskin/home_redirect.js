@@ -3,6 +3,9 @@
 
 function maybeRedirect() {
 	if (!window.frappe || !frappe.router) return;
+	// v16: frappe.get_route_str() is `current_route.join("/")` — current_route
+	// is null until the first route resolves, so guard before calling it.
+	if (!frappe.router.current_route) return;
 	const route = frappe.get_route_str ? frappe.get_route_str() : "";
 	if (route !== "" && route !== "Workspaces") return;
 	const workspaces = frappe.boot && frappe.boot.allowed_workspaces;

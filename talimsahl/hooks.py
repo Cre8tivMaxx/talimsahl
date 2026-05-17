@@ -13,7 +13,7 @@ app_include_css = [
 	"/assets/talimsahl/css/desk-overrides.css",
 ]
 app_include_js = [
-	"/assets/talimsahl/js/desk_reskin.bundle.js",
+	"desk_reskin.bundle.js",
 ]
 
 # Web/portal assets (login page, www pages, public portal).
