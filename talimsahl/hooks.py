@@ -9,8 +9,8 @@ app_logo_url = "/assets/talimsahl/images/logo.png"
 
 # Desk (/app) reskin — loaded into Frappe Desk only.
 app_include_css = [
-	"/assets/talimsahl/css/brand-tokens.css",
-	"/assets/talimsahl/css/desk-overrides.css",
+	"/assets/talimsahl/css/brand-tokens.css?v=20260520",
+	"/assets/talimsahl/css/desk-overrides.css?v=20260520",
 ]
 app_include_js = [
 	"desk_reskin.bundle.js",

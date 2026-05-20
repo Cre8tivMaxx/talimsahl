@@ -203,3 +203,5 @@
 | 14:15 | Edited talimsahl/public/css/desk-overrides.css | inline fix | ~5 |
 | 14:15 | fix /desk routing + broaden widget brand selectors | home_redirect.js, desk-overrides.css | built, cache cleared | ~600 |
 | 14:16 | Session end: 3 writes across 2 files (home_redirect.js, desk-overrides.css) | 2 reads | ~9080 tok |
+
+| 2026-05-20 | Diagnosed and fixed missing Tier-6 card styling | hooks.py / Redis | Redis app_hooks cache stale + live gunicorn workers held old module in memory; fixed by worker restart + ?v= cache-bust in hooks.py | ~6k |

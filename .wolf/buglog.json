@@ -442,6 +442,27 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-20T11:15:19.401Z"
+    },
+    {
+      "id": "bug-028",
+      "timestamp": "2026-05-20T00:00:00.000Z",
+      "error_message": "Card styling (Tier-6 flat card identity) not appearing on talimsahl site after app update",
+      "file": "talimsahl/hooks.py",
+      "root_cause": "Two-layer stale cache problem after hooks.py changed app_include_css. (1) Redis app_hooks key ({db_name}|app_hooks) held the old pickled hooks — 'bench clear-cache' does NOT flush this key. (2) Running gunicorn workers held the old hooks.py Python module in memory; when Redis was cleared they raced to re-populate it with the old in-memory value before the fresh value could be written. The CSS file itself also has Cache-Control: max-age=31536000 with no content hash in the filename, so browsers cache it for a year.",
+      "fix": "1. Restart workers: sudo supervisorctl restart frappe-bench-16-web:* — forces reload of hooks.py from disk. 2. Delete stale Redis key: redis-cli -p 13002 DEL '{db_name}|app_hooks' (db_name found in sites/SITE/site_config.json). 3. Added ?v=YYYYMMDD query string to CSS paths in app_include_css in hooks.py — busts browser 1-year cache on next deploy without needing a filename hash.",
+      "tags": [
+        "redis",
+        "cache",
+        "css",
+        "hooks",
+        "app_include_css",
+        "gunicorn",
+        "workers",
+        "browser-cache"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-20T00:00:00.000Z"
     }
   ]
 }
