@@ -20,6 +20,12 @@
   --ts-text: #1D1E20;
   --ts-text-muted: #525252;
   --ts-bg-soft: #E8F4F1;
-  --ts-card-shadow: 0 2px 8px rgba(27, 58, 107, 0.08);
-  --ts-card-shadow-hover: 0 6px 20px rgba(27, 58, 107, 0.15);
+
+  /* Tier-6: flat-card depth system.
+     Cards rest on a hairline border + tiny shadow; hover swaps border to teal.
+     No translateY lift, no heavy elevation. */
+  --ts-card-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --ts-card-shadow-hover: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --ts-shadow-flat: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --ts-shadow-elev: 0 8px 24px rgba(15, 23, 42, 0.12);
 }

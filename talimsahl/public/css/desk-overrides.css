@@ -22,15 +22,15 @@ html:root, :root:root {
   --sidebar-hover-color: var(--ts-bg-soft);
   --sidebar-width: 240px;
 
-  --bg-color: #F7FAFB;
+  --bg-color: #F6F8FA;
   --fg-color: #FFFFFF;
   --text-color: var(--ts-text);
   --heading-color: var(--ts-secondary);
-  --border-color: #E1E8EB;
-  --dark-border-color: #D0DADE;
+  --border-color: #E5EAEE;
+  --dark-border-color: #D5DBE2;
 
   --highlight-color: var(--ts-bg-soft);
-  --control-bg: #F1F5F7;
+  --control-bg: #FFFFFF;
   --page-max-width: 1100px;
 
   --font-stack: "Inter", "Noto Sans Arabic", system-ui, -apple-system, sans-serif;
@@ -39,10 +39,11 @@ html:root, :root:root {
   --ts-control-h: 38px;
   --ts-control-font: 13.5px;
 
-  /* Border-radius scale (cards → lg, controls/buttons → sm, pills → 999px) */
+  /* Tier-6 radius scale — flatter, Linear-style.
+     sm: pills/tags • md: controls, sidebar items, small chips • lg: cards, modals */
   --ts-radius-sm: 6px;
-  --ts-radius-md: 10px;
-  --ts-radius-lg: 14px;
+  --ts-radius-md: 8px;
+  --ts-radius-lg: 10px;
 
   /* Typography scale overrides (Frappe's cramped defaults replaced) */
   --text-xs: 11px;
@@ -123,23 +124,34 @@ h4 {
 .standard-sidebar-item, .sidebar-item {
   border-radius: var(--ts-radius-md);
   margin: 2px 6px;
-  transition: background 0.15s ease;
+  transition: background 0.12s ease, color 0.12s ease;
 }
 .standard-sidebar-item:hover, .sidebar-item:hover { background: var(--ts-bg-soft); }
-.standard-sidebar-item.active, .standard-sidebar-item.selected,
+/* Tier-6: quieter active state — soft teal tint + 3px inset accent, not solid fill.
+   v16 record-management sidebar uses .active-sidebar (NOT .active). */
+.standard-sidebar-item.active,
+.standard-sidebar-item.active-sidebar,
+.standard-sidebar-item.selected,
 .sidebar-item.selected {
-  background: var(--ts-primary) !important;
-  color: #FFFFFF !important;
+  background: var(--ts-bg-soft) !important;
+  color: var(--ts-primary) !important;
+  box-shadow: inset 3px 0 0 var(--ts-primary);
 }
 .standard-sidebar-item.active .sidebar-item-label,
+.standard-sidebar-item.active-sidebar .sidebar-item-label,
 .standard-sidebar-item.active a,
-.standard-sidebar-item.selected a { color: #FFFFFF !important; }
+.standard-sidebar-item.active-sidebar a,
+.standard-sidebar-item.selected a { color: var(--ts-primary) !important; font-weight: 600; }
+html[dir="rtl"] .standard-sidebar-item.active,
+html[dir="rtl"] .standard-sidebar-item.active-sidebar,
+html[dir="rtl"] .standard-sidebar-item.selected,
+html[dir="rtl"] .sidebar-item.selected { box-shadow: inset -3px 0 0 var(--ts-primary); }
 
 /* ----- 5. Page head + titles ----- */
 .page-head {
   background: #FFFFFF;
   border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 1px 3px rgba(27,58,107,0.04);
+  box-shadow: none;
 }
 .page-title h1, .title-text {
   color: var(--ts-secondary);
@@ -155,9 +167,9 @@ h4 {
   background: #FFFFFF;
   border: 1px solid var(--border-color);
   border-radius: var(--ts-radius-lg);
-  box-shadow: var(--ts-card-shadow);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.25rem;
+  box-shadow: var(--ts-shadow-flat);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
 }
 .section-head, .form-section .section-head {
   color: var(--ts-secondary);
@@ -175,7 +187,7 @@ html[dir="rtl"] .section-head {
 .frappe-control input.form-control,
 .frappe-control textarea.form-control,
 .like-disabled-input {
-  border-radius: var(--ts-radius-sm);
+  border-radius: var(--ts-radius-md);
   border: 1px solid var(--border-color);
   background: var(--control-bg);
   font-size: var(--ts-control-font);
@@ -189,7 +201,7 @@ html[dir="rtl"] .section-head {
 .frappe-control input.form-control:focus,
 .frappe-control textarea.form-control:focus {
   border-color: var(--ts-primary);
-  box-shadow: 0 0 0 3px rgba(13,155,138,0.15);
+  box-shadow: 0 0 0 3px rgba(13,155,138,0.18);
   background: #FFFFFF;
 }
 
@@ -197,7 +209,7 @@ html[dir="rtl"] .section-head {
    line-height: normal lets the browser vertically center the selected value —
    a fixed height + line-height: 1.4 was what caused clipping. */
 .frappe-control select.form-control {
-  border-radius: var(--ts-radius-sm);
+  border-radius: var(--ts-radius-md);
   border: 1px solid var(--border-color);
   background-color: var(--control-bg);
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%231B3A6B' d='M2 4l4 4 4-4'/></svg>");
@@ -218,7 +230,7 @@ html[dir="rtl"] .frappe-control select.form-control {
 }
 .frappe-control select.form-control:focus {
   border-color: var(--ts-primary);
-  box-shadow: 0 0 0 3px rgba(13,155,138,0.15);
+  box-shadow: 0 0 0 3px rgba(13,155,138,0.18);
   background-color: #FFFFFF;
 }
 .control-label, .label-area label { color: var(--ts-text-muted); font-weight: 500; }
@@ -233,8 +245,7 @@ html[dir="rtl"] .frappe-control select.form-control {
 .btn-primary:hover, .btn.btn-primary:hover {
   background: var(--ts-cta-dark) !important;
   border-color: var(--ts-cta-dark) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(40,49,173,0.25);
+  box-shadow: 0 0 0 3px rgba(40, 49, 173, 0.18);
 }
 .btn-default, .btn.btn-default {
   background: #FFFFFF;
@@ -284,26 +295,21 @@ html[dir="rtl"] .frappe-control select.form-control {
   border-radius: var(--ts-radius-lg);
   border: 1px solid var(--border-color);
   background: #FFFFFF;
-  box-shadow: var(--ts-card-shadow);
-  transition: all 0.18s ease;
+  box-shadow: var(--ts-shadow-flat);
+  transition: border-color 0.12s ease;
 }
 .shortcut-widget-box:hover, .new-shortcut-widget:hover,
-.new-number-card-widget:hover {
-  box-shadow: var(--ts-card-shadow-hover);
-  transform: translateY(-2px);
-  border-color: var(--ts-primary);
-}
-.new-number-card-widget { border-left: 4px solid var(--ts-primary); }
-html[dir="rtl"] .new-number-card-widget {
-  border-left: 1px solid var(--border-color);
-  border-right: 4px solid var(--ts-primary);
-}
+.new-number-card-widget:hover { border-color: var(--ts-primary); }
 .widget .widget-head .widget-title { color: var(--ts-secondary); }
 .stat-label, .number-card-label { color: var(--ts-text-muted); }
-.stat-value, .number-card-value { color: var(--ts-secondary); font-weight: 700; }
+.stat-value, .number-card-value { color: var(--ts-secondary); font-weight: 700; letter-spacing: -0.01em; }
 
 /* ----- 11. Modal / Dialog ----- */
-.modal-content { border-radius: var(--ts-radius-lg); border: none; box-shadow: 0 20px 60px rgba(27,58,107,0.25); }
+.modal-content {
+  border-radius: var(--ts-radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--ts-shadow-elev);
+}
 .modal-header { border-bottom: 1px solid var(--border-color); }
 .modal-title { color: var(--ts-secondary); font-weight: 600; }
 
@@ -311,17 +317,18 @@ html[dir="rtl"] .new-number-card-widget {
 .awesomplete > ul, .dropdown-menu {
   border-radius: var(--ts-radius-md);
   border: 1px solid var(--border-color);
-  box-shadow: 0 8px 24px rgba(27,58,107,0.10);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
 }
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item.selected { background: var(--ts-bg-soft); color: var(--ts-secondary); }
 
 /* ----- 13. Tables ----- */
 .table > thead > tr > th {
-  background: var(--ts-bg-soft);
+  background: #FAFBFC;
   color: var(--ts-secondary);
   font-weight: 600;
   border-bottom: 1px solid var(--border-color);
+  letter-spacing: 0.01em;
 }
 .table > tbody > tr:hover { background: var(--ts-bg-soft); }
 
@@ -361,17 +368,15 @@ html[dir="rtl"] .body-sidebar { border-right: none; border-left: 1px solid var(-
 .ts-quick-actions a:hover {
   background: var(--ts-primary);
   color: #fff;
-  transform: translateX(2px);
 }
-html[dir="rtl"] .ts-quick-actions a:hover { transform: translateX(-2px); }
 
 /* ----- 19. Card-grid list view ----- */
 .ts-card-grid .result-list,
 .ts-card-grid > .result {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-  padding: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  padding: 12px;
   background: transparent;
 }
 .ts-card-grid .list-row-head { display: none !important; }
@@ -382,14 +387,12 @@ html[dir="rtl"] .ts-quick-actions a:hover { transform: translateX(-2px); }
   background: #fff;
   border: 1px solid var(--border-color);
   border-radius: var(--ts-radius-lg);
-  padding: 18px;
-  box-shadow: var(--ts-card-shadow);
-  transition: all 0.18s ease;
+  padding: 16px;
+  box-shadow: var(--ts-shadow-flat);
+  transition: border-color 0.12s ease;
   min-height: 120px;
 }
 .ts-card-grid .list-row:hover {
-  box-shadow: var(--ts-card-shadow-hover);
-  transform: translateY(-2px);
   border-color: var(--ts-primary);
   background: #fff;
 }
@@ -416,12 +419,13 @@ html[dir="rtl"] .ts-quick-actions a:hover { transform: translateX(-2px); }
   padding: 12px 0 4px;
 }
 .ts-hero-icon {
-  width: 44px; height: 44px;
-  border-radius: 12px;
-  background: var(--ts-bg-soft);
+  width: 40px; height: 40px;
+  border-radius: var(--ts-radius-md);
+  background: #fff;
+  border: 1px solid var(--border-color);
   display: grid; place-items: center;
   color: var(--ts-primary);
-  font-size: 20px;
+  font-size: 18px;
 }
 .ts-hero-eyebrow {
   font-size: 11px;
@@ -440,8 +444,8 @@ html[dir="rtl"] .ts-quick-actions a:hover { transform: translateX(-2px); }
 /* ----- 25. Page chrome (canvas + page-body card + breadcrumb) ----- */
 body.ts-canvas {
   background:
-    radial-gradient(circle at 1px 1px, rgba(27, 58, 107, 0.06) 1px, transparent 0) 0 0 / 22px 22px,
-    linear-gradient(180deg, var(--ts-bg-soft) 0%, #F7FAFB 320px);
+    radial-gradient(circle at 1px 1px, rgba(27, 58, 107, 0.04) 1px, transparent 0) 0 0 / 22px 22px,
+    linear-gradient(180deg, var(--ts-bg-soft) 0%, var(--bg-color) 320px);
   background-attachment: fixed;
 }
 body.ts-canvas #page-Workspaces,
@@ -451,8 +455,9 @@ body.ts-canvas .layout-main {
 }
 body.ts-canvas .page-body {
   background: #fff;
-  border-radius: 16px;
-  box-shadow: var(--ts-card-shadow);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: none;
   margin: 16px 16px 24px;
   padding: 20px 24px;
   min-height: calc(100vh - 140px);
@@ -506,42 +511,43 @@ body.ts-canvas .layout-side-section { background: transparent; }
 }
 .ts-stat-card {
   display: flex; align-items: center; gap: 14px;
-  padding: 20px;
+  padding: 18px 20px;
   background: #fff;
   border: 1px solid var(--border-color);
   border-radius: var(--ts-radius-lg);
-  box-shadow: var(--ts-card-shadow);
+  box-shadow: var(--ts-shadow-flat);
   text-decoration: none;
   color: var(--ts-text);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  transition: border-color 0.12s ease;
 }
 .ts-stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--ts-card-shadow-hover);
   border-color: var(--ts-primary);
   text-decoration: none;
 }
 .ts-stat-icon {
-  width: 48px; height: 48px;
-  border-radius: 12px;
-  background: var(--ts-bg-soft);
+  width: 44px; height: 44px;
+  border-radius: var(--ts-radius-md);
+  background: #fff;
+  border: 1px solid var(--border-color);
   display: grid; place-items: center;
-  font-size: 22px;
+  font-size: 20px;
+  color: var(--ts-primary);
   flex-shrink: 0;
 }
 .ts-stat-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .ts-stat-label {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--ts-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   font-weight: 600;
 }
 .ts-stat-value {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--ts-secondary);
-  line-height: 1.1;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
 }
 .ts-stat-sub {
   font-size: 11px;
@@ -553,7 +559,7 @@ body.ts-canvas .layout-side-section { background: transparent; }
   border: 1px solid var(--border-color);
   border-radius: var(--ts-radius-lg);
   padding: 20px 22px;
-  box-shadow: var(--ts-card-shadow);
+  box-shadow: var(--ts-shadow-flat);
 }
 .ts-activity-panel h3 {
   margin: 0 0 12px;
@@ -586,9 +592,9 @@ body.ts-canvas .layout-side-section { background: transparent; }
 .ts-list-toolbar {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: 12px;
-  padding: 8px 4px 12px;
-  border-bottom: 1px dashed var(--border-color);
-  margin-bottom: 12px;
+  padding: 6px 4px 10px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 10px;
 }
 .ts-view-switcher {
   display: inline-flex;
@@ -619,16 +625,16 @@ body.ts-canvas .layout-side-section { background: transparent; }
 .ts-filter-chip {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 4px 10px;
-  background: #fff;
-  border: 1px solid var(--ts-primary);
-  color: var(--ts-primary);
+  background: var(--ts-bg-soft);
+  border: 1px solid transparent;
+  color: var(--ts-primary-dark);
   border-radius: 999px;
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.12s ease, color 0.12s ease;
+  transition: border-color 0.12s ease;
 }
-.ts-filter-chip:hover { background: var(--ts-primary); color: #fff; }
+.ts-filter-chip:hover { border-color: var(--ts-primary); }
 
 /* Card rendering inside .ts-card-grid (overrides §19 inner) */
 .ts-card-grid .list-row.ts-card-row {
@@ -647,7 +653,7 @@ body.ts-canvas .layout-side-section { background: transparent; }
 .ts-card-checkbox-slot { display: flex; align-items: center; }
 .ts-card-avatar {
   width: 36px; height: 36px;
-  border-radius: 10px;
+  border-radius: var(--ts-radius-md);
   background: var(--ts-bg-soft);
   display: grid; place-items: center;
   font-size: 16px;
@@ -682,7 +688,7 @@ body.ts-canvas .layout-side-section { background: transparent; }
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 4px 8px;
+  padding: 3px 8px;
   border-radius: 999px;
   white-space: nowrap;
   flex-shrink: 0;
@@ -792,9 +798,172 @@ body.ts-canvas .layout-side-section { background: transparent; }
   border: 1px solid var(--border-color);
   border-radius: var(--ts-radius-lg);
   padding: 14px;
-  box-shadow: var(--ts-card-shadow);
+  box-shadow: var(--ts-shadow-flat);
 }
 .ts-form-right-rail .sidebar-section + .sidebar-section { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color); }
 
 /* RTL */
 html[dir="rtl"] .ts-form-tab.active { border-bottom-color: var(--ts-primary); }
+
+/* ============================================================
+   Tier-6 — §26 Card-Break (.links-widget-box) brand identity
+   Native Frappe v16 widget: bg:white + 1px border + 12px radius + no shadow.
+   We were silently inheriting tokens; users couldn't TELL we'd changed anything.
+   This section adds visible Talim Sahl signal: top accent, branded header,
+   interactive link items.
+   ============================================================ */
+.links-widget-box {
+  border-radius: var(--ts-radius-lg) !important;
+  border: 1px solid var(--border-color) !important;
+  border-top: 3px solid var(--ts-primary) !important;
+  padding: 16px 18px !important;
+  background: #fff !important;
+  box-shadow: var(--ts-shadow-flat) !important;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+.links-widget-box:hover {
+  border-color: var(--ts-primary) !important;
+  border-top-color: var(--ts-primary) !important;
+  box-shadow: 0 0 0 1px var(--ts-primary), var(--ts-shadow-flat) !important;
+}
+
+/* Card header — uppercase, navy, separator underline */
+.links-widget-box .widget-head,
+.links-widget-box .widget-title,
+.links-widget-box > .widget-head .widget-title {
+  color: var(--ts-secondary) !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 0 0 10px !important;
+  margin-bottom: 8px !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.links-widget-box .widget-body { padding-top: 2px !important; }
+
+/* Link items — interactive, brand-colored, with arrow-slide affordance */
+.links-widget-box .link-item,
+.links-widget-box .widget-body > div > a,
+.links-widget-box .widget-body > a {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px !important;
+  margin: 1px -10px !important;
+  border-radius: var(--ts-radius-md);
+  color: var(--ts-text) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: background 0.1s ease, color 0.1s ease, padding 0.12s ease;
+}
+.links-widget-box .link-item:hover,
+.links-widget-box .widget-body > div > a:hover,
+.links-widget-box .widget-body > a:hover {
+  background: var(--ts-bg-soft) !important;
+  color: var(--ts-primary) !important;
+  padding-left: 14px !important;
+}
+html[dir="rtl"] .links-widget-box .link-item:hover,
+html[dir="rtl"] .links-widget-box .widget-body > div > a:hover,
+html[dir="rtl"] .links-widget-box .widget-body > a:hover {
+  padding-left: 10px !important;
+  padding-right: 14px !important;
+}
+/* External-link arrow that ships with the link — recolor on hover */
+.links-widget-box .link-item .ce-arrow,
+.links-widget-box .link-item svg,
+.links-widget-box .widget-body a svg {
+  color: var(--ts-text-muted);
+  opacity: 0.6;
+  transition: color 0.1s ease, opacity 0.1s ease, transform 0.12s ease;
+}
+.links-widget-box .link-item:hover .ce-arrow,
+.links-widget-box .link-item:hover svg,
+.links-widget-box .widget-body a:hover svg {
+  color: var(--ts-primary);
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+html[dir="rtl"] .links-widget-box .link-item:hover .ce-arrow,
+html[dir="rtl"] .links-widget-box .link-item:hover svg {
+  transform: translate(-2px, -2px);
+}
+
+/* Shortcut + number-card widgets — same brand treatment as Card-Break.
+   Drop the `.widget.` ancestor requirement so this catches Home (shortcuts
+   rendered without the .widget wrapper class) and Education alike. */
+.shortcut-widget-box,
+.new-shortcut-widget,
+.number-widget-box,
+.new-number-card-widget,
+.number-card,
+.widget.shortcut-widget-box,
+.widget.new-shortcut-widget {
+  border-radius: var(--ts-radius-lg) !important;
+  border: 1px solid var(--border-color) !important;
+  border-top: 3px solid var(--ts-primary) !important;
+  padding: 14px 16px !important;
+  background: #fff !important;
+  box-shadow: var(--ts-shadow-flat) !important;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+.shortcut-widget-box:hover,
+.new-shortcut-widget:hover,
+.number-widget-box:hover,
+.new-number-card-widget:hover,
+.number-card:hover,
+.widget.shortcut-widget-box:hover,
+.widget.new-shortcut-widget:hover {
+  border-color: var(--ts-primary) !important;
+  border-top-color: var(--ts-primary) !important;
+  box-shadow: 0 0 0 1px var(--ts-primary), var(--ts-shadow-flat) !important;
+}
+
+/* Workspace group title ("Reports & Masters", "Your Shortcuts").
+   Frappe wraps the text in <b> inside <div class="h4"> — not a real <h4>. */
+.widget-group .h4,
+.widget-group-head .h4,
+.widget-group > .h4 {
+  color: var(--ts-secondary) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.005em !important;
+  text-transform: none !important;
+  opacity: 1 !important;
+  margin-bottom: 16px !important;
+  position: relative;
+  padding-left: 14px;
+  display: flex;
+  align-items: center;
+}
+.widget-group .h4 > b,
+.widget-group-head .h4 > b {
+  color: var(--ts-secondary) !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+}
+.widget-group .h4::before,
+.widget-group-head .h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 18px;
+  background: var(--ts-primary);
+  border-radius: 2px;
+}
+html[dir="rtl"] .widget-group .h4,
+html[dir="rtl"] .widget-group-head .h4 {
+  padding-left: 0;
+  padding-right: 14px;
+}
+html[dir="rtl"] .widget-group .h4::before,
+html[dir="rtl"] .widget-group-head .h4::before {
+  left: auto;
+  right: 0;
+}

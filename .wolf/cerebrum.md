@@ -51,6 +51,11 @@
 - [2026-05-17] When deleting a function, delete its call sites too — left an
   `injectTabs(frm)` call after removing `injectTabs`, causing a ReferenceError
   that aborted the rest of `applyFormV2`.
+- [2026-05-20] Frappe v16 record-management sidebar uses
+  `.standard-sidebar-item.active-sidebar`, NOT `.active`. Styling only
+  `.standard-sidebar-item.active` silently misses every Education/ERPNext
+  module sidebar — they keep whatever ERPNext bundle ships. Always include
+  both classes in any active-state override.
 
 ## Decision Log
 
@@ -63,3 +68,11 @@
 - [2026-05-17] **Reverted `sidebar_v2.js` and `injectActionBar`** — per user:
   the reskin styles native chrome, never replaces/moves it. Custom sidebar and
   the lifted action bar were deleted; native sidebar + `.standard-actions` kept.
+
+- [2026-05-20] Frappe v16 routes workspaces by slug: `/app/home`, set via
+  `frappe.set_route("home")`. The legacy `frappe.set_route("Workspaces","Home")`
+  produces the deprecated `/desk#Workspaces/Home` URL — never use it in v16.
+- [2026-05-20] Frappe widget DOM is inconsistent across workspaces: Education
+  Card-Break renders `<div class="widget links-widget-box">` but Home renders
+  shortcut/number cards WITHOUT the `.widget` wrapper class. Brand rules must
+  NOT scope with `.widget.foo` — use `.foo` directly or both.

@@ -232,8 +232,15 @@
       "file": "talimsahl/hooks.py",
       "root_cause": "app_include_js referenced the bundle by absolute path (/assets/talimsahl/js/desk_reskin.bundle.js), so Frappe served the raw ES-module source; a plain <script> tag cannot run `import` statements -> SyntaxError aborts the whole bundle.",
       "fix": "Changed app_include_js to the bare name 'desk_reskin.bundle.js' so Frappe resolves it through assets.json to the hashed esbuild output.",
-      "tags": ["bundle", "hooks", "esbuild", "js"],
-      "related_bugs": ["bug-005"],
+      "tags": [
+        "bundle",
+        "hooks",
+        "esbuild",
+        "js"
+      ],
+      "related_bugs": [
+        "bug-005"
+      ],
       "occurrences": 1,
       "last_seen": "2026-05-17T08:00:00.000Z"
     },
@@ -244,7 +251,12 @@
       "file": "talimsahl/public/js/reskin/home_redirect.js",
       "root_cause": "v16 frappe.get_route_str() is `frappe.router.current_route.join('/')`; current_route is null until the first route resolves, so calling it at boot throws.",
       "fix": "Guard with `if (!frappe.router.current_route) return;` before calling get_route_str(); same guard added to sidebar_v2.js currentRoutePath().",
-      "tags": ["v16", "router", "boot", "js"],
+      "tags": [
+        "v16",
+        "router",
+        "boot",
+        "js"
+      ],
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-17T08:05:00.000Z"
@@ -256,7 +268,12 @@
       "file": "talimsahl/public/js/reskin/list_v2.js",
       "root_cause": "Code listened for a `list_view_render` jQuery event that Frappe v16 does not fire (the plan's selector pre-check wrongly assumed it existed).",
       "fix": "Replaced the event listener with a monkey-patch of frappe.views.ListView.prototype.after_render, which base_list.js calls right after render() populates rows and `this.data`.",
-      "tags": ["v16", "list-view", "events", "js"],
+      "tags": [
+        "v16",
+        "list-view",
+        "events",
+        "js"
+      ],
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-17T08:10:00.000Z"
@@ -268,7 +285,12 @@
       "file": "talimsahl/public/js/reskin/workspace_dashboard.js",
       "root_cause": "v16 frappe.db.get_list rejects string SQL functions in `fields` ('sum(outstanding_amount) as total') and rejects the `group_by: '1=1'` collapse trick.",
       "fix": "Use dict aggregate syntax `fields: [{ SUM: 'outstanding_amount', as: 'total' }]` and drop group_by (a bare SUM already returns one total row).",
-      "tags": ["v16", "database", "get_list", "js"],
+      "tags": [
+        "v16",
+        "database",
+        "get_list",
+        "js"
+      ],
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-17T08:15:00.000Z"
@@ -280,8 +302,14 @@
       "file": "talimsahl/public/js/reskin/workspace_dashboard.js",
       "root_cause": "frappe.format(v,{fieldtype:'Currency'}) and frappe.datetime.comment_when() return HTML; fed into textContent / escapeHtml() they render as literal tags.",
       "fix": "Use plain-text helpers: format_currency() and frappe.datetime.prettyDate(). Applied across workspace_dashboard.js, list_v2.js, form_v2.js.",
-      "tags": ["html-escaping", "frappe-helpers", "js"],
-      "related_bugs": ["bug-011"],
+      "tags": [
+        "html-escaping",
+        "frappe-helpers",
+        "js"
+      ],
+      "related_bugs": [
+        "bug-011"
+      ],
       "occurrences": 1,
       "last_seen": "2026-05-17T08:20:00.000Z"
     },
@@ -292,10 +320,128 @@
       "file": "talimsahl/public/js/reskin/form_v2.js",
       "root_cause": "injectActionBar moved Frappe's primary/menu/indicator nodes out of .standard-actions, and `.ts-form-v2 .standard-actions { display:none }` hid the original area entirely.",
       "fix": "Removed injectActionBar + refreshActionBarStatus and the .ts-form-action-bar CSS (incl. the standard-actions hide rule). Frappe's native action area is kept where Frappe manages it. Verified Ctrl+S saves a ToDo live.",
-      "tags": ["v16", "form", "save", "user-reported", "js"],
+      "tags": [
+        "v16",
+        "form",
+        "save",
+        "user-reported",
+        "js"
+      ],
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-17T08:25:00.000Z"
+    },
+    {
+      "id": "bug-021",
+      "timestamp": "2026-05-20T06:32:15.939Z",
+      "error_message": "CSS fix: --ts-card-shadow, --ts-card-shadow-hover",
+      "file": "talimsahl/public/css/brand-tokens.css",
+      "root_cause": "--ts-card-shadow: 0 2px 8px rgba(27, 58, 107, 0.08) → 0 1px 2px rgba(15, 23, 42, 0.04); --ts-card-shadow-hover: 0 6px 20px rgba(27, 58, 107, 0.15) → 0 1px 2px rgba(15, 23, 42, 0.04)",
+      "fix": "Changed --ts-card-shadow: 0 2px 8px rgba(27, 58, 107, 0.08) → 0 1px 2px rgba(15, 23, 42, 0.04); --ts-card-shadow-hover: 0 6px 20px rgba(27, 58, 107, 0.15) → 0 1px 2px rgba(15, 23, 42, 0.04)",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "css"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-20T06:32:15.939Z"
+    },
+    {
+      "id": "bug-022",
+      "timestamp": "2026-05-20T06:35:11.914Z",
+      "error_message": "CSS fix: box-shadow",
+      "file": "talimsahl/public/css/desk-overrides.css",
+      "root_cause": "box-shadow: 0 1px 3px rgba(27,58,107,0.04) → none",
+      "fix": "Changed box-shadow: 0 1px 3px rgba(27,58,107,0.04) → none",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "css"
+      ],
+      "related_bugs": [],
+      "occurrences": 18,
+      "last_seen": "2026-05-20T06:38:56.060Z"
+    },
+    {
+      "id": "bug-023",
+      "timestamp": "2026-05-20T06:46:55.195Z",
+      "error_message": "Significant refactor of ",
+      "file": "../../../../../tmp/ts_capture.js",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 4→11 lines (4 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-20T06:46:55.195Z"
+    },
+    {
+      "id": "bug-024",
+      "timestamp": "2026-05-20T06:50:30.402Z",
+      "error_message": "CSS fix: Tier-6",
+      "file": "talimsahl/public/css/desk-overrides.css",
+      "root_cause": "Tier-6: quieter active state — soft teal tint + 3px inset accent, not solid fill */ → quieter active state — soft teal tint + 3px inset accent, not solid fill.",
+      "fix": "Changed Tier-6: quieter active state — soft teal tint + 3px inset accent, not solid fill */ → quieter active state — soft teal tint + 3px inset accent, not solid fill.",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "css"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-20T06:50:30.402Z"
+    },
+    {
+      "id": "bug-025",
+      "timestamp": "2026-05-20T07:04:35.154Z",
+      "error_message": "Significant refactor of ",
+      "file": "../../../../../tmp/ts_capture.js",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 6→8 lines (4 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-20T07:04:35.154Z"
+    },
+    {
+      "id": "bug-026",
+      "timestamp": "2026-05-20T07:04:50.262Z",
+      "error_message": "Wrong reference: false should be true",
+      "file": "../../../../../tmp/ts_capture.js",
+      "root_cause": "Used \"false\" instead of \"true\"",
+      "fix": "Changed false → true",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-20T07:04:50.262Z"
+    },
+    {
+      "id": "bug-027",
+      "timestamp": "2026-05-20T11:15:19.401Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "talimsahl/public/css/desk-overrides.css",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "css"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-20T11:15:19.401Z"
     }
   ]
 }

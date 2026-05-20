@@ -132,3 +132,74 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+
+## Session: 2026-05-20 09:20
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 09:26 | Created ../../../.claude/plans/if-we-changed-the-abundant-thacker.md | — | ~3482 |
+
+## Session: 2026-05-20 09:27
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 09:32 | Edited talimsahl/public/css/brand-tokens.css | CSS: Tier-6, --ts-shadow-flat, --ts-shadow-elev | ~119 |
+| 09:32 | Edited talimsahl/public/css/desk-overrides.css | CSS: sm, md, lg | ~197 |
+| 09:33 | Session end: 2 writes across 2 files (brand-tokens.css, desk-overrides.css) | 3 reads | ~7406 tok |
+| 09:35 | Edited talimsahl/public/css/desk-overrides.css | 6→6 lines | ~42 |
+| 09:35 | Edited talimsahl/public/css/desk-overrides.css | 14→19 lines | ~260 |
+| 09:35 | Edited talimsahl/public/css/desk-overrides.css | 6→5 lines | ~54 |
+| 09:35 | Edited talimsahl/public/css/desk-overrides.css | 6→4 lines | ~22 |
+| 09:35 | Edited talimsahl/public/css/desk-overrides.css | 39→40 lines | ~288 |
+| 09:36 | Edited talimsahl/public/css/desk-overrides.css | 7→7 lines | ~52 |
+| 09:36 | Edited talimsahl/public/css/desk-overrides.css | CSS: letter-spacing | ~225 |
+| 09:36 | Edited talimsahl/public/css/desk-overrides.css | 8→8 lines | ~63 |
+| 09:36 | Edited talimsahl/public/css/desk-overrides.css | 10→10 lines | ~93 |
+| 09:36 | Edited talimsahl/public/css/desk-overrides.css | 6→6 lines | ~56 |
+| 09:37 | Edited talimsahl/public/css/desk-overrides.css | 4→4 lines | ~45 |
+| 09:37 | Edited talimsahl/public/css/desk-overrides.css | 5→5 lines | ~45 |
+| 09:37 | Edited talimsahl/public/css/desk-overrides.css | 11→15 lines | ~146 |
+| 09:37 | Edited talimsahl/public/css/desk-overrides.css | CSS: letter-spacing | ~76 |
+| 09:37 | Edited talimsahl/public/css/desk-overrides.css | 27→25 lines | ~200 |
+| 09:37 | Edited talimsahl/public/css/desk-overrides.css | 10→10 lines | ~70 |
+| 09:38 | Edited talimsahl/public/css/desk-overrides.css | 10→10 lines | ~57 |
+| 09:38 | Edited talimsahl/public/css/desk-overrides.css | 7→7 lines | ~62 |
+| 09:38 | Edited talimsahl/public/css/desk-overrides.css | CSS: border-color | ~107 |
+| 09:38 | Edited talimsahl/public/css/desk-overrides.css | CSS: border | ~66 |
+| 09:38 | Edited talimsahl/public/css/desk-overrides.css | 10→10 lines | ~68 |
+| 09:38 | Edited talimsahl/public/css/desk-overrides.css | CSS: border | ~166 |
+| 09:50 | Tier-6 reskin: flat-card language across tokens + chrome + Home + List + Form + modals + tables — rebuilt, captures pending | brand-tokens.css, desk-overrides.css | build OK 22.36KB bundle | ~4500 |
+| 09:40 | Session end: 24 writes across 2 files (brand-tokens.css, desk-overrides.css) | 3 reads | ~9669 tok |
+| 09:44 | Created ../../../../../tmp/ts_capture.js | — | ~490 |
+| 09:44 | Edited ../../../../../tmp/ts_capture.js | 1→4 lines | ~46 |
+| 09:45 | Edited ../../../../../tmp/ts_capture.js | 4→5 lines | ~64 |
+| 09:46 | Edited ../../../../../tmp/ts_capture.js | expanded (+7 lines) | ~148 |
+| 09:49 | Created ../../../../../tmp/ts_inspect.js | — | ~702 |
+| 09:49 | Created ../../../../../tmp/ts_inspect2.js | — | ~521 |
+| 09:50 | Edited talimsahl/public/css/desk-overrides.css | expanded (+6 lines) | ~267 |
+| 10:35 | Tier-6 v16-sidebar fix: .active-sidebar selector added | desk-overrides.css | screenshots confirm soft tint + 3px accent applies in Education + Invoicing sidebars | ~600 |
+| 09:52 | Session end: 31 writes across 5 files (brand-tokens.css, desk-overrides.css, ts_capture.js, ts_inspect.js, ts_inspect2.js) | 3 reads | ~11907 tok |
+| 10:04 | Edited ../../../../../tmp/ts_capture.js | 6→8 lines | ~104 |
+| 10:04 | Edited ../../../../../tmp/ts_capture.js | inline fix | ~25 |
+| 10:08 | Session end: 33 writes across 5 files (brand-tokens.css, desk-overrides.css, ts_capture.js, ts_inspect.js, ts_inspect2.js) | 3 reads | ~12036 tok |
+| 10:10 | Created ../../../../../tmp/ts_inspect_widgets.js | — | ~881 |
+| 10:12 | Created ../../../../../tmp/ts_inspect_widgets.js | — | ~1136 |
+| 10:14 | Edited talimsahl/public/css/desk-overrides.css | expanded (+140 lines) | ~1467 |
+| 10:16 | Created ../../../../../tmp/ts_inspect_group.js | — | ~525 |
+| 10:18 | Edited talimsahl/public/css/desk-overrides.css | CSS: display, align-items | ~332 |
+| 10:20 | Created ../../../../../tmp/ts_inspect_group2.js | — | ~533 |
+
+## Session: 2026-05-20 14:04
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-20 14:07
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 14:12 | Edited talimsahl/public/js/reskin/home_redirect.js | 1→4 lines | ~65 |
+| 14:15 | Edited talimsahl/public/css/desk-overrides.css | CSS: number-widget-box, new-number-card-widget, number-card | ~312 |
+| 14:15 | Edited talimsahl/public/css/desk-overrides.css | inline fix | ~5 |
+| 14:15 | fix /desk routing + broaden widget brand selectors | home_redirect.js, desk-overrides.css | built, cache cleared | ~600 |
+| 14:16 | Session end: 3 writes across 2 files (home_redirect.js, desk-overrides.css) | 2 reads | ~9080 tok |

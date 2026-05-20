@@ -1,15 +1,22 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-17T07:43:51.875Z
-> Files: 48 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-20T11:15:26.409Z
+> Files: 55 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../../../../tmp/
 
+- `ts_capture.js` — Declares path (~640 tok)
 - `ts_diag.js` — Declares EXEC (~878 tok)
+- `ts_inspect_group.js` — Declares browser (~525 tok)
+- `ts_inspect_group2.js` — Declares browser (~533 tok)
+- `ts_inspect_widgets.js` — Declares browser (~1136 tok)
+- `ts_inspect.js` — Declares browser (~702 tok)
+- `ts_inspect2.js` — Declares browser (~521 tok)
 - `ts_verify.js` — EXEC: probe (~1006 tok)
 
 ## ../../../.claude/plans/
 
+- `if-we-changed-the-abundant-thacker.md` — Plan — Tier-6 Reskin: Linear/Vercel-style flatter card language across Desk (~3264 tok)
 - `my-employee-didn-t-accept-replicated-engelbart.md` — Plan — Tier-5 Reskin: make Desk stop looking like ERPNext (~2467 tok)
 - `tidy-popping-wreath.md` — Plan — Activate the dead Desk-reskin JS layer + drop the v16-incompatible navbar (~1744 tok)
 - `we-need-more-modifications-robust-raven.md` — Plan — Desk Reskin: stop looking like "colored Frappe" + fix form controls (~1752 tok)
@@ -62,8 +69,8 @@
 
 ## talimsahl/public/css/
 
-- `brand-tokens.css` — Styles: 14 vars (~258 tok)
-- `desk-overrides.css` — Styles: 82 rules, 30 vars (~6832 tok)
+- `brand-tokens.css` — Styles: 16 vars (~336 tok)
+- `desk-overrides.css` — Styles: 83 rules, 30 vars (~8501 tok)
 - `talimsahl.css` — Styles: 28 rules (~641 tok)
 
 ## talimsahl/public/js/
@@ -75,7 +82,7 @@
 - `card_list_view.js` — SUPERSEDED by list_v2.js (Tier-5). Kept on disk for reference; no longer imported from the bundle. (~284 tok)
 - `form_hero.js` — Adds a branded hero header above the form title with doctype eyebrow + icon. (~275 tok)
 - `form_v2.js` — Form v2: summary strip + right-rail class. No tab/action-bar injection (v16 native tabs + standard-actions kept). (~700 tok)
-- `home_redirect.js` — Default-landing redirect to Home workspace; guards null current_route at boot. (~290 tok)
+- `home_redirect.js` — Default-landing redirect: send users to the Home workspace when they hit /app (~322 tok)
 - `list_v2.js` — List v2: card template + view switcher + filter chips + empty state. Hooks ListView.after_render (v16 has no list_view_render event). (~2800 tok)
 - `page_chrome.js` — Page chrome: canvas background body class + breadcrumb separator swap. (~371 tok)
 - `sidebar.js` — SUPERSEDED — native Frappe sidebar is kept and CSS-styled; not imported. (~340 tok)

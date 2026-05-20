@@ -11,7 +11,10 @@ function maybeRedirect() {
 	const workspaces = frappe.boot && frappe.boot.allowed_workspaces;
 	if (!workspaces) return;
 	const hasHome = workspaces.some((w) => w.name === "Home" || w.title === "Home");
-	if (hasHome) frappe.set_route("Workspaces", "Home");
+	// v16 routes workspaces as /app/<slug>, not the legacy /desk#Workspaces/Home.
+	// Use frappe.set_route(slug) — passing ("Workspaces","Home") produces the
+	// deprecated two-segment URL.
+	if (hasHome) frappe.set_route("home");
 }
 
 if (window.frappe && frappe.after_ajax) {
