@@ -16,7 +16,12 @@ html:root, :root:root {
   --btn-primary-hover: var(--ts-cta-dark);
 
   --navbar-bg: var(--ts-secondary);
-  --navbar-height: 56px;
+  /* v16 Desk has no real top navbar (search/notifications live in the
+     sidebar) — keeping this at Frappe's default 56px makes the native
+     sticky form-tabs bar (.form-tabs-list, top: navbar-height - 2px)
+     dock 54px into the document instead of right at the scroll-container
+     top, swallowing whatever field happens to scroll through that band. */
+  --navbar-height: 0px;
 
   --sidebar-active-color: var(--ts-primary);
   --sidebar-hover-color: var(--ts-bg-soft);
@@ -421,6 +426,11 @@ html[dir="rtl"] .body-sidebar { border-right: none; border-left: 1px solid var(-
 .ts-form-hero {
   display: flex; gap: 12px; align-items: center;
   padding: 12px 0 4px;
+  /* .title-area is a zero-gap flex row (Frappe's page.html); when the
+     breadcrumb collapses to just the final segment (mobile, RTL titles)
+     this is the only thing separating the eyebrow from the title text. */
+  margin-inline-end: 12px;
+  flex-shrink: 0;
 }
 .ts-hero-icon {
   width: 40px; height: 40px;

@@ -83,3 +83,28 @@
   Card-Break renders `<div class="widget links-widget-box">` but Home renders
   shortcut/number cards WITHOUT the `.widget` wrapper class. Brand rules must
   NOT scope with `.widget.foo` — use `.foo` directly or both.
+- [2026-06-16] **New personal skill: `frappe-visual-reviewer`** (at
+  `~/.claude/skills/frappe-visual-reviewer/`, not project-scoped — user wants
+  it usable on any Frappe site). Mints a passwordless admin `sid` via direct
+  `frappe.sessions.Session(...)` construction (bypasses `LoginManager.login_as`,
+  which needs a live HTTP request), injects it into a real Playwright/Chromium
+  browser context (`sid` is httponly — can ONLY be set via
+  `context.addCookies()`, never `page.evaluate`/`document.cookie`), and
+  captures screenshots + a `report.json` per route/viewport. Entrypoint:
+  `~/.claude/skills/frappe-visual-reviewer/review.sh --site erp.local --routes
+  /app/home,/app/student/<name> --mobile`. Default workflow per user's choice:
+  capture → critique (against `references/frappe-review-checklist.md`) →
+  propose fixes. Use this any time UI/UX work on this project needs verifying
+  instead of ad-hoc Playwright MCP calls — the installed MCP's browser tools
+  are pinned to a `"chrome"` channel that isn't installed on this machine, so
+  this skill uses a standalone Node script + bundled chromium instead.
+- [2026-06-16] `frappe.init()`'s logger builds log file paths relative to CWD,
+  not from `site_path` — any standalone script that calls `frappe.init()`
+  outside the `bench` CLI must `os.chdir(sites_path)` first (see
+  `gen_sid.py` in the skill above, and buglog bug-038).
+- [2026-06-16] Frappe's page-head title area (`.title-area`, from
+  `frappe/public/js/frappe/ui/page.html`) is a zero-gap `flex` row shared by
+  the breadcrumb `<ul>`. Anything prepended into it (e.g. `form_hero.js`'s
+  `.ts-form-hero`) needs an explicit `margin-inline-end` — don't assume a gap
+  exists, especially once the breadcrumb collapses to one segment on mobile
+  or with RTL titles (buglog bug-039).

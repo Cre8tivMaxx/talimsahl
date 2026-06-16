@@ -597,6 +597,76 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-16T00:00:00.000Z"
+    },
+    {
+      "id": "bug-037",
+      "timestamp": "2026-06-16T01:17:58.587Z",
+      "error_message": "Wrong reference: chromium should be pkg",
+      "file": "../../../../../tmp/ts_node_probe.mjs",
+      "root_cause": "Used \"chromium\" instead of \"pkg\"",
+      "fix": "Changed chromium → pkg",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "mjs"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T01:17:58.587Z"
+    },
+    {
+      "id": "bug-038",
+      "timestamp": "2026-06-16T06:46:00.000Z",
+      "error_message": "FileNotFoundError: [Errno 2] No such file or directory: '/home/frappe/frappe-bench-16/erp.local/logs/database.log' when running a standalone frappe.init() script outside bench",
+      "file": "~/.claude/skills/frappe-visual-reviewer/scripts/gen_sid.py",
+      "root_cause": "Frappe's logger (frappe/utils/logger.py create_handler) builds log paths relative to CWD ('site/logs/...', '../logs/...') instead of from frappe.local.site_path. The `bench` CLI always chdir's into sites/ before running any command, which is the implicit contract this relies on; a script invoked from the bench root has the wrong CWD and the relative path resolves to a nonexistent directory.",
+      "fix": "Added os.chdir(sites_path) before frappe.init() in gen_sid.py, and changed frappe.init(sites_path=sites_path) to frappe.init(sites_path=\".\") to match.",
+      "tags": [
+        "frappe-init",
+        "logger",
+        "cwd",
+        "bench-convention",
+        "skill",
+        "py"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T06:46:00.000Z"
+    },
+    {
+      "id": "bug-039",
+      "timestamp": "2026-06-16T06:48:00.000Z",
+      "error_message": "Form hero eyebrow label glued directly to the document title with no space, worst on mobile/RTL (e.g. 'STUDENTرحمن محمد'); on desktop it looked like a stray '@' next to 'STUDENT' (actually the home-breadcrumb icon with no gap)",
+      "file": "talimsahl/public/css/desk-overrides.css",
+      "root_cause": "form_hero.js prepends .ts-form-hero as the first child of Frappe's .title-area, which is a zero-gap flex row (page.html: `<div class=\"flex title-area ellipsis\">`) shared with the breadcrumb <ul>. On mobile the breadcrumb collapses to just the final segment, removing the '/' separators that were masking the missing gap on desktop.",
+      "fix": "Added margin-inline-end: 12px and flex-shrink: 0 to .ts-form-hero in desk-overrides.css — guarantees a gap after the hero block regardless of what Frappe renders next in the row. Did not relocate the JS injection point (keeps the project's 'style via CSS, never restructure Frappe's DOM' discipline). Verified via the new frappe-visual-reviewer skill on /app/student/EDU-STU-2026-00001, desktop + mobile, before and after.",
+      "tags": [
+        "form-hero",
+        "rtl",
+        "flex-gap",
+        "title-area",
+        "css",
+        "user-reported"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T06:48:00.000Z"
+    },
+    {
+      "id": "bug-040",
+      "timestamp": "2026-06-16T06:52:28.029Z",
+      "error_message": "CSS fix: --navbar-height",
+      "file": "talimsahl/public/css/desk-overrides.css",
+      "root_cause": "--navbar-height: 56px → 0px",
+      "fix": "Changed --navbar-height: 56px → 0px",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "css"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T06:52:28.029Z"
     }
   ]
 }
