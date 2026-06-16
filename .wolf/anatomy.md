@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T07:01:26.392Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T08:02:53.115Z
 > Files: 72 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../../../../tmp/
@@ -57,7 +57,7 @@
 
 - `.editorconfig` — Editor configuration (~109 tok)
 - `.eslintrc` (~676 tok)
-- `.gitignore` — Git ignore rules (~140 tok)
+- `.gitignore` — Git ignore rules (~158 tok)
 - `.pre-commit-config.yaml` (~504 tok)
 - `CLAUDE.md` — OpenWolf (~2266 tok)
 - `license.txt` (~268 tok)
