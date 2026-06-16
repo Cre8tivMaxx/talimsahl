@@ -101,7 +101,7 @@ h4 {
 .navbar a, .navbar .nav-link, .navbar button,
 .navbar .input-group input { color: #FFFFFF !important; }
 .navbar .nav-link:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
-.navbar .navbar-brand img { height: 32px; }
+.navbar .navbar-brand img { height: 32px; filter: brightness(0) invert(1); }
 .navbar .input-group input {
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.15);
@@ -152,6 +152,10 @@ html[dir="rtl"] .sidebar-item.selected { box-shadow: inset -3px 0 0 var(--ts-pri
   background: #FFFFFF;
   border-bottom: 1px solid var(--border-color);
   box-shadow: none;
+  /* Un-stick: Frappe makes this sticky by default, which eats ~60px of viewport
+     while scrolling long forms. Scroll with content instead. */
+  position: relative !important;
+  top: auto !important;
 }
 .page-title h1, .title-text {
   color: var(--ts-secondary);

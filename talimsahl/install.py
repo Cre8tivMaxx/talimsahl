@@ -13,6 +13,8 @@ def apply_brand_settings():
 	"""
 	_apply_website_settings()
 	_apply_navbar_settings()
+	_fix_currency_symbol()
+	_hide_student_erp_tabs()
 	_apply_workspace_if_education_present()
 	_apply_home_workspace()
 	frappe.clear_cache()
@@ -77,3 +79,53 @@ def _apply_navbar_settings():
     nav.flags.ignore_permissions = True
     nav.flags.ignore_mandatory = True
     nav.save()
+
+
+def _fix_currency_symbol():
+    """Fix the broken EGP symbol '£ or ج.م' → 'E£'. Idempotent."""
+    if not frappe.db.exists("Currency", "EGP"):
+        return
+    current = frappe.db.get_value("Currency", "EGP", "symbol")
+    if current == "£ or ج.م":
+        frappe.db.set_value("Currency", "EGP", "symbol", "E£")
+        frappe.db.set_value("Currency", "EGP", "fraction", "Piastre")
+        frappe.db.commit()
+        print("OK: EGP symbol fixed → E£")
+
+
+def _hide_student_erp_tabs():
+    """Hide 'Customer Details' and 'Exit' Tab Breaks on Student — ERPNext artefacts.
+
+    Uses Property Setters so the change is fully recoverable via the Customize Form UI.
+    Idempotent: skips if the Property Setter already exists with the correct value.
+    """
+    if not frappe.db.exists("DocType", "Student"):
+        return
+    for fieldname in ("customer_details_tab", "exit_tab"):
+        existing = frappe.db.get_value(
+            "Property Setter",
+            {"doc_type": "Student", "field_name": fieldname, "property": "hidden"},
+            "value",
+        )
+        if existing == "1":
+            continue
+        if existing is not None:
+            frappe.db.set_value(
+                "Property Setter",
+                {"doc_type": "Student", "field_name": fieldname, "property": "hidden"},
+                "value",
+                "1",
+            )
+        else:
+            ps = frappe.new_doc("Property Setter")
+            ps.doctype_or_field = "DocField"
+            ps.doc_type = "Student"
+            ps.field_name = fieldname
+            ps.property = "hidden"
+            ps.property_type = "Check"
+            ps.value = "1"
+            ps.flags.ignore_permissions = True
+            ps.flags.ignore_mandatory = True
+            ps.insert()
+        frappe.db.commit()
+        print(f"OK: Student.{fieldname} hidden via Property Setter")

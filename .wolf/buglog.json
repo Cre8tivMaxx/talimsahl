@@ -463,6 +463,140 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-20T00:00:00.000Z"
+    },
+    {
+      "id": "bug-029",
+      "timestamp": "2026-05-20T12:53:17.495Z",
+      "error_message": "Missing guard clause",
+      "file": "talimsahl/public/js/reskin/list_v2.js",
+      "root_cause": "No early return/throw for edge case: !$page",
+      "fix": "Added guard clause: if (!$page)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-20T12:53:17.495Z"
+    },
+    {
+      "id": "bug-030",
+      "timestamp": "2026-05-20T12:54:01.432462Z",
+      "error_message": "List view switcher duplicates ts-list-toolbar on every click and toggling does nothing",
+      "file": "talimsahl/public/js/reskin/list_v2.js",
+      "root_cause": "Idempotency guard in renderViewSwitcher searched inside listview.$frappe_list (.frappe-list), but .before() inserted the new toolbar as a SIBLING of .frappe-list under listview.page.main. Guard never saw its own output, so every re-render stacked another .ts-list-toolbar. Mode click handler only persisted to localStorage and called listview.refresh() — no visible transition, no cleanup of .ts-card-row markup.",
+      "fix": "Anchored both guard-check and insertion to $(listview.page.main). When toolbar exists, refresh chips + call updateActiveButton() helper instead of re-injecting. Click handler now calls decorate(listview) synchronously for instant feedback before async refresh. decorate() strips .ts-list-card children and .ts-card-row class when leaving cards mode. Kanban-not-found branch calls updateActiveButton($page, \"cards\") to revert the active pill.",
+      "tags": [
+        "list-view",
+        "reskin",
+        "idempotency",
+        "jquery-scope"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-20T12:54:01.432462Z"
+    },
+    {
+      "id": "bug-031",
+      "timestamp": "2026-06-15T12:27:53.006Z",
+      "error_message": "Missing error handling in unknown",
+      "file": "../../../../../tmp/ts_audit.mjs",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "mjs"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-15T12:27:53.006Z"
+    },
+    {
+      "id": "bug-032",
+      "timestamp": "2026-06-15T12:54:51.516Z",
+      "error_message": "Significant refactor of ",
+      "file": "talimsahl/public/js/reskin/list_v2.js",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 5→25 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-15T12:54:51.516Z"
+    },
+    {
+      "id": "bug-033",
+      "timestamp": "2026-06-16T00:00:00.000Z",
+      "error_message": "Currency symbol EGP showed \"£ or ج.م\" instead of a clean symbol site-wide",
+      "file": "talimsahl/install.py",
+      "root_cause": "EGP Currency record had symbol=\"£ or ج.م\" from ERPNext defaults — a literal placeholder that was never cleaned up",
+      "fix": "Added _fix_currency_symbol() to apply_brand_settings(): sets symbol→\"E£\", fraction→\"Piastre\" when current value matches broken string. Idempotent.",
+      "tags": [
+        "currency",
+        "egp",
+        "install",
+        "p1"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T00:00:00.000Z"
+    },
+    {
+      "id": "bug-034",
+      "timestamp": "2026-06-16T00:00:00.000Z",
+      "error_message": "Student form showed ERPNext tabs \"Customer Details\" and \"Exit\" — misleading for school users",
+      "file": "talimsahl/install.py",
+      "root_cause": "Student DocType (from ERPNext) ships with Customer Details and Exit Tab Break fields for billing/off-boarding. Education app never hides them.",
+      "fix": "Added _hide_student_erp_tabs() to apply_brand_settings(): creates Property Setters for customer_details_tab and exit_tab with hidden=1. Fully reversible via Customize Form.",
+      "tags": [
+        "student-form",
+        "property-setter",
+        "erp-artefacts",
+        "p2"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T00:00:00.000Z"
+    },
+    {
+      "id": "bug-035",
+      "timestamp": "2026-06-16T00:00:00.000Z",
+      "error_message": "Program list showed \"International / International\" (title duplicated in meta1)",
+      "file": "talimsahl/public/js/reskin/list_v2.js",
+      "root_cause": "buildCard() always rendered meta1 even when meta1 text equalled the card title text. Program.program_name === name by default.",
+      "fix": "Added dedup guard in buildCard(): suppress meta1 when rawMeta1.trim() === titleText.trim()",
+      "tags": [
+        "list-v2",
+        "card-view",
+        "program",
+        "p2"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T00:00:00.000Z"
+    },
+    {
+      "id": "bug-036",
+      "timestamp": "2026-06-16T00:00:00.000Z",
+      "error_message": "Home workspace had empty \"Your Shortcuts\" section and ERPNext \"Reports & Masters\" content (Accounting/Stock/CRM etc.)",
+      "file": "talimsahl/scripts/create_home_workspace.py",
+      "root_cause": "Script only set ws.shortcuts — never set ws.links (card groups) or ws.content (block JSON layout). ERPNext default Home content stayed in place.",
+      "fix": "Extended create_home_workspace.py to set ws.links with 5 education Card Break groups (Students/Academics/Fees/Attendance/Assessment) and ws.content with proper EditorJS block array.",
+      "tags": [
+        "home-workspace",
+        "workspace",
+        "links",
+        "content",
+        "p1"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T00:00:00.000Z"
     }
   ]
 }

@@ -203,5 +203,78 @@
 | 14:15 | Edited talimsahl/public/css/desk-overrides.css | inline fix | ~5 |
 | 14:15 | fix /desk routing + broaden widget brand selectors | home_redirect.js, desk-overrides.css | built, cache cleared | ~600 |
 | 14:16 | Session end: 3 writes across 2 files (home_redirect.js, desk-overrides.css) | 2 reads | ~9080 tok |
+| 14:20 | Session end: 3 writes across 2 files (home_redirect.js, desk-overrides.css) | 2 reads | ~9080 tok |
 
-| 2026-05-20 | Diagnosed and fixed missing Tier-6 card styling | hooks.py / Redis | Redis app_hooks cache stale + live gunicorn workers held old module in memory; fixed by worker restart + ?v= cache-bust in hooks.py | ~6k |
+## Session: 2026-05-20 15:45
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-20 15:48
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:52 | Created ../../../.claude/plans/at-any-list-page-velvet-stallman.md | — | ~1758 |
+
+## Session: 2026-05-20 15:52
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:53 | Edited talimsahl/public/js/reskin/list_v2.js | added 2 condition(s) | ~610 |
+| 15:53 | Edited talimsahl/public/js/reskin/list_v2.js | modified if() | ~158 |
+| 16:05 | fix list_v2 switcher: scope guard to listview.page.main, force decorate() on click, strip card scaffolding on rows mode | talimsahl/public/js/reskin/list_v2.js | rebuilt assets, cache cleared | ~3.5k |
+| 15:54 | Session end: 2 writes across 1 files (list_v2.js) | 2 reads | ~3568 tok |
+
+## Session: 2026-06-14 12:06
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 12:19 | Created ../../../.claude/plans/my-manager-asked-for-transient-crystal.md | — | ~2310 |
+
+## Session: 2026-06-15 15:19
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:25 | Created ../../../.claude/projects/-home-frappe-frappe-bench-16-apps-talimsahl/memory/local-site-admin-login.md | — | ~183 |
+| 15:26 | Edited ../../../.claude/projects/-home-frappe-frappe-bench-16-apps-talimsahl/memory/MEMORY.md | 1→2 lines | ~71 |
+| 15:26 | Created ../../../../../tmp/ts_audit.mjs | — | ~795 |
+| 15:27 | Edited ../../../../../tmp/ts_audit.mjs | 2→3 lines | ~56 |
+| 15:27 | Edited ../../../../../tmp/ts_audit.mjs | added 1 condition(s) | ~159 |
+| 15:30 | Created ../../../../../tmp/ts_audit2.mjs | — | ~827 |
+| 15:39 | Created ../../../.claude/plans/please-login-at-http-localhost-8002-shimmying-starfish.md | — | ~2014 |
+| 15:40 | Session end: 7 writes across 5 files (local-site-admin-login.md, MEMORY.md, ts_audit.mjs, ts_audit2.mjs, please-login-at-http-localhost-8002-shimmying-starfish.md) | 11 reads | ~11944 tok |
+
+## Session: 2026-06-15 15:49
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:51 | Created ../../../../../tmp/inspect_edu_workspace.py | — | ~131 |
+| 15:53 | Created talimsahl/scripts/create_home_workspace.py | — | ~1340 |
+| 15:54 | Edited talimsahl/install.py | modified apply_brand_settings() | ~103 |
+| 15:54 | Edited talimsahl/install.py | modified _apply_navbar_settings() | ~616 |
+| 15:54 | Edited talimsahl/public/js/reskin/list_v2.js | modified buildCard() | ~189 |
+| 15:54 | Edited talimsahl/public/js/reskin/list_v2.js | modified registerAddFields() | ~315 |
+| 15:55 | Edited talimsahl/public/css/desk-overrides.css | inline fix | ~22 |
+| 15:56 | Edited talimsahl/www/login.html | 4→4 lines | ~88 |
+| 15:56 | Edited talimsahl/www/login.html | 5→7 lines | ~83 |
+
+## Session: 2026-06-16 03:47
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-16
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+| 00:00 | Rebuilt Home workspace: set ws.links (5 education card groups) + ws.content (block JSON layout) | talimsahl/scripts/create_home_workspace.py | OK: 5 shortcuts, 5 card groups, 14 content blocks | ~1200 |
+| 00:01 | Fixed EGP currency symbol '£ or ج.م' → 'E£' via _fix_currency_symbol() in install.py | talimsahl/install.py | OK: EGP symbol corrected site-wide | ~200 |
+| 00:02 | Hidden Student form ERPNext tabs (Customer Details + Exit) via Property Setters | talimsahl/install.py | OK: 2 Property Setters created, tabs gone | ~300 |
+| 00:03 | Fixed list_v2.js: suppress meta1 when equal to title (kills International/International dupe) + register add_fields per doctype | talimsahl/public/js/reskin/list_v2.js | Build OK, dedup working | ~800 |
+| 00:04 | Fixed navbar logo legibility: added filter: brightness(0) invert(1) | talimsahl/public/css/desk-overrides.css | Build OK | ~50 |
+| 00:05 | Fixed login page: label 'Username or Email', placeholder 'admin or your@email.com', heading direction rtl+right | talimsahl/www/login.html | Visual verified via Playwright | ~100 |
+
+## Session: 2026-06-16 04:05
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 04:06 | Edited talimsahl/public/css/desk-overrides.css | CSS: Un-stick, position, top | ~88 |

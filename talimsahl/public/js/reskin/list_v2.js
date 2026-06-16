@@ -110,7 +110,9 @@ function buildCard($row, doc, cfg) {
   const titleText = $titleLink.length ? $titleLink.text().trim() : doc.name;
   const href = $titleLink.attr("href") || `/app/${frappe.router.slug(doc.doctype)}/${encodeURIComponent(doc.name)}`;
 
-  const meta1 = cfg.meta1(doc);
+  const rawMeta1 = cfg.meta1(doc);
+  // Suppress meta1 when it duplicates the card title (e.g. Program.program_name === name)
+  const meta1 = rawMeta1 && rawMeta1.trim() !== titleText.trim() ? rawMeta1 : "";
   const meta2 = cfg.meta2(doc);
   const status = cfg.status(doc);
   const kind = cfg.statusKind(doc);
@@ -157,9 +159,23 @@ function renderEmptyState(listview) {
   $result.append($empty);
 }
 
+function updateActiveButton($page, mode) {
+  if (!$page) return;
+  const $buttons = $page.find(".ts-view-switcher button");
+  $buttons.removeClass("active");
+  $buttons.filter(`[data-mode="${mode}"]`).addClass("active");
+}
+
 function renderViewSwitcher(listview) {
-  const $wrap = listview.$frappe_list || listview.page.main;
-  if (!$wrap || $wrap.find(".ts-view-switcher").length) return;
+  const $page = listview.page && $(listview.page.main);
+  if (!$page || !$page.length) return;
+  // Guard in the same scope as the insertion. If the toolbar already exists,
+  // refresh chips + active state instead of re-injecting.
+  if ($page.find(".ts-list-toolbar").length) {
+    renderFilterChips(listview);
+    updateActiveButton($page, viewMode());
+    return;
+  }
   const current = viewMode();
   const $switcher = $(`
     <div class="ts-list-toolbar">
@@ -188,14 +204,16 @@ function renderViewSwitcher(listview) {
           } else {
             frappe.msgprint(__("No Kanban exists for {0}.", [listview.doctype]));
             setViewMode("cards");
+            updateActiveButton($page, "cards");
           }
         });
       return;
     }
+    updateActiveButton($page, mode);
+    decorate(listview);
     listview.refresh && listview.refresh();
   });
-  const $page = listview.page && listview.page.main;
-  if ($page && $page.find(".result-list, .frappe-list").first().length) {
+  if ($page.find(".result-list, .frappe-list").first().length) {
     $page.find(".result-list, .frappe-list").first().before($switcher);
   }
 }
@@ -230,7 +248,16 @@ function decorate(listview) {
   if (CARD_DENYLIST.has(listview.doctype) || userOptedOut()) return;
   const mode = viewMode();
   if (mode !== "cards") {
-    if (listview.$result) listview.$result.removeClass("ts-card-grid");
+    if (listview.$result) {
+      listview.$result.removeClass("ts-card-grid");
+      // Strip card scaffolding so the transition is visible immediately,
+      // even before Frappe's next render() rebuilds row inner DOM.
+      listview.$result.find(".ts-card-row").each(function () {
+        const $row = $(this);
+        $row.find(".ts-list-card").remove();
+        $row.removeClass("ts-card-row");
+      });
+    }
     renderViewSwitcher(listview);
     renderFilterChips(listview);
     return;
@@ -282,8 +309,28 @@ function initListV2() {
   }, 250);
 }
 
+// Register extra fields so list queries fetch what card templates need.
+// frappe.listview_settings is processed by Frappe before the first render.
+const LIST_EXTRA_FIELDS = {
+  Student: ["student_email_id", "student_mobile_number", "program", "student_category", "enabled"],
+  Program: ["program_name", "department", "program_code", "program_abbreviation"],
+  Fees: ["student_name", "program", "due_date", "outstanding_amount"],
+  "Student Attendance": ["student_name", "date", "status", "course_schedule", "program"],
+};
+
+function registerAddFields() {
+  frappe.listview_settings = frappe.listview_settings || {};
+  Object.entries(LIST_EXTRA_FIELDS).forEach(([dt, fields]) => {
+    const existing = frappe.listview_settings[dt] || {};
+    frappe.listview_settings[dt] = {
+      ...existing,
+      add_fields: [...new Set([...(existing.add_fields || []), ...fields])],
+    };
+  });
+}
+
 if (window.frappe && frappe.after_ajax) {
-  frappe.after_ajax(initListV2);
+  frappe.after_ajax(() => { registerAddFields(); initListV2(); });
 } else {
-  document.addEventListener("DOMContentLoaded", initListV2);
+  document.addEventListener("DOMContentLoaded", () => { registerAddFields(); initListV2(); });
 }

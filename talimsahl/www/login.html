@@ -87,8 +87,10 @@
   .ts-form-title {
     color: var(--ts-secondary);
     font-size: 1.6rem; font-weight: 700; margin: 0 0 0.4rem;
+    font-family: "Noto Sans Arabic", "Inter", sans-serif;
+    direction: rtl; text-align: right;
   }
-  .ts-form-sub { color: var(--ts-muted); font-size: 0.95rem; margin: 0 0 2rem; }
+  .ts-form-sub { color: var(--ts-muted); font-size: 0.95rem; margin: 0 0 2rem; direction: ltr; }
 
   /* Reset Frappe's centered card chrome inside our panel */
   .ts-form-inner .for-login,
@@ -194,10 +196,10 @@
 {% if not disable_user_pass_login or (ldap_settings and ldap_settings.enabled) %}
 <div class="page-card-body">
   <div class="form-group">
-    <label class="form-label" for="login_email">{{ login_label or _("Email") }}</label>
+    <label class="form-label" for="login_email">{{ login_label or _("Username or Email") }}</label>
     <div class="email-field">
       <input type="text" id="login_email" class="form-control"
-        placeholder="{% if login_name_placeholder %}{{ login_name_placeholder }}{% else %}{{ _('jane@example.com') }}{% endif %}"
+        placeholder="{% if login_name_placeholder %}{{ login_name_placeholder }}{% else %}{{ _('admin or your@email.com') }}{% endif %}"
         required autofocus autocomplete="username">
     </div>
   </div>

@@ -57,6 +57,13 @@
   module sidebar — they keep whatever ERPNext bundle ships. Always include
   both classes in any active-state override.
 
+## Key Learnings (continued)
+
+- **Frappe v16 workspace content is a two-level structure (2026-06-16):** `ws.links` (Child Table of Card Break + Link rows) defines the card groups; `ws.content` (JSON string of EditorJS-style blocks) defines what actually renders on the page. Setting only `ws.shortcuts` leaves the content layout (and sidebar) untouched — you must set both `ws.links` AND `ws.content` to fully own the workspace.
+- **Property Setters for hiding DocType fields (2026-06-16):** Use `frappe.new_doc("Property Setter")` with `property="hidden"`, `property_type="Check"`, `value="1"` to hide fields without touching DocType source files. Fully reversible via Customize Form. Idempotent check: `frappe.db.get_value("Property Setter", {doc_type, field_name, property}, "value")`.
+- **`frappe.listview_settings[dt].add_fields` (2026-06-16):** Register before ListView is created (use `frappe.after_ajax`) to tell the list query to fetch extra DB columns. Without this, card templates get `undefined` for any field not in the default list query columns.
+- **EditorJS block schema for Frappe v16 workspace (2026-06-16):** Block types: `spacer` (`{col:12}`), `header` (`{text:"<span...>", col:12}`), `shortcut` (`{shortcut_name:"Label", col:3}`), `card` (`{card_name:"Group Label", col:4}`). The `card_name` must match the `label` of the corresponding `Card Break` entry in `ws.links`.
+
 ## Decision Log
 
 <!-- Significant technical decisions with rationale. Why X was chosen over Y. -->
