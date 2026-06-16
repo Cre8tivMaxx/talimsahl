@@ -6,8 +6,8 @@
       "timestamp": "2026-05-14T12:11:01.102Z",
       "error_message": "CSS fix: font-size, color, letter-spacing",
       "file": "talimsahl/public/css/desk-overrides.css",
-      "root_cause": "font-size: 11px → 12px; color: var(--ts-text-muted) → var(--ts-secondary); letter-spacing: 0.08em → 0.01em",
-      "fix": "Changed font-size: 11px → 12px; color: var(--ts-text-muted) → var(--ts-secondary); letter-spacing: 0.08em → 0.01em",
+      "root_cause": "font-size: 11px \u2192 12px; color: var(--ts-text-muted) \u2192 var(--ts-secondary); letter-spacing: 0.08em \u2192 0.01em",
+      "fix": "Changed font-size: 11px \u2192 12px; color: var(--ts-text-muted) \u2192 var(--ts-secondary); letter-spacing: 0.08em \u2192 0.01em",
       "tags": [
         "auto-detected",
         "style-fix",
@@ -22,8 +22,8 @@
       "timestamp": "2026-05-14T12:17:48.664Z",
       "error_message": "CSS fix: background",
       "file": "talimsahl/public/css/desk-overrides.css",
-      "root_cause": "background: linear-gradient(270deg, var(--ts-primary) 0%, var(--ts-primary-dark) 100%) → #fff",
-      "fix": "Changed background: linear-gradient(270deg, var(--ts-primary) 0%, var(--ts-primary-dark) 100%) → #fff",
+      "root_cause": "background: linear-gradient(270deg, var(--ts-primary) 0%, var(--ts-primary-dark) 100%) \u2192 #fff",
+      "fix": "Changed background: linear-gradient(270deg, var(--ts-primary) 0%, var(--ts-primary-dark) 100%) \u2192 #fff",
       "tags": [
         "auto-detected",
         "style-fix",
@@ -38,8 +38,8 @@
       "timestamp": "2026-05-16T10:53:36.230Z",
       "error_message": "CSS fix: font-weight",
       "file": "talimsahl/public/css/desk-overrides.css",
-      "root_cause": "font-weight: 600 → 700",
-      "fix": "Changed font-weight: 600 → 700",
+      "root_cause": "font-weight: 600 \u2192 700",
+      "fix": "Changed font-weight: 600 \u2192 700",
       "tags": [
         "auto-detected",
         "style-fix",
@@ -55,7 +55,7 @@
       "error_message": "Significant refactor of ",
       "file": "talimsahl/public/css/desk-overrides.css",
       "root_cause": "4 lines replaced/restructured",
-      "fix": "Rewrote 8→9 lines (4 removed)",
+      "fix": "Rewrote 8\u21929 lines (4 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -118,7 +118,7 @@
       "timestamp": "2026-05-16T12:41:24.916Z",
       "error_message": "Missing error handling in patchListView",
       "file": "talimsahl/public/js/reskin/list_v2.js",
-      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
       "fix": "Added try/catch block",
       "tags": [
         "auto-detected",
@@ -135,7 +135,7 @@
       "error_message": "Significant refactor of ",
       "file": "talimsahl/public/js/reskin/form_v2.js",
       "root_cause": "40 lines replaced/restructured",
-      "fix": "Rewrote 45→5 lines (40 removed)",
+      "fix": "Rewrote 45\u21925 lines (40 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -151,7 +151,7 @@
       "error_message": "Wrong reference: injectTabs should be injectActionBar",
       "file": "talimsahl/public/js/reskin/form_v2.js",
       "root_cause": "Used \"injectTabs\" instead of \"injectActionBar\"",
-      "fix": "Changed injectTabs → injectActionBar",
+      "fix": "Changed injectTabs \u2192 injectActionBar",
       "tags": [
         "auto-detected",
         "wrong-reference",
@@ -183,7 +183,7 @@
       "error_message": "Significant refactor of ",
       "file": "talimsahl/public/js/desk_reskin.bundle.js",
       "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 10→11 lines (2 removed)",
+      "fix": "Rewrote 10\u219211 lines (2 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -199,7 +199,7 @@
       "error_message": "Significant refactor of ",
       "file": "talimsahl/public/js/reskin/form_v2.js",
       "root_cause": "33 lines replaced/restructured",
-      "fix": "Rewrote 41→6 lines (33 removed) | Also: injectActionBar(frm);; refreshActionBarStatus(frm);",
+      "fix": "Rewrote 41\u21926 lines (33 removed) | Also: injectActionBar(frm);; refreshActionBarStatus(frm);",
       "tags": [
         "auto-detected",
         "refactor",
@@ -215,7 +215,7 @@
       "error_message": "Significant refactor of ",
       "file": "talimsahl/public/css/desk-overrides.css",
       "root_cause": "19 lines replaced/restructured",
-      "fix": "Rewrote 22→4 lines (19 removed)",
+      "fix": "Rewrote 22\u21924 lines (19 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -336,8 +336,8 @@
       "timestamp": "2026-05-20T06:32:15.939Z",
       "error_message": "CSS fix: --ts-card-shadow, --ts-card-shadow-hover",
       "file": "talimsahl/public/css/brand-tokens.css",
-      "root_cause": "--ts-card-shadow: 0 2px 8px rgba(27, 58, 107, 0.08) → 0 1px 2px rgba(15, 23, 42, 0.04); --ts-card-shadow-hover: 0 6px 20px rgba(27, 58, 107, 0.15) → 0 1px 2px rgba(15, 23, 42, 0.04)",
-      "fix": "Changed --ts-card-shadow: 0 2px 8px rgba(27, 58, 107, 0.08) → 0 1px 2px rgba(15, 23, 42, 0.04); --ts-card-shadow-hover: 0 6px 20px rgba(27, 58, 107, 0.15) → 0 1px 2px rgba(15, 23, 42, 0.04)",
+      "root_cause": "--ts-card-shadow: 0 2px 8px rgba(27, 58, 107, 0.08) \u2192 0 1px 2px rgba(15, 23, 42, 0.04); --ts-card-shadow-hover: 0 6px 20px rgba(27, 58, 107, 0.15) \u2192 0 1px 2px rgba(15, 23, 42, 0.04)",
+      "fix": "Changed --ts-card-shadow: 0 2px 8px rgba(27, 58, 107, 0.08) \u2192 0 1px 2px rgba(15, 23, 42, 0.04); --ts-card-shadow-hover: 0 6px 20px rgba(27, 58, 107, 0.15) \u2192 0 1px 2px rgba(15, 23, 42, 0.04)",
       "tags": [
         "auto-detected",
         "style-fix",
@@ -352,8 +352,8 @@
       "timestamp": "2026-05-20T06:35:11.914Z",
       "error_message": "CSS fix: box-shadow",
       "file": "talimsahl/public/css/desk-overrides.css",
-      "root_cause": "box-shadow: 0 1px 3px rgba(27,58,107,0.04) → none",
-      "fix": "Changed box-shadow: 0 1px 3px rgba(27,58,107,0.04) → none",
+      "root_cause": "box-shadow: 0 1px 3px rgba(27,58,107,0.04) \u2192 none",
+      "fix": "Changed box-shadow: 0 1px 3px rgba(27,58,107,0.04) \u2192 none",
       "tags": [
         "auto-detected",
         "style-fix",
@@ -369,7 +369,7 @@
       "error_message": "Significant refactor of ",
       "file": "../../../../../tmp/ts_capture.js",
       "root_cause": "4 lines replaced/restructured",
-      "fix": "Rewrote 4→11 lines (4 removed)",
+      "fix": "Rewrote 4\u219211 lines (4 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -384,8 +384,8 @@
       "timestamp": "2026-05-20T06:50:30.402Z",
       "error_message": "CSS fix: Tier-6",
       "file": "talimsahl/public/css/desk-overrides.css",
-      "root_cause": "Tier-6: quieter active state — soft teal tint + 3px inset accent, not solid fill */ → quieter active state — soft teal tint + 3px inset accent, not solid fill.",
-      "fix": "Changed Tier-6: quieter active state — soft teal tint + 3px inset accent, not solid fill */ → quieter active state — soft teal tint + 3px inset accent, not solid fill.",
+      "root_cause": "Tier-6: quieter active state \u2014 soft teal tint + 3px inset accent, not solid fill */ \u2192 quieter active state \u2014 soft teal tint + 3px inset accent, not solid fill.",
+      "fix": "Changed Tier-6: quieter active state \u2014 soft teal tint + 3px inset accent, not solid fill */ \u2192 quieter active state \u2014 soft teal tint + 3px inset accent, not solid fill.",
       "tags": [
         "auto-detected",
         "style-fix",
@@ -401,7 +401,7 @@
       "error_message": "Significant refactor of ",
       "file": "../../../../../tmp/ts_capture.js",
       "root_cause": "4 lines replaced/restructured",
-      "fix": "Rewrote 6→8 lines (4 removed)",
+      "fix": "Rewrote 6\u21928 lines (4 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -417,7 +417,7 @@
       "error_message": "Wrong reference: false should be true",
       "file": "../../../../../tmp/ts_capture.js",
       "root_cause": "Used \"false\" instead of \"true\"",
-      "fix": "Changed false → true",
+      "fix": "Changed false \u2192 true",
       "tags": [
         "auto-detected",
         "wrong-reference",
@@ -432,7 +432,7 @@
       "timestamp": "2026-05-20T11:15:19.401Z",
       "error_message": "Missing error handling in unknown",
       "file": "talimsahl/public/css/desk-overrides.css",
-      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
       "fix": "Added try/catch block",
       "tags": [
         "auto-detected",
@@ -448,8 +448,8 @@
       "timestamp": "2026-05-20T00:00:00.000Z",
       "error_message": "Card styling (Tier-6 flat card identity) not appearing on talimsahl site after app update",
       "file": "talimsahl/hooks.py",
-      "root_cause": "Two-layer stale cache problem after hooks.py changed app_include_css. (1) Redis app_hooks key ({db_name}|app_hooks) held the old pickled hooks — 'bench clear-cache' does NOT flush this key. (2) Running gunicorn workers held the old hooks.py Python module in memory; when Redis was cleared they raced to re-populate it with the old in-memory value before the fresh value could be written. The CSS file itself also has Cache-Control: max-age=31536000 with no content hash in the filename, so browsers cache it for a year.",
-      "fix": "1. Restart workers: sudo supervisorctl restart frappe-bench-16-web:* — forces reload of hooks.py from disk. 2. Delete stale Redis key: redis-cli -p 13002 DEL '{db_name}|app_hooks' (db_name found in sites/SITE/site_config.json). 3. Added ?v=YYYYMMDD query string to CSS paths in app_include_css in hooks.py — busts browser 1-year cache on next deploy without needing a filename hash.",
+      "root_cause": "Two-layer stale cache problem after hooks.py changed app_include_css. (1) Redis app_hooks key ({db_name}|app_hooks) held the old pickled hooks \u2014 'bench clear-cache' does NOT flush this key. (2) Running gunicorn workers held the old hooks.py Python module in memory; when Redis was cleared they raced to re-populate it with the old in-memory value before the fresh value could be written. The CSS file itself also has Cache-Control: max-age=31536000 with no content hash in the filename, so browsers cache it for a year.",
+      "fix": "1. Restart workers: sudo supervisorctl restart frappe-bench-16-web:* \u2014 forces reload of hooks.py from disk. 2. Delete stale Redis key: redis-cli -p 13002 DEL '{db_name}|app_hooks' (db_name found in sites/SITE/site_config.json). 3. Added ?v=YYYYMMDD query string to CSS paths in app_include_css in hooks.py \u2014 busts browser 1-year cache on next deploy without needing a filename hash.",
       "tags": [
         "redis",
         "cache",
@@ -485,7 +485,7 @@
       "timestamp": "2026-05-20T12:54:01.432462Z",
       "error_message": "List view switcher duplicates ts-list-toolbar on every click and toggling does nothing",
       "file": "talimsahl/public/js/reskin/list_v2.js",
-      "root_cause": "Idempotency guard in renderViewSwitcher searched inside listview.$frappe_list (.frappe-list), but .before() inserted the new toolbar as a SIBLING of .frappe-list under listview.page.main. Guard never saw its own output, so every re-render stacked another .ts-list-toolbar. Mode click handler only persisted to localStorage and called listview.refresh() — no visible transition, no cleanup of .ts-card-row markup.",
+      "root_cause": "Idempotency guard in renderViewSwitcher searched inside listview.$frappe_list (.frappe-list), but .before() inserted the new toolbar as a SIBLING of .frappe-list under listview.page.main. Guard never saw its own output, so every re-render stacked another .ts-list-toolbar. Mode click handler only persisted to localStorage and called listview.refresh() \u2014 no visible transition, no cleanup of .ts-card-row markup.",
       "fix": "Anchored both guard-check and insertion to $(listview.page.main). When toolbar exists, refresh chips + call updateActiveButton() helper instead of re-injecting. Click handler now calls decorate(listview) synchronously for instant feedback before async refresh. decorate() strips .ts-list-card children and .ts-card-row class when leaving cards mode. Kanban-not-found branch calls updateActiveButton($page, \"cards\") to revert the active pill.",
       "tags": [
         "list-view",
@@ -502,7 +502,7 @@
       "timestamp": "2026-06-15T12:27:53.006Z",
       "error_message": "Missing error handling in unknown",
       "file": "../../../../../tmp/ts_audit.mjs",
-      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "root_cause": "Code path had no error handling \u2014 exceptions would propagate uncaught",
       "fix": "Added try/catch block",
       "tags": [
         "auto-detected",
@@ -519,7 +519,7 @@
       "error_message": "Significant refactor of ",
       "file": "talimsahl/public/js/reskin/list_v2.js",
       "root_cause": "2 lines replaced/restructured",
-      "fix": "Rewrote 5→25 lines (2 removed)",
+      "fix": "Rewrote 5\u219225 lines (2 removed)",
       "tags": [
         "auto-detected",
         "refactor",
@@ -532,10 +532,10 @@
     {
       "id": "bug-033",
       "timestamp": "2026-06-16T00:00:00.000Z",
-      "error_message": "Currency symbol EGP showed \"£ or ج.م\" instead of a clean symbol site-wide",
+      "error_message": "Currency symbol EGP showed \"\u00a3 or \u062c.\u0645\" instead of a clean symbol site-wide",
       "file": "talimsahl/install.py",
-      "root_cause": "EGP Currency record had symbol=\"£ or ج.م\" from ERPNext defaults — a literal placeholder that was never cleaned up",
-      "fix": "Added _fix_currency_symbol() to apply_brand_settings(): sets symbol→\"E£\", fraction→\"Piastre\" when current value matches broken string. Idempotent.",
+      "root_cause": "EGP Currency record had symbol=\"\u00a3 or \u062c.\u0645\" from ERPNext defaults \u2014 a literal placeholder that was never cleaned up",
+      "fix": "Added _fix_currency_symbol() to apply_brand_settings(): sets symbol\u2192\"E\u00a3\", fraction\u2192\"Piastre\" when current value matches broken string. Idempotent.",
       "tags": [
         "currency",
         "egp",
@@ -549,7 +549,7 @@
     {
       "id": "bug-034",
       "timestamp": "2026-06-16T00:00:00.000Z",
-      "error_message": "Student form showed ERPNext tabs \"Customer Details\" and \"Exit\" — misleading for school users",
+      "error_message": "Student form showed ERPNext tabs \"Customer Details\" and \"Exit\" \u2014 misleading for school users",
       "file": "talimsahl/install.py",
       "root_cause": "Student DocType (from ERPNext) ships with Customer Details and Exit Tab Break fields for billing/off-boarding. Education app never hides them.",
       "fix": "Added _hide_student_erp_tabs() to apply_brand_settings(): creates Property Setters for customer_details_tab and exit_tab with hidden=1. Fully reversible via Customize Form.",
@@ -585,7 +585,7 @@
       "timestamp": "2026-06-16T00:00:00.000Z",
       "error_message": "Home workspace had empty \"Your Shortcuts\" section and ERPNext \"Reports & Masters\" content (Accounting/Stock/CRM etc.)",
       "file": "talimsahl/scripts/create_home_workspace.py",
-      "root_cause": "Script only set ws.shortcuts — never set ws.links (card groups) or ws.content (block JSON layout). ERPNext default Home content stayed in place.",
+      "root_cause": "Script only set ws.shortcuts \u2014 never set ws.links (card groups) or ws.content (block JSON layout). ERPNext default Home content stayed in place.",
       "fix": "Extended create_home_workspace.py to set ws.links with 5 education Card Break groups (Students/Academics/Fees/Attendance/Assessment) and ws.content with proper EditorJS block array.",
       "tags": [
         "home-workspace",
@@ -604,7 +604,7 @@
       "error_message": "Wrong reference: chromium should be pkg",
       "file": "../../../../../tmp/ts_node_probe.mjs",
       "root_cause": "Used \"chromium\" instead of \"pkg\"",
-      "fix": "Changed chromium → pkg",
+      "fix": "Changed chromium \u2192 pkg",
       "tags": [
         "auto-detected",
         "wrong-reference",
@@ -636,10 +636,10 @@
     {
       "id": "bug-039",
       "timestamp": "2026-06-16T06:48:00.000Z",
-      "error_message": "Form hero eyebrow label glued directly to the document title with no space, worst on mobile/RTL (e.g. 'STUDENTرحمن محمد'); on desktop it looked like a stray '@' next to 'STUDENT' (actually the home-breadcrumb icon with no gap)",
+      "error_message": "Form hero eyebrow label glued directly to the document title with no space, worst on mobile/RTL (e.g. 'STUDENT\u0631\u062d\u0645\u0646 \u0645\u062d\u0645\u062f'); on desktop it looked like a stray '@' next to 'STUDENT' (actually the home-breadcrumb icon with no gap)",
       "file": "talimsahl/public/css/desk-overrides.css",
       "root_cause": "form_hero.js prepends .ts-form-hero as the first child of Frappe's .title-area, which is a zero-gap flex row (page.html: `<div class=\"flex title-area ellipsis\">`) shared with the breadcrumb <ul>. On mobile the breadcrumb collapses to just the final segment, removing the '/' separators that were masking the missing gap on desktop.",
-      "fix": "Added margin-inline-end: 12px and flex-shrink: 0 to .ts-form-hero in desk-overrides.css — guarantees a gap after the hero block regardless of what Frappe renders next in the row. Did not relocate the JS injection point (keeps the project's 'style via CSS, never restructure Frappe's DOM' discipline). Verified via the new frappe-visual-reviewer skill on /app/student/EDU-STU-2026-00001, desktop + mobile, before and after.",
+      "fix": "Added margin-inline-end: 12px and flex-shrink: 0 to .ts-form-hero in desk-overrides.css \u2014 guarantees a gap after the hero block regardless of what Frappe renders next in the row. Did not relocate the JS injection point (keeps the project's 'style via CSS, never restructure Frappe's DOM' discipline). Verified via the new frappe-visual-reviewer skill on /app/student/EDU-STU-2026-00001, desktop + mobile, before and after.",
       "tags": [
         "form-hero",
         "rtl",
@@ -657,8 +657,8 @@
       "timestamp": "2026-06-16T06:52:28.029Z",
       "error_message": "CSS fix: --navbar-height",
       "file": "talimsahl/public/css/desk-overrides.css",
-      "root_cause": "--navbar-height: 56px → 0px",
-      "fix": "Changed --navbar-height: 56px → 0px",
+      "root_cause": "--navbar-height: 56px \u2192 0px",
+      "fix": "Changed --navbar-height: 56px \u2192 0px",
       "tags": [
         "auto-detected",
         "style-fix",
@@ -667,6 +667,60 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-06-16T06:52:28.029Z"
+    },
+    {
+      "id": "bug-041",
+      "timestamp": "2026-06-16T06:57:47.382Z",
+      "error_message": "Significant refactor of ",
+      "file": "talimsahl/public/js/reskin/list_v2.js",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 4\u21929 lines (2 removed) | Also: // memory (no network round trip) and re-fires aft; // patch hooks to call decorate() again with the n",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "js"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-06-16T07:01:26.408Z"
+    },
+    {
+      "id": "bug-042",
+      "timestamp": "2026-06-16T06:50:00Z",
+      "error_message": "Scrolling any DocType form: fixed-looking bar covers/swallows fields (e.g. Name (Arabic) input on Student form almost entirely hidden mid-scroll)",
+      "file": "talimsahl/public/css/desk-overrides.css",
+      "root_cause": "--navbar-height was left at Frappe default 56px in our :root:root override block, a leftover from the since-reverted custom navbar.js shell. v16 Desk has no real top navbar (search/notifications live in the sidebar), but Frappe core native CSS docks the sticky .form-tabs-list bar at top: navbar-height - 2px = 54px, so the tab bar floated 54px into the document instead of sitting at the real top (0px) of the scroll container, swallowing whatever field happened to scroll through that band.",
+      "fix": "Set --navbar-height: 0px in desk-overrides.css :root:root block. Verified via Playwright: form-tabs-list now docks at top:-2/bottom:41 instead of top:54/bottom:97, and fields no longer disappear behind it on scroll (desktop + mobile).",
+      "tags": [
+        "css-variables",
+        "sticky",
+        "form-tabs",
+        "navbar-height",
+        "scroll",
+        "v16"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T06:50:00Z"
+    },
+    {
+      "id": "bug-043",
+      "timestamp": "2026-06-16T07:05:00Z",
+      "error_message": "List view Cards/Rows view-switcher: switching modes hides rows then they lag back in (e.g. /desk/grade)",
+      "file": "talimsahl/public/js/reskin/list_v2.js",
+      "root_cause": "The view-switcher click handler called decorate(listview) (synchronous DOM rewrite) AND THEN listview.refresh() (full server re-fetch + re-render) on every click \u2014 two full render passes per toggle with a network round trip in between, visible as an instant flash to the new mode followed by a blank gap while refresh() tore down and rebuilt rows from the server response. Switching to rows mode also manually stripped .ts-list-card, which deletes the checkbox/title-link nodes that buildCard() had MOVED (not cloned) into the card markup.",
+      "fix": "Removed the manual card-stripping in decorate() (unnecessary \u2014 a full render replaces .list-row-container anyway). Replaced refresh() with a direct listview.render(); listview.after_render(); call pair, which rebuilds rows from listview.data already in memory (no network call) and re-fires our after_render patch (decorate()) to rebuild cards or leave native rows as appropriate. render()+after_render() are normally only chained inside refresh()'s server-fetch callback in base_list.js, not as a standalone method \u2014 had to call both directly to skip the network trip. Verified via Playwright: zero API calls triggered by toggle, checkbox + title link survive, console clean, card layout correctly rebuilt on toggling back to Cards.",
+      "tags": [
+        "list-view",
+        "sticky",
+        "double-render",
+        "list_v2",
+        "view-switcher",
+        "frappe-after_render"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-06-16T07:05:00Z"
     }
   ]
 }

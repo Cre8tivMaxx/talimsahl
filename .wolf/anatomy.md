@@ -1,11 +1,12 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T01:06:39.687Z
-> Files: 62 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-06-16T07:01:26.392Z
+> Files: 72 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../../../../tmp/
 
 - `inspect_edu_workspace.py` (~131 tok)
+- `test_gen_sid.py` — _StubRequest: main (~258 tok)
 - `ts_audit.mjs` — EXE: shot (~868 tok)
 - `ts_audit2.mjs` — EXE: shot, go (~827 tok)
 - `ts_capture.js` — Declares path (~640 tok)
@@ -15,6 +16,7 @@
 - `ts_inspect_widgets.js` — Declares browser (~1136 tok)
 - `ts_inspect.js` — Declares browser (~702 tok)
 - `ts_inspect2.js` — Declares browser (~521 tok)
+- `ts_node_probe.mjs` — Declares EXEC (~302 tok)
 - `ts_verify.js` — EXEC: probe (~1006 tok)
 
 ## ../../../.claude/plans/
@@ -33,6 +35,23 @@
 - `MEMORY.md` — Project Memory — talimsahl (~103 tok)
 - `style-dont-override-frappe.md` (~263 tok)
 - `verify-ui-with-playwright.md` — Declares presence (~252 tok)
+
+## ../../../.claude/skills/frappe-visual-reviewer/
+
+- `package.json` — Node.js package manifest (~73 tok)
+- `review.sh` — Frappe Visual Reviewer — mint a passwordless admin sid and drive the live (~792 tok)
+- `SKILL.md` — Frappe Visual Reviewer (~1804 tok)
+
+## ../../../.claude/skills/frappe-visual-reviewer/references/
+
+- `frappe-review-checklist.md` — Frappe Visual Review Checklist (~1077 tok)
+
+## ../../../.claude/skills/frappe-visual-reviewer/scripts/
+
+- `gen_sid.py` — _StubRequest: find_sites_path, detect_site, main (~1259 tok)
+- `review.mjs` — Frappe Visual Reviewer — log into a live Frappe Desk via an injected sid (~1682 tok)
+- `scroll_check.mjs` — One-off: capture viewport screenshots at scroll=0 and after scrolling down, (~808 tok)
+- `toggle_check.mjs` — One-off: verify the card/row view-switcher toggle on a list view doesn't (~815 tok)
 
 ## ./
 
@@ -77,7 +96,7 @@
 ## talimsahl/public/css/
 
 - `brand-tokens.css` — Styles: 16 vars (~336 tok)
-- `desk-overrides.css` — Styles: 82 rules, 30 vars (~8569 tok)
+- `desk-overrides.css` — Styles: 82 rules, 30 vars (~8747 tok)
 - `talimsahl.css` — Styles: 28 rules (~641 tok)
 
 ## talimsahl/public/js/
@@ -90,7 +109,7 @@
 - `form_hero.js` — Adds a branded hero header above the form title with doctype eyebrow + icon. (~275 tok)
 - `form_v2.js` — Form v2: summary strip + right-rail class. No tab/action-bar injection (v16 native tabs + standard-actions kept). (~700 tok)
 - `home_redirect.js` — Default-landing redirect: send users to the Home workspace when they hit /app (~322 tok)
-- `list_v2.js` — List v2: full card template + view switcher + filter chips + empty state. (~3322 tok)
+- `list_v2.js` — List v2: full card template + view switcher + filter chips + empty state. (~3531 tok)
 - `page_chrome.js` — Page chrome: canvas background body class + breadcrumb separator swap. (~371 tok)
 - `sidebar.js` — SUPERSEDED — native Frappe sidebar is kept and CSS-styled; not imported. (~340 tok)
 - `workspace_dashboard.js` — Workspace dashboard: prepend a custom stat-card + activity panel to the (~1885 tok)

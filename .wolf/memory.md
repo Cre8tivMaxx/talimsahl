@@ -4,6 +4,7 @@
 > Old sessions are consolidated by the daemon weekly.
 | 15:08 | Created ../../../.claude/plans/my-employee-didn-t-accept-replicated-engelbart.md | — | ~2632 |
 | 10:57 | Executed plan we-need-more-modifications-robust-raven.md: 5 workstreams in desk-overrides.css — control-sizing tokens, typography scale, select bug fix, navbar gradient→solid navy, list-header neutral, consistent radius/spacing | talimsahl/public/css/desk-overrides.css | build OK | ~3800 |
+| 07:10 | Fixed two reported UI bugs via frappe-visual-reviewer skill + custom Playwright scroll/toggle probes: (1) sticky form-tabs bar swallowing fields on scroll — root cause `--navbar-height:56px` leftover from reverted navbar.js; (2) Cards/Rows list toggle hiding+lagging — root cause double render (decorate() + refresh()) with a network round trip. Logged bug-042, bug-043. | talimsahl/public/css/desk-overrides.css, talimsahl/public/js/reskin/list_v2.js | both verified fixed via screenshots + DOM measurements, bench build OK | ~9000 |
 
 ## Session: 2026-05-14 15:08
 
@@ -326,3 +327,20 @@
 | 09:48 | Edited talimsahl/public/css/desk-overrides.css | CSS: margin-inline-end, flex-shrink | ~101 |
 | 09:50 | Verified fix live via frappe-visual-reviewer on /app/student/EDU-STU-2026-00001 (desktop+mobile, before/after) | desk-overrides.css | confirmed fixed, ~bug-039 logged |
 | 09:52 | Edited talimsahl/public/css/desk-overrides.css | CSS: top | ~121 |
+| 09:57 | Edited talimsahl/public/js/reskin/list_v2.js | modified if() | ~190 |
+| 09:57 | Edited talimsahl/public/js/reskin/list_v2.js | added 1 condition(s) | ~149 |
+| 09:58 | Created ../../../.claude/skills/frappe-visual-reviewer/scripts/toggle_check.mjs | — | ~815 |
+| 10:01 | Edited talimsahl/public/js/reskin/list_v2.js | click() → patch() | ~210 |
+| 10:07 | Session end: 10 writes across 5 files (gen_sid.py, scroll_check.mjs, desk-overrides.css, list_v2.js, toggle_check.mjs) | 32 reads | ~16698 tok |
+| 10:08 | Session end: 10 writes across 5 files (gen_sid.py, scroll_check.mjs, desk-overrides.css, list_v2.js, toggle_check.mjs) | 32 reads | ~16698 tok |
+| 10:24 | Session end: 10 writes across 5 files (gen_sid.py, scroll_check.mjs, desk-overrides.css, list_v2.js, toggle_check.mjs) | 33 reads | ~17838 tok |
+
+## Session: 2026-06-16 10:25
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-06-16 10:25
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

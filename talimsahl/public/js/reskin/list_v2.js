@@ -210,8 +210,19 @@ function renderViewSwitcher(listview) {
       return;
     }
     updateActiveButton($page, mode);
-    decorate(listview);
-    listview.refresh && listview.refresh();
+    // render() rebuilds .list-row-container from listview.data already in
+    // memory (no network round trip). after_render() is normally only
+    // chained after render() inside refresh()'s server-fetch callback
+    // (base_list.js) — call both directly ourselves to get the rebuild +
+    // our decorate() patch (hooked on after_render) without the network
+    // trip. Using refresh() here instead caused a double render per click
+    // (one instant, one after a server fetch) — rows hiding then lagging in.
+    if (listview.render) {
+      listview.render();
+      listview.after_render && listview.after_render();
+    } else {
+      listview.refresh && listview.refresh();
+    }
   });
   if ($page.find(".result-list, .frappe-list").first().length) {
     $page.find(".result-list, .frappe-list").first().before($switcher);
@@ -248,16 +259,13 @@ function decorate(listview) {
   if (CARD_DENYLIST.has(listview.doctype) || userOptedOut()) return;
   const mode = viewMode();
   if (mode !== "cards") {
-    if (listview.$result) {
-      listview.$result.removeClass("ts-card-grid");
-      // Strip card scaffolding so the transition is visible immediately,
-      // even before Frappe's next render() rebuilds row inner DOM.
-      listview.$result.find(".ts-card-row").each(function () {
-        const $row = $(this);
-        $row.find(".ts-list-card").remove();
-        $row.removeClass("ts-card-row");
-      });
-    }
+    // Don't hand-strip card markup here: the checkbox/title-link nodes were
+    // MOVED (not cloned) into .ts-list-card by buildCard(), so deleting that
+    // wrapper deletes Frappe's functional nodes with it. listview.render()
+    // (triggered by the view-switcher click, see renderViewSwitcher) already
+    // tears down and rebuilds .list-row-container from scratch, restoring
+    // native row markup — nothing to do here but drop the grid class.
+    if (listview.$result) listview.$result.removeClass("ts-card-grid");
     renderViewSwitcher(listview);
     renderFilterChips(listview);
     return;
