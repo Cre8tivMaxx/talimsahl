@@ -10,7 +10,7 @@ const SUMMARY_STRIPS = {
   Student: [
     { label: "Email", value: (f) => f.doc.student_email_id || "—" },
     { label: "Mobile", value: (f) => f.doc.student_mobile_number || "—" },
-    { label: "Program", value: (f) => f.doc.program || "—" },
+    { label: "Program", value: (f) => f.doc.custom_program || "—" },
     { label: "Status", value: (f) => (f.doc.enabled ? "Active" : "Inactive") },
   ],
   Program: [

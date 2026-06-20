@@ -13,7 +13,7 @@ const DOCTYPE_META = {
   Student: {
     icon: "🎓",
     meta1: (d) => d.student_email_id || d.student_mobile_number || "",
-    meta2: (d) => d.program || d.student_category || "",
+    meta2: (d) => d.custom_program || d.student_category || "",
     status: (d) => (d.enabled ? "Active" : "Inactive"),
     statusKind: (d) => (d.enabled ? "ok" : "muted"),
   },

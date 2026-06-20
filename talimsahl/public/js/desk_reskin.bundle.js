@@ -3,7 +3,6 @@
 // esbuild auto-picks up *.bundle.js entries.
 
 // Tier-4 (kept)
-import "./reskin/home_redirect";
 import "./reskin/form_hero";
 
 // Tier-5 (new — structural reskin)
