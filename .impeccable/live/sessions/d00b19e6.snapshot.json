@@ -1,0 +1,25 @@
+{
+  "id": "d00b19e6",
+  "phase": "agent_error",
+  "pageUrl": "/desk/home",
+  "sourceFile": null,
+  "expectedVariants": 2,
+  "arrivedVariants": 0,
+  "visibleVariant": 0,
+  "paramValues": {},
+  "pendingEventSeq": null,
+  "pendingEvent": null,
+  "deliveryLease": null,
+  "checkpointRevision": 1,
+  "activeOwner": "9ed395b5",
+  "sourceMarkers": {},
+  "fallbackMode": null,
+  "annotationArtifacts": [],
+  "diagnostics": [
+    {
+      "error": "agent_error",
+      "message": "element is runtime-injected by Frappe JS; applying polish directly to desk-overrides.css"
+    }
+  ],
+  "updatedAt": "2026-06-21T11:52:11.482Z"
+}

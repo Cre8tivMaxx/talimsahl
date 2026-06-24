@@ -91,9 +91,9 @@ h4 {
 }
 .section-head, .form-section .section-head {
   font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 /* ----- 3. Navbar ----- */
@@ -182,15 +182,7 @@ html[dir="rtl"] .sidebar-item.selected { box-shadow: inset -3px 0 0 var(--ts-pri
 }
 .section-head, .form-section .section-head {
   color: var(--ts-secondary);
-  border-left: 3px solid var(--ts-primary);
-  padding-left: 10px;
   margin-bottom: 0.75rem;
-}
-html[dir="rtl"] .section-head {
-  border-left: none;
-  border-right: 3px solid var(--ts-primary);
-  padding-left: 0;
-  padding-right: 10px;
 }
 
 .frappe-control input.form-control,
@@ -447,6 +439,31 @@ html[dir="rtl"] .body-sidebar { border-right: none; border-left: 1px solid var(-
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 600;
+  /* When rendered as <a> link back to the list view */
+  text-decoration: none;
+  transition: color 150ms ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+a.ts-hero-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-inline-start: 1.5px solid currentColor;
+  border-block-end: 1.5px solid currentColor;
+  transform: rotate(45deg) translateX(1px);
+  flex-shrink: 0;
+}
+html[dir="rtl"] a.ts-hero-eyebrow::before {
+  transform: rotate(-135deg) translateX(1px);
+}
+a.ts-hero-eyebrow:hover {
+  color: var(--ts-primary);
+}
+@media (prefers-reduced-motion: reduce) {
+  a.ts-hero-eyebrow { transition: none; }
 }
 
 /* ============================================================
@@ -472,14 +489,19 @@ body.ts-canvas .page-body {
   border: 1px solid var(--border-color);
   border-radius: 12px;
   box-shadow: none;
-  margin: 16px 16px 24px;
-  padding: 20px 24px;
+  margin: 4px 16px 24px;
+  padding: 12px 24px 20px;
   min-height: calc(100vh - 140px);
 }
 body.ts-canvas .page-head {
   background: transparent;
   border-bottom: none;
   margin: 0 16px;
+  padding-bottom: 2px;
+}
+/* Tighten filter bar bottom gap so list starts closer to toolbar */
+body.ts-canvas .page-form.flex {
+  padding-bottom: 4px;
 }
 body.ts-canvas .layout-side-section { background: transparent; }
 
@@ -803,11 +825,12 @@ body.ts-canvas .layout-side-section { background: transparent; }
 /* Action bar — none. Frappe's native .standard-actions (Save / Actions /
    menu) is kept and managed by Frappe; styled, never moved or hidden. */
 
-/* Right rail */
+/* Right rail — visual card styling only.
+   Frappe owns the sticky positioning on the outer .layout-side-section
+   (overflow-y:auto; position:sticky; top:var(--page-head-height)).
+   Adding sticky+top here creates a nested-sticky offset that pushes
+   the sidebar content down inside the scroll container. */
 .ts-form-right-rail {
-  position: sticky;
-  top: 130px;
-  align-self: flex-start;
   background: #fff;
   border: 1px solid var(--border-color);
   border-radius: var(--ts-radius-lg);
@@ -829,7 +852,6 @@ html[dir="rtl"] .ts-form-tab.active { border-bottom-color: var(--ts-primary); }
 .links-widget-box {
   border-radius: var(--ts-radius-lg) !important;
   border: 1px solid var(--border-color) !important;
-  border-top: 3px solid var(--ts-primary) !important;
   padding: 16px 18px !important;
   background: #fff !important;
   box-shadow: var(--ts-shadow-flat) !important;
@@ -837,8 +859,7 @@ html[dir="rtl"] .ts-form-tab.active { border-bottom-color: var(--ts-primary); }
 }
 .links-widget-box:hover {
   border-color: var(--ts-primary) !important;
-  border-top-color: var(--ts-primary) !important;
-  box-shadow: 0 0 0 1px var(--ts-primary), var(--ts-shadow-flat) !important;
+  box-shadow: var(--ts-shadow-flat) !important;
 }
 
 /* Card header — uppercase, navy, separator underline */
@@ -918,7 +939,6 @@ html[dir="rtl"] .links-widget-box .link-item:hover svg {
 .widget.new-shortcut-widget {
   border-radius: var(--ts-radius-lg) !important;
   border: 1px solid var(--border-color) !important;
-  border-top: 3px solid var(--ts-primary) !important;
   padding: 14px 16px !important;
   background: #fff !important;
   box-shadow: var(--ts-shadow-flat) !important;
@@ -932,8 +952,7 @@ html[dir="rtl"] .links-widget-box .link-item:hover svg {
 .widget.shortcut-widget-box:hover,
 .widget.new-shortcut-widget:hover {
   border-color: var(--ts-primary) !important;
-  border-top-color: var(--ts-primary) !important;
-  box-shadow: 0 0 0 1px var(--ts-primary), var(--ts-shadow-flat) !important;
+  box-shadow: var(--ts-shadow-flat) !important;
 }
 
 /* Workspace group title ("Reports & Masters", "Your Shortcuts").

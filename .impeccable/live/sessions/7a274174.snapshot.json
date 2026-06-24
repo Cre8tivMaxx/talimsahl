@@ -1,0 +1,25 @@
+{
+  "id": "7a274174",
+  "phase": "agent_error",
+  "pageUrl": "/desk/student",
+  "sourceFile": null,
+  "expectedVariants": 2,
+  "arrivedVariants": 0,
+  "visibleVariant": 0,
+  "paramValues": {},
+  "pendingEventSeq": null,
+  "pendingEvent": null,
+  "deliveryLease": null,
+  "checkpointRevision": 1,
+  "activeOwner": "f30c52b4",
+  "sourceMarkers": {},
+  "fallbackMode": null,
+  "annotationArtifacts": [],
+  "diagnostics": [
+    {
+      "error": "agent_error",
+      "message": "Element is Frappe runtime-rendered; applying spacing fix directly to desk-overrides.css"
+    }
+  ],
+  "updatedAt": "2026-06-21T11:14:37.740Z"
+}

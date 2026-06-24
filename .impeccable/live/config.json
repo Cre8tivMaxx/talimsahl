@@ -1,0 +1,6 @@
+{
+  "files": ["/home/frappe/frappe-bench-16/apps/frappe/frappe/www/desk.html"],
+  "insertBefore": "</body>",
+  "commentSyntax": "html",
+  "cspChecked": true
+}

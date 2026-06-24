@@ -1,0 +1,25 @@
+{
+  "id": "078622d9",
+  "phase": "agent_error",
+  "pageUrl": "/desk/student/EDU-STU-2026-00005",
+  "sourceFile": null,
+  "expectedVariants": 2,
+  "arrivedVariants": 0,
+  "visibleVariant": 0,
+  "paramValues": {},
+  "pendingEventSeq": null,
+  "pendingEvent": null,
+  "deliveryLease": null,
+  "checkpointRevision": 1,
+  "activeOwner": "67fa166e",
+  "sourceMarkers": {},
+  "fallbackMode": null,
+  "annotationArtifacts": [],
+  "diagnostics": [
+    {
+      "error": "agent_error",
+      "message": "Runtime element; diagnosing sticky sidebar positioning bug directly"
+    }
+  ],
+  "updatedAt": "2026-06-21T11:19:34.994Z"
+}

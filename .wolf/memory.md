@@ -345,3 +345,138 @@
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
 | 11:02 | Edited .gitignore | 2→5 lines | ~24 |
+| 11:03 | Session end: 1 writes across 1 files (.gitignore) | 1 reads | ~166 tok |
+
+## Session: 2026-06-21 13:40
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 13:44 | Created PRODUCT.md | — | ~851 |
+| 13:46 | Created .impeccable/live/config.json | — | ~38 |
+| 13:46 | Edited .impeccable/live/config.json | inline fix | ~22 |
+| 13:48 | Session end: 3 writes across 2 files (PRODUCT.md, config.json) | 5 reads | ~10055 tok |
+| 13:54 | Session end: 3 writes across 2 files (PRODUCT.md, config.json) | 7 reads | ~10055 tok |
+| 13:55 | Session end: 3 writes across 2 files (PRODUCT.md, config.json) | 8 reads | ~10055 tok |
+| 14:01 | Edited ../../sites/common_site_config.json | 1 → 0 | ~7 |
+| 14:04 | Session end: 4 writes across 3 files (PRODUCT.md, config.json, common_site_config.json) | 10 reads | ~10062 tok |
+| 14:08 | Session end: 4 writes across 3 files (PRODUCT.md, config.json, common_site_config.json) | 10 reads | ~10062 tok |
+| 14:12 | Session end: 4 writes across 3 files (PRODUCT.md, config.json, common_site_config.json) | 10 reads | ~10062 tok |
+| 14:15 | Edited talimsahl/public/css/desk-overrides.css | CSS: padding-bottom, padding-bottom | ~134 |
+| 14:17 | Session end: 5 writes across 4 files (PRODUCT.md, config.json, common_site_config.json, desk-overrides.css) | 11 reads | ~10196 tok |
+
+## Session: 2026-06-21 14:21
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 14:29 | Edited talimsahl/public/css/desk-overrides.css | CSS: overflow-y | ~140 |
+| 14:30 | Fixed form right sidebar displaced 130px down — removed nested sticky from .ts-form-right-rail | desk-overrides.css:812 | Fixed: Frappe's outer .layout-side-section owns sticky; inner top:130px was offsetting content inside overflow-y:auto scroll container | ~1000 |
+| 14:30 | Session end: 1 writes across 1 files (desk-overrides.css) | 5 reads | ~10277 tok |
+
+## Session: 2026-06-21 14:31
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 14:41 | Created DESIGN.md | — | ~4312 |
+| 14:42 | Created .impeccable/design.json | — | ~5155 |
+| 14:43 | Generated DESIGN.md + .impeccable/design.json | DESIGN.md, .impeccable/design.json | Created design system index: 3-color hierarchy, typography, elevation, 8 component snippets, do/don'ts — replaces per-session CSS scanning | ~1200 |
+| 14:43 | Session end: 2 writes across 2 files (DESIGN.md, design.json) | 5 reads | ~10955 tok |
+
+## Session: 2026-06-21 14:47
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 14:53 | Edited talimsahl/public/css/desk-overrides.css | 6→6 lines | ~38 |
+| 14:53 | Edited talimsahl/public/css/desk-overrides.css | reduced (-8 lines) | ~30 |
+| 14:53 | Edited talimsahl/public/css/desk-overrides.css | 14→12 lines | ~120 |
+| 14:53 | Edited talimsahl/public/css/desk-overrides.css | 26→24 lines | ~211 |
+| 14:54 | Session end: 4 writes across 1 files (desk-overrides.css) | 8 reads | ~10055 tok |
+| 14:54 | Session end: 4 writes across 1 files (desk-overrides.css) | 8 reads | ~10055 tok |
+| 14:55 | Session end: 4 writes across 1 files (desk-overrides.css) | 9 reads | ~10055 tok |
+| 15:01 | Edited talimsahl/public/js/desk_reskin.bundle.js | 3→2 lines | ~13 |
+| 15:01 | Edited talimsahl/install.py | modified _apply_workspace_if_education_present() | ~32 |
+| 15:05 | Session end: 6 writes across 3 files (desk-overrides.css, desk_reskin.bundle.js, install.py) | 10 reads | ~11374 tok |
+
+## Session: 2026-06-22 12:48
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 12:58 | Edited talimsahl/public/js/reskin/form_hero.js | modified injectHero() | ~386 |
+| 12:58 | Edited talimsahl/public/css/desk-overrides.css | modified media() | ~231 |
+
+## Session: 2026-06-22 13:31
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 13:43 | Created FRAPPE_IMPECCABLE_SKILL_SPEC.md | — | ~7887 |
+| 13:43 | Session end: 1 writes across 1 files (FRAPPE_IMPECCABLE_SKILL_SPEC.md) | 6 reads | ~8450 tok |
+| 13:53 | Created FRAPPE_IMPECCABLE_SKILL_SPEC.md | — | ~8962 |
+| 13:53 | Session end: 2 writes across 1 files (FRAPPE_IMPECCABLE_SKILL_SPEC.md) | 7 reads | ~25446 tok |
+
+## Session: 2026-06-22 13:59
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 14:01 | Created ../../../.claude/skills/frappe-impeccable/package.json | — | ~107 |
+| 14:02 | Created ../../../.claude/skills/frappe-impeccable/scripts/bench.mjs | — | ~2827 |
+| 14:03 | Created ../../../.claude/skills/frappe-impeccable/scripts/context.mjs | — | ~671 |
+| 14:03 | Created ../../../.claude/skills/frappe-impeccable/scripts/nav.mjs | — | ~693 |
+| 14:06 | Edited ../../../.claude/skills/frappe-impeccable/scripts/bench.mjs | added 1 condition(s) | ~197 |
+| 14:08 | Created ../../../.claude/skills/frappe-impeccable/scripts/live-server.mjs | — | ~909 |
+| 14:08 | Created ../../../.claude/skills/frappe-impeccable/scripts/live.mjs | — | ~896 |
+| 14:09 | Created ../../../.claude/skills/frappe-impeccable/scripts/live-inject.mjs | — | ~579 |
+| 14:09 | Created ../../../.claude/skills/frappe-impeccable/scripts/live-screenshot.mjs | — | ~919 |
+| 14:09 | Created ../../../.claude/skills/frappe-impeccable/scripts/live-accept.mjs | — | ~684 |
+| 14:09 | Created ../../../.claude/skills/frappe-impeccable/scripts/live-status.mjs | — | ~396 |
+| 14:10 | Created ../../../.claude/skills/frappe-impeccable/scripts/detect.mjs | — | ~631 |
+
+## Session: 2026-06-22 14:11
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 14:12 | Created ../../../.claude/skills/frappe-impeccable/scripts/live-server.mjs | — | ~1028 |
+| 14:12 | Edited ../../../.claude/skills/frappe-impeccable/scripts/bench.mjs | added 3 condition(s) | ~367 |
+| 14:12 | Edited ../../../.claude/skills/frappe-impeccable/scripts/live-inject.mjs | 3→3 lines | ~54 |
+| 14:13 | Edited ../../../.claude/skills/frappe-impeccable/scripts/live-inject.mjs | removed 16 lines | ~33 |
+| 14:13 | Edited ../../../.claude/skills/frappe-impeccable/scripts/live-screenshot.mjs | 3→3 lines | ~49 |
+| 14:13 | Edited ../../../.claude/skills/frappe-impeccable/scripts/live-screenshot.mjs | 9→4 lines | ~44 |
+| 14:13 | Edited ../../../.claude/skills/frappe-impeccable/scripts/live-screenshot.mjs | modified readFileSync() | ~59 |
+| 14:16 | Created ../../../.claude/skills/frappe-impeccable/SKILL.md | — | ~1614 |
+| 14:17 | Created ../../../.claude/skills/frappe-impeccable/references/frappe-selectors.md | — | ~751 |
+| 14:17 | Created ../../../.claude/skills/frappe-impeccable/references/live.md | — | ~696 |
+| 14:17 | Created ../../../.claude/skills/frappe-impeccable/references/document.md | — | ~412 |
+| 14:18 | Created ../../../.claude/skills/frappe-impeccable/references/audit.md | — | ~442 |
+| 14:18 | Created ../../../.claude/skills/frappe-impeccable/references/craft.md | — | ~359 |
+| 14:18 | Created ../../../.claude/skills/frappe-impeccable/references/shape.md | — | ~223 |
+| 14:18 | Created ../../../.claude/skills/frappe-impeccable/references/polish.md | — | ~285 |
+| 14:18 | Created ../../../.claude/skills/frappe-impeccable/references/bolder.md | — | ~223 |
+| 14:18 | Created ../../../.claude/skills/frappe-impeccable/references/quieter.md | — | ~216 |
+| 14:18 | Created ../../../.claude/skills/frappe-impeccable/references/typeset.md | — | ~195 |
+| 14:19 | Created ../../../.claude/skills/frappe-impeccable/references/colorize.md | — | ~206 |
+| 14:19 | Created ../../../.claude/skills/frappe-impeccable/references/layout.md | — | ~187 |
+| 14:19 | Created ../../../.claude/skills/frappe-impeccable/references/animate.md | — | ~190 |
+| 14:19 | Created ../../../.claude/skills/frappe-impeccable/references/delight.md | — | ~183 |
+| 14:19 | Created ../../../.claude/skills/frappe-impeccable/references/adapt.md | — | ~250 |
+| 14:21 | Edited ../../../.claude/skills/frappe-impeccable/scripts/live-server.mjs | inline fix | ~27 |
+| 14:21 | Edited ../../../.claude/skills/frappe-impeccable/scripts/live-server.mjs | modified shutdown() | ~51 |
+| 14:22 | Session end: 25 writes across 20 files (live-server.mjs, bench.mjs, live-inject.mjs, live-screenshot.mjs, SKILL.md) | 5 reads | ~8722 tok |
+
+## Session: 2026-06-22 14:23
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 14:29 | Edited ../../../.claude/skills/frappe-impeccable/SKILL.md | 7→12 lines | ~248 |
+| 14:30 | Created ../../../.claude/skills/frappe-impeccable/package.json | — | ~261 |
+| 14:31 | Created ../../../.claude/skills/frappe-impeccable/README.md | — | ~1455 |
+| 14:31 | Created ../../../.claude/skills/frappe-impeccable/LICENSE | — | ~288 |
+| 14:32 | Created ../../../.claude/skills/frappe-impeccable/CONTRIBUTING.md | — | ~475 |
+| 14:33 | Edited ../../../.claude/skills/frappe-impeccable/.gitignore | 3→6 lines | ~17 |
+| 14:40 | Created ../../../.claude/skills/frappe-impeccable/community-posts/discuss-frappe-io.md | — | ~538 |
+| 14:41 | Created ../../../.claude/skills/frappe-impeccable/community-posts/reddit-claude-ai.md | — | ~424 |
+| 14:41 | Created ../../../.claude/skills/frappe-impeccable/community-posts/reddit-erpnext.md | — | ~443 |
+| 14:42 | Edited ../../../.claude/skills/frappe-impeccable/.gitignore | — | ~0 |
+| 14:44 | Session end: 10 writes across 9 files (SKILL.md, package.json, README.md, LICENSE, CONTRIBUTING.md) | 7 reads | ~4583 tok |
+
+## Session: 2026-06-24 12:57
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
