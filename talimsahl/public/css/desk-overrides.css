@@ -818,8 +818,9 @@ body.ts-canvas .layout-side-section { background: transparent; }
   border-bottom-color: var(--ts-primary);
 }
 
-/* Hide collapsed section heads inside tabbed form (we use tabs instead) */
-.ts-form-v2 .form-layout .section-head { display: none; }
+/* Hide plain section heads inside tabbed form (we use tabs instead). Collapsible
+   heads stay: they are the only way to expand a collapsed section (e.g. User > Settings). */
+.ts-form-v2 .form-layout .section-head:not(.collapsible) { display: none; }
 .ts-form-v2 .form-layout .form-section > .section-body { padding-top: 0; }
 
 /* Action bar — none. Frappe's native .standard-actions (Save / Actions /
